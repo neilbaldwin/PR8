@@ -1,0 +1,5 @@
+DPCM/kick01.dmc
+DPCM/snare01.dmc
+DPCM/perc002.dmc
+DPCM/perc003.dmc
+DPCM/perc004.dmc

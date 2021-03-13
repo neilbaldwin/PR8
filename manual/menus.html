@@ -1,0 +1,106 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+
+		<ul>
+			<li><a href="index.html">Overview</a></li>
+			<li><a href="synthesis.html">Synthesis</a></li>
+			<li><a href="drums.html">Drum Editor</a></li>
+			<li><a href="patterns.html">Pattern Editor</a></li>
+			<li><a href="songs.html">Song Editor</a></li>
+			<li><a href="drumParameters.html">Drum Parameters</a></li>
+			<li><a href="controls.html">Controls</a></li>
+			<li><a href="automation.html">Automation</a></li>
+				<li>Menus</li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+	<div class="content">
+	<h2>Menus</h2>
+	<p>In addition to the obvious controls, switches, values and parameters, there are also several 'hidden' menus within PR8 that are used to perform utility functions.</p>
+	<p>The menus appear in the Pattern Editor (Grid) and apart from the <b>Echo Menu</b> are all 'opened' and operated in the same way. Even though the menus all appear in the same place, you need to invoke the menu from the related editor e.g. Song Edit Menu is opened when you are in the Song Editor etc.</p>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Open Menu</td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>D</span></td></tr>
+	<tr><td>Close Menu</td><td>tap <span class='hex'>B</span></td></tr>
+	<tr><td>Highlight Function</td><td>tap <span class='hex'>U/D</span></td></tr>
+	<tr><td>Select Function</td><td>tap <span class='hex'>A</span></td></tr>
+</table>
+<h2>Song Edit Menu</h2>
+	<div class="imageCenter">
+		<img src="images/songEditMenu.png" />
+		<p class='caption'>Song Edit Menu</p>
+	</div>
+<p><span class='hex'>'PST LP'</span> copies the loop section of the current song and <b>PASTES</b> it AFTER the end of the loop. The Loop Start parameter is then moved to point to the pasted loop section. This operation will overwrite any bars after the original looped section with the copy of the loop.</p>
+<p><span class='hex'>'INS LP'</span> copies the loop section of the current song and <b>INSERTS</b> it AFTER the end of the loop. The Loop Start parameter is then moved to point to the pasted loop section. As opposed the the 'PST LP' function, the Bars following the original loop are shifted to make room for the loop paste and therefore are preserved. A number of Song Bars equal to the loop length will be shifted off the 'end' of the Song. You should be aware of this if you have a very long Song as these 'lost' bars are not recoverable.</p>	
+
+
+<h2>Pattern Edit Menu</h2>
+	<div class="imageCenter">
+		<img src="images/patternEditMenu.png" />
+		<p class='caption'>Pattern Edit Menu</p>
+	</div>
+<p><span class='hex'>'CPY PHR'</span> copies the Phrase on the current Track to the <i>Copy Buffer</i>.</p>	
+<p><span class='hex'>'CPY PAT'</span> copies the entire current Pattern to the Copy Buffer. It's important to understand that what is actually copied to the Copy Buffer is the Drum and Phrase assignment for every Track of the current Pattern.</p>	
+<p><span class='hex'>'CUT PHR'</span> copies the Phrase from the current Track to the Copy Buffer and then <b>clears</b> the Phrase.</p>	
+<p><span class='hex'>'CUT PAT'</span> copies the current Pattern to the Copy Buffer and the <b>clears</b> the current Pattern.</p>	
+
+<h2>Drum Edit Menu</h2>
+	<div class="imageCenter">
+		<img src="images/drumEditMenu.png" />
+		<p class='caption'>Drum Edit Menu</p>
+	</div>
+<p><span class='hex'>'CPY DRM'</span> copies the current Drum to the <i>Copy Buffer</i>.</p>	
+<p><span class='hex'>'CUT PAT'</span> copies the current Drum to the Copy Buffer then <b>clears</b> the current Drum.</p>	
+<p><span class='hex'>'SWAP AB'</span> swaps the parameters of Voice A with Voice B (and vice versa). Trust me, one day you'll find it useful.</p>
+
+	<h2>Echo Menu</h2>
+<div class="imageCenter">
+	<img src="images/echoMenu.png" />
+	<p class='caption'>Echo Edit Menu</p>
+</div>
+	<p>The <b>Echo Menu</b> is completely different from the other menus. As well as being invoked with a slightly different key combo, the menu doesn't have utility functions but is actually used to edit the Echo settings for each Pattern (Echo settings are per-Pattern). With this in mind, it should be obvious that you need to be in the Pattern Editor to open the Echo Menu.</p>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Open Menu</td><td>hold <span class='hex'>SELECT+B</span> then tap <span class='hex'>D</span></td></tr>
+	<tr><td>Close Menu</td><td>tap <span class='hex'>B</span></td></tr>
+	<tr><td>Highlight Function</td><td>tap <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Alter Value</td><td>hold <span class='hex'>A</span> then tap <span class='hex'>L/R</span></td></tr>
+	<tr><td>Toggle Switch</td><td>tap <span class='hex'>A</span></td></tr>
+</table>
+<p>Starting on the left side, the three switches labelled <span class='hex'>A</span>, <span class='hex'>B</span> and <span class='hex'>D</span> are used to switch Echo on/off for Voices A, B and D respectively.</p>
+<p>Next to each of the Voice Switches is the <b>Feedback Level</b> for each Voice. <span class='hex'>0</span> is silent while <span class='hex'>F</span> is loudest.</p>
+<p>Top-right parameter, <span class='hex'>D</span> is <b>Echo Decay</b>. This is the speed at which the Echo Feedback decays to silence, <span class='hex'>01</span> to <span class='hex'>0F</span>, slowest to fastest. A setting of <span class='hex'>00</span> causes the Echo Feedback to be 'infinite'.</p>
+<p>The value underneath, <span class='hex'>S</span> is <b>Echo Speed</b>. This determines the delay between each Echo. It has two modes of operation, <b>Sync Mode</b> and <b>Free Mode</b>. The mode is controlled by the switch at the bottom-right of the menu with the little note at the side. With this switch off, the Echo is in Free Mode where the <b>S</b> parameter is just the number of ticks between each Echo. With the switch on (red), the Echo is in Sync Mode. In this mode, the <b>S</b> parameter indicates the number of Pattern Steps in between each Echo. Therefore the speed of the Echo will change with the tempo of each Pattern.</p>
+<p>The <b>S</b> parameter in Sync Mode is actually in half-steps. So a setting of 4 would cause an echo every 2 Pattern steps, a setting of 6 would produce an Echo every 3 Pattern steps.</p>
+
+<h2>Clear Data Menu</h2>
+	<div class="imageCenter">
+		<img src="images/clearDataMenu.png" />
+		<p class='caption'>Clear Data Menu</p>
+	</div>
+<p>The <b>Clear Data Menu</b> is activated from the Song Editor (<b>B + SELECT + DOWN</b>) and has several functions for clearing/initialising data within PR8. The functions should be pretty self-explanatory. Even though the functions are written as singular (e.g. PTN as opposed to PTNS) the opiton you select will clear <b>all</b> of the data type, and in the case of <b>CLR ALL</b>, will clear <b>ALL</b> data within PR8.</p>
+<p>What values the data is initialised to depends on the data type. For example, Drum Patches have all the Voices initialised to 'sensible' values and then all the Voices are turned off.</p>
+<p>If PR8 is playing when you select one of the Clear functions it will be stopped. This is because initialising the data can take a few moments and would most likely interrupt/stall playback anyway.</p>
+<p>When you choose a menu option a confirmation message will appear in the left-hand side of the Song Editor (press B to cancel, press A to accept).</p>
+<p><b>Please, use with caution. THERE IS NO UNDO!</b></p>	
+
+
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

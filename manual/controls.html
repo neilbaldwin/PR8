@@ -1,0 +1,179 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+		<div class="clearFix"></div>
+		<div class="navigation">
+			<ul>
+				<li><a href="index.html">Overview</a></li>
+				<li><a href="synthesis.html">Synthesis</a></li>
+				<li><a href="drums.html">Drum Editor</a></li>
+				<li><a href="patterns.html">Pattern Editor</a></li>
+				<li><a href="songs.html">Song Editor</a></li>
+				<li><a href="drumParameters.html">Drum Parameters</a></li>
+				<li>Controls</li>
+				<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+			</ul>
+		</div>
+</div>
+
+<div class="content">	
+<h2>Global Controls</h2>
+<p>These controls generally work in any Editor at any time. Just pay attention to the notes below the table.</p>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Move around Editor<sup>*1</sup></td><td>tap <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Modify a Value<sup>*2</sup></td><td>hold <span class='hex'>A</span> then tap/hold <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Clear or 'Reset' a Value<sup>*3</sup></td><td>tap <span class='hex'>B</span></td></tr>
+	<tr><td>Play/Pause (Pattern or Song Mode)</td><td>tap <span class='hex'>START</span></td></tr>
+	<tr><td>Play From Beginning (Pattern or Song Mode)</td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>START</span></td></tr>
+	<tr><td>Play Song From Loop (Song Mode)</td><td>hold <span class='hex'>A</span> then tap <span class='hex'>START</span></td></tr>
+	<tr><td>Mute a Track<sup>*4</sup></td><td>hold <span class='hex'>B</span> then tap <span class='hex'>SELECT</span></td></tr>
+	<tr><td>Solo a Track<sup>*4</sup></td><td>hold <span class='hex'>B</span> then tap <span class='hex'>START</span></td></tr>
+	<tr><td>Move To Another Editor</td><td>hold <span class='hex'>B</span> then tap <span class='hex'>U/D/L/R</span> (in the direction of the Editor you want to move to)</td></tr>
+</table>
+<p><sup>*1</sup> In some Editors you are only able to move Up/Down or Left/Right.</p>
+<p><sup>*2</sup> Generally most values can be increased/decreased by <span class='hex'>01</span> by pressing L/R, or by bigger increments (mostly <span class='hex'>10</span> or <span class='hex'>0C</span> in the case of notes/note offsets) by pressing U/D but not all of them can be.</p>
+<p><sup>*3</sup> In some Editors the function of 'clearing' or 'reseting' a value varies. Sometimes it will write 00 to the parameter, sometimes a 'default' value will be written or sometimes the function is used to turn a feature on/off.</p>
+<p><sup>*4</sup> Whichever Editor you are currently in, the Track that will be affected by Mute and Solo is shown by the Track Indicator (blue arrow) to the left of the Grid.</p>
+
+<h2>Song Editor Controls</h2>
+<p>In addition to Global Controls, the Song Editor has these extra functions.</b>
+<p><b>Remember that most of the parameters in the Song Editor can be modified only if Song Recording mode is enabled (REC).</b></p>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Change between Pattern Mode (OFF), Song Play (PLY) and Song Record (REC)</td><td>hold <span class='hex'>A</span> on Song Mode parameter then tap:<br /><br />
+	<table>
+		<tr><td>LEFT</td><td>for 'OFF'</td></tr>
+		<tr><td>RIGHT</td><td>for 'PLY'</td></tr>
+		<tr><td>UP</td><td>for 'REC'</td></tr>
+	</table>
+	</td></tr>
+	<tr><td>Toggle Looping</td><td>tap <span class='hex'>B</span> on <span class='hex'>LP[]</span> parameter</td></tr>
+	<tr><td>Show Song Edit Menu</td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>D</span></td></tr>	
+	<tr><td>Show Clear Data Menu</td><td>hold <span class='hex'>B + SELECT</span> then tap <span class='hex'>D</span></td></tr>	
+	<tr><td>Change current Bar from anywhere in Song Editor<sup>*1</sup></td><td>hold <span class='hex'>B</span> then tap/hold <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Load the Pattern on the current Bar into the Grid Editor and jump to Grid Editor</td><td>tap <span class='hex'>SELECT</span> anywhere in Song Editor</td></tr>
+	<tr><td>Insert a Bar into the Song<sup>*2</sup></td><td>hold <span class='hex'>B+A</span> then tap <span class='hex'>R</span></td></tr>
+	<tr><td>Delete a Bar from the Song<sup>*3</sup></td><td>hold <span class='hex'>B+A</span> then tap <span class='hex'>L</span></td></tr>
+</table>
+<p><sup>*1 </sup> This is mainly so that you can leave the cursor on the PTN parameter and advance fowards/backwards through a song when changing Pattern numbers, making editing a little quicker.</p>
+
+<p><sup>*2 </sup> When inserting a Bar, if the current Bar is before the Loop point or on the first Bar of the Loop, the Loop point will be pushed one bar along. If the current Bar is anywhere else inside the Loop the Loop Start will remain the same but the Loop will be extended by 1 Bar.</p>
+
+<p><sup>*3 </sup> When deleting a Bar, if the current bar is before the Loop, the Loop Start will be moved 1 Bar back. If the current Bar is within the Loop the Loop Length will be shortened by 1 Bar.</p>
+
+<p><b>Note</b>: when changing the Song number (SNG), the Song Speed/Swing (SPD/SWG) or the Loop Start/Loop Length parameters, the value isn't set until you release the A button.</p>
+
+<h2>Pattern Editor Controls</h2>
+<p>In addition to Global Controls, some aspects of the Pattern Editor have these extra functions.</p>
+
+<h3 id='gridControls'>Grid Editor</h3>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Add a Trigger</td><td>tap <span class='hex'>A</span> in an empty cell</td></tr>
+	<tr><td>Remove a Trigger (clear the cell)</td><td>tap <span class='hex'>B</span> on an cell containing a Trigger</td></tr>
+	<tr><td>Cycle a Trigger between Note, Tie Note and Kill Note (and off)</td><td>tap <span class='hex'>A</span> on a cell containing a Trigger</td></tr>
+	<tr><td>Paste The Last Deleted Trigger</td><td>tap <span class='hex'>B</span> in an empty cell</td></tr>
+	<tr><td>Modify a Trigger Parameter<sup>*1</sup></td><td>with cursor on a cell containing a Trigger, hold <span class='hex'>A</span> then tap/hold <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Modify Parameter For All Triggers In Current Phrase<sup>*1</sup></td><td>with cursor on a cell containing a Trigger, hold <span class='hex'>A + B</span> then tap/hold <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Shift Phrase Left/Right</td><td>hold <span class='hex'>SELECT + A</span> then tap <span class='hex'>L/R</span></td></tr>
+	<tr><td>Move Track Up/Down In Pattern<sup>*2</sup></td><td>hold <span class='hex'>SELECT + A</span> then tap <span class='hex'>U/D</span></td></tr>
+	<tr><td>Show Pattern Edit Menu</td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>D</span></td></tr>
+	<tr><td>Paste Phrase/Pattern<sup>*3</sup></td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>U</span></td></tr>
+	<tr><td>Show Pattern Echo Menu</td><td>hold <span class='hex'>B + SELECT</span> then tap <span class='hex'>D</span></td></tr>
+</table>
+<p><sup>*1</sup> remember that the Trigger Parameter that will be modified is indicated by the indicator in the <a href='patterns.html#triggerEditor'>Trigger Editor</a>. 'Current Phrase' is the Phrase that your cursor is in.</p>
+<p><sup>*2</sup> Changing the Track order moves both the Phrase and the Drum assigned to the Track.</p>
+<p><sup>*3</sup> You have to have previously copied either Phrase or Pattern data via the Pattern Edit Menu. A confirmation dialogue will appear in the left of the Song Editor asking you to confirm the operation.</p>
+
+<h3>Pattern Parameters</h3>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Change Pattern Parameter<sup>*1</sup></td><td>hold <span class='hex'>A</span> then tap <span class='hex'>U/D/L/R</span></td></tr>
+	<tr><td>Clone Pattern<sup>*2</sup></td><td>with cursor on PTN parameter, hold <span class='hex'>B</span> then tap <span class='hex'>A</span></td></tr>
+</table>
+
+<p><sup>*1</sup> Changing any of the Pattern Parameters has a slightly different behaviour than other parameters in PR8. While you still have A pressed you can change any of the Pattern Parameters freely but even though the values (and the Grid view in the case of changing the Pattern Number, PTN) change visually, the new values won't take effect until you release the A button.</p>
+
+<p><sup>*2</sup> If an unused, empty Pattern is found, the current Pattern will be copied to the empty one and then the newly cloned Pattern will be loaded into the Grid and will begin to play when the previous Pattern end is reached.</p>
+
+
+<p><b>A NOTE ABOUT PATTERN CLONING: PR8 looks for a Pattern that has Phrase 00 assigned to all Tracks. If it finds one it treats that Pattern as being 'empty' and uses it as the destination for the clone operation. With this in mind, always leave Phrase 00 blank if you intend to make use of the Pattern clone function. It's unlikely that you'd have a Pattern that deliberately had Phrase 00 assigned to every track but it's worth being aware of just in case.</b></p>
+<p><b>Also, it's worth mentioning that the Pattern cloning search will never use Pattern 00 as a destination Pattern. Though, unlike the restriction with Phrases, you can use Pattern 00 like any other Pattern without worry.</b></p>
+
+<h3 id="clonePhrase">Track Assignment</h3>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Move Track Up/Down In Pattern<sup>*1</sup></td><td>hold <span class='hex'>A + B</span> then tap <span class='hex'>U/D</span></td></tr>
+	<tr><td>Clone Phrase Assigned To Track<sup>*2</sup></td><td>hold <span class='hex'>B</span> then tap <span class='hex'>A</span></td></tr>
+</table>
+<p><sup>*1</sup> Changing the Track order moves both the Phrase and the Drum assigned to the Track.</p>
+<p><sup>*2</sup> This function searches for unused Phrases. If successful the current Phrase will be duplicated to the unused Phrase and then Track Assignment for the current Track will be update to the new Phrase. If no unused Phrases are found, nothing happens.</p>
+
+<h3>Trigger Editor</h3>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Repeat Last Set Value</td><td>tap <span class='hex'>A</span></td></tr>
+	<tr><td>Remap/Reset Trigger Parameter<sup>*1</sup></td><td>with cursor on T1, T2 or T3, hold <span class='hex'>SELECT</span> then tap <span class='hex'>A</span></td></tr>
+	<tr><td>Move the 'Ghost Cursor' (change the 'current cell')</td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>U/D/L/R</td></tr>
+	
+</table>
+<p><sup>*1</sup> As long as the cursor is on a T<em>x</em> parameter, this function will scan the current Track and will set the T<em>x</em> value in each Note Trigger to the 'default' value that is specified in the Drum Patch. An indicator will 'wipe' across the Track as a visual confirmation.</p>
+
+
+<h2>Drum Editor Controls</h2>
+<p>In addition to Global Controls, the Drum Editor has these extra functions.</p>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>Move between Drum Voices</td><td>hold <span class='hex'>B</span> then tap <span class='hex'>L/R</td></tr>
+	<tr><td>Toggle Voice On/Off<sup>*1</sup></td><td>tap <span class='hex'>SELECT</span></td></tr>
+	<tr><td>Show Drum Edit Menu</td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>D</span></td></tr>	
+	<tr><td>Paste Drum<sup>*2</sup></td><td>hold <span class='hex'>SELECT</span> then tap <span class='hex'>U</span></td></tr>
+</table>
+<p><sup>*1</sup> You can also turn a Voice on/off by putting the cursor on the Voice switch and holding <span class='hex'>A</span> then tapping <span class='hex'>U/D/L/R</span>.</p>
+<p><sup>*2</sup> You have to have previously copied Drum data via the Drum Edit Menu. A confirmation dialogue will appear in the left of the Song Editor asking you to confirm the operation.</p>
+
+<h3>Drum Auxiliary Editor</h3>
+<p>Editing the Drum Auxiliary Parameters (Drum Name, T1/T2/T3 parameters) has some extra controls too.</p>
+<table class="controls">
+	<thead>
+		<th width='60%'>Function</th><th>Buttons</th>
+	</thead>
+	<tr><td>To Edit Drum Name</td><td>with cursor on 'NAM' parameter, tap <span class='hex'>A</span>. You can then highlight individual letters with the cursor using <span class='hex'>L/R</span> and change the letter using <span class='hex'>U/D</span>. When you are finished editing, tap <span class='hex'>A</span></td></tr>
+	<tr><td>To Edit T<em>x</em> Parameters</td><td>with cursor on a T<em>x</em> parameter, hold <span class='hex'>A</span> then tap <span class='hex'>U/D</span>.
+	<tr><td>Remap/Reset Trigger Automation<sup>*1</sup></td><td>with cursor on T1, T2 or T3, hold <span class='hex'>SELECT</span> then tap <span class='hex'>A</span></td></tr>
+	<tr><td>Toggle T<em>x</em> Control On/Off</td><td>with cursor on a T<em>x</em> parameter, tap <span class='hex'>B</span></td></tr>
+</table>
+<p><sup>*1</sup> As long as the cursor is on a T<em>x</em> parameter, this function will scan the current Track and will set the T<em>x</em> value in each Note Trigger to the 'default' value that is specified in the Drum Patch. An indicator will 'wipe' across the Track as a visual confirmation.</p>
+<h3>Moving From Pattern Editor to Drum Editor</h3>
+<p>Normally, moving to and from the Drum Editor will leave the cursor in the Voice Parameter Group that you were last in. However,  as a convenience feature, if you change Tracks in the Pattern Editor and then move from the Pattern to the Drum Editor and the cursor will end up in a Voice Parameter Group that is not switched on, the cursor instead will move to the first active Voice of the Drum Patch.</p>
+<h3>A Note about the Automation 'Remap/Reset' Function</h3>
+<p>This is probably one of those functions that will have you scratching your head...until you need it! You might find that you've added a load of automation tweaks to a Phrase using one of the T<em>x</em> parameters and then at a later point you might want to change what Drum Parameters that T<em>x</em> parameter is affecting. The problem then is that you have automation data in the Phrase that is likely invalid for the new T<em>x</em> parameter. Using this function you can 'remap' the automation for that T<em>x</em> parameter to a sensible value (copied from whatever Drum Parameter that T<em>x</em> is pointing to).</p>
+<p>You can perform this function both from the Drum Editor (Aux) or the Trigger Editor.</p>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+rm pr8.nes
+rm *.o
+
+ca65_s pr8_vars.asm
+ca65_s ROM_00.asm
+ca65_s ROM_01.asm
+ca65_s ROM_02.asm
+ca65_s ROM_03.asm
+ca65_s ROM_04.asm
+ca65_s ROM_05.asm
+ca65_s ROM_06.asm
+ca65_s ROM_07.asm
+ld65_s -m pr8.map -o pr8.nes pr8_vars.o ROM_00.o ROM_01.o ROM_02.o ROM_03.o ROM_04.o ROM_05.o ROM_06.o ROM_07.o -C sxrom.cfg
+
+rm *.o
+
+zip -r pr8.zip pr8.nes readme.txt license.txt dcm2pr8.c dcm2pr8 dcm2pr8.exe pr8_dcm.txt pr8_ex.sav DPCM Manual PowerPak -x Manual/.DS_Store Manual/pr8_manual.esproj/ Manual/pr8_manual.esproj/* DPCM/.DS_Store

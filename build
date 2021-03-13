@@ -1,0 +1,23 @@
+rm pr8.nes
+rm *.o
+
+ca65 pr8_vars.asm
+ca65 ROM_00.asm
+ca65 ROM_01.asm
+ca65 ROM_02.asm
+ca65 ROM_03.asm
+ca65 ROM_04.asm
+ca65 ROM_05.asm
+ca65 ROM_06.asm
+ca65 ROM_07.asm
+ld65 -m pr8.map -o pr8.nes pr8_vars.o ROM_00.o ROM_01.o ROM_02.o ROM_03.o ROM_04.o ROM_05.o ROM_06.o ROM_07.o -C sxrom.cfg
+
+rm *.o
+
+if [ -e "pr8.nes" ]
+then
+echo
+open "pr8.nes"
+#open -a "/Users/neilbaldwin/Library/Parallels/Windows XP.pvm/Windows Applications/fceux.exe.app" pr8.nes
+#open -a "/Users/neilbaldwin/Library/Parallels/Windows XP.pvm/Windows Applications/fceuxdsp.exe [1].app" pr8.nes
+fi

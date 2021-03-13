@@ -1,0 +1,112 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+		<ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="synthesis.html">Synthesis</a></li>
+<li><a href="drums.html">Drum Editor</a></li>
+<li>Pattern Editor</li>
+<li><a href="songs.html">Song Editor</a></li>
+<li><a href="drumParameters.html">Drum Parameters</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content">	
+	<h2>Patterns, Phrases and Triggers</h2>
+	<p>In PR8, a <em>Pattern</em> contains 6 <em>Tracks</em> arranged vertically. Each Track is assigned a sound (Drum Patch number) and a <em>Phrase</em> number. A Phrase is 16 steps long (horizontally, left-to-right) and contains the Triggers to tell PR8 when and how to play the Drum Patches assigned to each Track. Each Pattern also has a <em>Speed</em> and <em>Swing</em> setting.</p>
+	<p><b>Probably the most important thing to understand about the relationship between Patterns, Phrases and Drum Patches is that you have complete flexibility to assign <em>any</em> Phrase to <em>any</em> Track of <em>any</em> Pattern (even the same Phrase on multiple Tracks of a single Pattern). You can also assign <em>any</em> Drum Patch to <em>any</em> Track of <em>any</em> Pattern - Phrases are not tied to a Drum Patch and neither are they tied to Tracks.</b></p>
+	<p><b>NOTE THOUGH : if you have assigned a Phrase to more than one Pattern, wherever you edit that Phrase, the changes will appear in all Patterns where the Phrase is used.</b></p>
+	<h2>Editing Patterns</h2>
+	<p>Let's look at the Pattern Editor in more detail.</p>
+	<div class="imageCenter">
+		<img src="images/pattern.png" />
+		<p class='caption'>PR8 Pattern Editor</p>
+	</div>
+	<p>When editing a Pattern you'll move around between 4 different areas: <b>Pattern Parameters</b>, <b>Track Assignment</b>, <b>Grid Editor</b> and <b>Trigger Editor</b></p>
+	<h3><span class='roman'>(i)</span>Pattern Parameters</h3>
+	<p>Starting at the top of the Pattern Editor are the Pattern Parameters <b>PTN</b>, <b>SPD</b>, <b>SWG</b> and <b>LEN</b>.</p>
+	<div class="imageCenter">
+		<img src="images/patternParameters.png" />
+		<p class='caption'>Pattern: Pattern Parameters</p>
+	</div>
+	<p><span class='hex'>PTN</span> is the Pattern number that is currently loaded into the Pattern Editor. If PR8 is in "Pattern Mode" then this is the Pattern that will play in an infinite loop (until you stop PR8 or change the PTN number).</p>
+	 <p><span class='hex'>SPD</span> is the playback speed for the current Pattern and <span class='hex'>SWG</span> is the 'swing' percentage applied to the Speed (you can specify 00, 25, 50 or 75 percent). Note that SPD and SWG is set <b>per Pattern</b>.</p>
+	 <p>The final parameter, <span class='hex'>LEN</span> is the number of steps that will play of the Pattern. By default this value is set to <span class='hex'>10</span> (16 steps, 10 hex = 16 decimal) which means the Pattern will play in it's entirety but you can set smaller values (down to <span class='hex'>01</span>) to 'truncate' the playback of the Pattern.</p>
+	<h3><span class='roman'>(ii)</span>Track Assignment</h3>
+	<p>On the left-hand side is the Track Assignment section:</p>
+	<div class="imageCenter">
+		<img src="images/trackAssignment.png" />
+		<p class='caption'>Pattern: Track Assignment</p>
+	</div>
+	<p>This is where you assign a Drum Patch (<b>DRM</b>) and Phrase (<b>PHR</b>) to each of the six Tracks of the Pattern. This is also where your cursor needs to be if you wish to use the <b>Clone Phrase</b> function (read about that on the <a href="controls.html#clonePhrase">Controls</a> page).</p>
+	<p>The small green lights to the left are the <b>Track Status</b> indicators.</p>
+	<ul>
+	<li>If a Track is active it's status indicator will be solid green.</li>
+	<li>If a Track is muted the indicator will be black. </li>
+	<li>If a Track has been <em>soloed</em>, that Track's status indicator will be solid red and the other Track's indicators will blink green (unless the Track was previously muted in which case it will remain black).</li>
+	</ul>
+	<p>The Track Status indicators also are used to show activity on the Track when PR8 is playing. You'll see that the indicators will flash white when notes are played.</p>
+	<p>The other thing to note is that Track Status is <em>global</em> within PR8 and therefore is not a setting for each Pattern.</p>
+	<p>You can read about how to mute and solo Tracks on the <a href="controls.html">Controls</a> page.</p>
+	<h3><span class='roman'>(iii)</span>Grid Editor</h3>
+	<p>The <b>Grid Editor</b> is where you enter and edit note triggers.</p>
+	<div class="imageCenter">
+		<img src="images/grid.png" />
+		<p class='caption'>Pattern: Grid Editor</p>
+	</div>
+	<p>The Grid is divided into 6 rows by 16 columns. Each row is one <em>Track</em> of the Pattern and displays the contents of the Phrase that is assigned to that Track. Each column represents one <em>Step</em> of the Pattern Track. Patterns always contain 16 steps and always play from left-to-right.</p>
+	<p>To the left of the Grid are a column of blue indicator arrows. This is to show you which Track is the <em>current Track</em>. Some operations can be performed on Tracks (in reality it's on the Phrase assigned to a Track) even when the editing focus is away from the Grid so it's important to know this at all times.</p>
+	<p>At the top of the Grid are the playback step indicators. This shows you which step of the Pattern is being played. The larger indicators on the 1st, 5th, 9th and 13th steps have no special meaning, they're just a visual aid. Same as the alternating dark/light grey of the blank Grid cells on the same Step numbers.</p>
+	<p>If there is a red square in a cell that means it contains a <b>Note Trigger</b>. Empty cells in the Grid mean that there is no data on that step of the Phrase. There are three types of <b>Note Triggers</b>.</p>
+	<table class="table1">
+		<thead><th>Symbol</th><th>Function</th></thead>
+		<tr><td><img src="images/note.png" /></td><td>Normal Note</tr>
+		<tr><td><img src="images/tieNote.png" /></td><td>Tie Note</tr>
+		<tr><td><img src="images/killNote.png" /></td><td>Kill Note</tr>
+	</table>
+	<p><b>Normal Notes</b> are just that - normal notes that behave as you'd expect. <b>Tie Notes</b> are similar to Normal Notes but with a Tie Note many of the synthesis parameters, such as Amplitude Envelopes, are not initialised at the start of the Tie Note. <b>Kill Notes</b>, as you might expect, will kill any previously playing note on that Track.</p>
+	<p>To learn how to add, edit and remove Note Triggers from the Grid see the <a href='controls.html#gridControls'>Controls</a> page.</p>
+	<p>You may be wondering why notes are referred to as <em>Note Triggers</em>. This is because a cell that contains a Note Trigger just tells PR8 to play <em>something</em> in that cell. A Note Trigger is actually made up of 5 different parameters and only one of these parameters is the actual note number (pitch).</p>
+	<h3 id='triggerEditor'><span class='roman'>(iv)</span>Trigger Editor</h3>
+	<p>To the right of the Grid Editor is the <b>Trigger Editor</b></p>
+	<div class="imageCenter">
+		<img src="images/trigger.png" />
+		<p class='caption'>Pattern: Trigger Editor</p>
+	</div>
+	<p>The Trigger Editor is where you can edit the 5 parameters that make up a Note Trigger. From top-to-bottom: <b>Note Number</b>, <b>Retrigger Speed</b>, <b>T1</b>, <b>T2</b> and <b>T3</b></p>
+	<p><b>Note Number</b> is pretty self-explanatory. The actual pitch played by each Drum Patch is based on this value (unless you specify absolute offsets in the OSC-C setting of the Drum Patch Voices). For example if you specify a Coarse Offset of 0C (twelve) in the Drum Patch, the actual pitch played will be one octave above whatever Note Number you set in the Note Trigger.</p>
+	<p><b>Retrigger Speed</b> is used to cause PR8 to keep retriggering the current Note until the next non-empty cell. Valid range for Retriggering is <span class='hex'>00-7F</span>. Values outside of that range are used for <em>Pitch Slide</em>.</p>
+	<p><b>Pitch Slide: </b>the RT parameter can also be used to perform a pitch slide. Please see the <b>Pitch Slide</b> section at the bottom of this page.</p>
+	<p><b>T1/T2/T3</b> are used to send values to the Drum parameters that are assigned to T1/T2/T3 in the Drum Patch. For example, if you have the T1 Parameter in your Drum Patch set to Amplitude Envelope A (AAE), whatever value you set in the T1 Parameter of the Note Trigger will get sent to the Amplitude Envelope A parameter when that Note Trigger plays.</p>
+	<p>So that you have a visual reminder of which note in the Grid you are editing, when you're in the Trigger Editor a 'ghost cursor' is placed on the cell of the Grid.</p>
+	<h3>Trigger Parameter Indicator</h3>
+	<p>You may have noticed (and wondered about) the little blue indicator to the left of the Trigger Parameters. It tells you which one of the Trigger Parameters can be edited from the Grid. Let me explain: when in the Trigger Editor you can move between the Trigger Parameters and edit them as you like. But, when in the Grid Editor, you can only modify one of the five values (the same one for every note) due to UI limitations. Therefore, the blue indicator tells you which of the five parameters will be modified as you edit Note Triggers in the Grid. It's easier if you just try it.</p>
+	<p>Conversely, when in the Trigger Editor, it's possible to move the 'ghost cursor' in the Grid so that you can modify Trigger Parameters for several notes without leaving the Trigger Editor.</p>
+	<p>Which way you edit the Trigger Parameters will depend on your preferences and the context of what you're trying to achieve.</p>
+	<p>You can read about how to do all of this editing/navigation on the <a href="controls.html">Controls</a> page.</p>
+	<h2>Pitch Slide</h2>
+	<p>Setting Retrigger (RT) values for a note in the range <span class='hex'>81-FF</span> give you access to the Secret Pitch Slide function!.</p>
+	<p>This is very much work-in-progress as I've had trouble coming up with a clever way to do it in PR8. The problem being that it's possible to have an instrument that uses, say, both Pulse voices and the Triangle voice. While actually modifying the pitch of all three of those voices is not a problem, because it's possible to have all three voices at differenet semi-tone intervals, detecting a point where the individual voices have reached a 'destination' note is.</p>
+	<p>So, the Pitch Slide in PR8 doesn't so much slide <em>to</em> a note but kind of <em>towards</em> it (and past it, depending on the Slide setting you specify). I'm continuing to think about how to implement it better but it is actually quite usable in it's current form, just don't expect it to be able to automatically slide smoothly to a note.</p>
+	<p>To make the Slide work, specify a Retrigger (RT) value in a Trigger (<span class='hex'>81</span> being the slowest speed, <span class='hex'>FF</span> being the fastest) and if the note in the Trigger is higher or lower than the preceding note, the pitch will be slid up/down from the preceding note pitch. If you perform a Slide on a Tie Note, the starting pitch will be whatever pitch the preceding note was a the point the Tie Note interrupted it - this makes it possible to combine two (or more) Slides and Tie Notes for some nice effects.</p>
+	<p><b>Note: </b>Pitch Slide only works for Voices A, B and C (Pulse 1, Pulse 2 and Triangle). Note that while Pitch Sliding, effects such as Vibrato and Arpeggio are momentarily suspended.</p>
+	<p>
+	<h2>Miscellaneous</h2>
+	<p>There are several other more advanced editing functions you can do inside the Grid Editor, for example shifting a Phrase left/right or swapping the vertical order of Tracks. You can read about these on the <a href="controls.html">Controls</a> page.</p>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

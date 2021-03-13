@@ -1,0 +1,446 @@
+
+@font-face {
+	font-family: "Impact";
+	src: url('../fonts/Impact.TTF');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	min-width: 875px;
+	text-shadow: 0px 1px 0px #c0c0c8;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 0px;
+	font-family: Arial, Verdana, "Lucida Grande", sans-serif;
+	color: #000;
+	background-color: #d3d4de;
+}
+
+h1,h2,h3,h4,h5 {
+	letter-spacing: 0.9px;
+	text-shadow: none;
+	text-transform: uppercase;
+}
+
+h1, h2 {
+	word-spacing: 5px;
+	color: #333;
+	font-family: "Impact";
+	font-weight: normal;
+}
+
+h3, h4,h5 {
+	color: #111;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+}
+
+h1 {padding-bottom: 5px; padding-top: 5px; font-size:130%;}
+h2 {font-size:120%;margin-top:30px;}
+h3 {font-size:100%;margin-left:10px;margin-top:25px;}
+h4 {font-size:105%;}
+
+h2 {
+	width: 100%;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #555;
+}
+
+em { font-style: italic;font-weight: inherit; font-size: inherit; }
+
+b {	
+	font-style: normal;
+	font-weight: bold;
+}
+
+.navigation {
+	margin: 20px 0 10px 20px;
+}
+
+.navigation ul {
+	//font-family: "Borgnine";
+	//font-size: 150%;
+	font-family: Arial, sans-serif;	
+	font-weight: bold;
+	font-size: 80%;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0px;
+	margin: 0;
+	padding: 0px;
+	list-style: none;
+}
+
+.navigation ul li {
+	padding: 0 5px 0 5px;
+	margin: 0;
+	float: left;
+	color: #ccc; //#e00;
+	text-shadow: 1px 1px 0px #000;
+	border-right: 1px solid #000;
+}
+
+.navigation ul li:first-child {
+	padding-left: 0px;
+}
+
+.navigation ul li a {
+	color: #000;
+	text-shadow: 0px 1px 0px #666;
+	text-decoration: inherit;
+}
+
+.navigation ul li a:hover {
+	//font-family: "Borgnine";
+	color: #eee;
+	text-shadow: none; //0px 1px 0px #eee;
+}
+
+
+.content {
+	padding: 10px 20px 10px 20px;
+}
+
+.content p {
+	margin: 10px 10px 10px 10px;
+	text-align: justify;
+}
+
+.content ul {
+	font-weight: bold;
+	margin: 10px 0px 10px 40px;
+	list-style: square;
+}
+
+.content ul ul {
+	margin-left: 0px;
+	font-weight: normal;
+	list-style: none;
+}
+
+.header {
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+	padding: 15px 0 0 0;
+	height: 100px;
+	//background: url("../images/header.png") repeat-x #1e5d91;
+	background-color: #666;
+	border-bottom: 2px solid #000;
+}
+
+.logoImage {
+	padding: 10px 0px 0px 20px;
+	position: relative;
+	margin-right: 0px;
+	float: left;
+}
+
+.clearfix {
+	float: none;
+	clear: both;
+}
+
+.imageRight {
+	margin: 10px 0 10px 20px;
+	float: right;
+}
+
+.imageRight p.caption, .imageCenter p.caption {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	color: #000;
+	text-shadow: 0;
+	font-size: 85%;
+	font-weight: bold;
+}
+
+.imageRight img, .imageCenter img {
+	border: 1px solid #000;
+}
+
+.imageCenter {
+	float: none;
+	text-align: center;
+	display: block;
+	width: 500px;
+	margin: 20px auto 0px auto;
+}
+
+.imageCenter img {
+	margin-left:auto;
+	margin-right: auto;
+}
+
+.tableDiv {
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table, thead, th, tr, td {
+	text-shadow: none;
+	border: 0;
+	border-collapse: collapse;
+	padding: 0;
+	margin: 0;
+}
+
+.table1 {
+	width: auto;
+	margin: 10px auto 10px auto;
+	border: 1px solid #000;
+	font-size: inherit;
+}
+
+.table1 thead {
+	background-color: #999;
+}
+
+.table1 th
+{
+	background-color: #999;
+	border-left: 1px solid #000;
+}
+
+.table1 th:first-child {
+	border-left: 0;
+}
+
+.table1 td {
+		text-align: center;
+		border: 1px solid #000;
+}
+
+.table1 td:first-child
+{
+	text-align: left;
+}
+
+.table1 td,th {
+	padding: 1px 10px 1px 10px;
+}
+
+.table2 {
+	table-layout: fixed;
+	width: auto;
+	margin: 10px auto 10px auto;
+	border: 1px solid #000;
+	font-size: inherit;
+}
+
+.table2 img
+{
+	border: none;
+}
+
+.table2 thead {
+	background-color: #999;
+}
+
+.table2 th
+{
+	background-color: #999;
+	border-left: 1px solid #000;
+}
+
+.table2 th:first-child {
+	border-left: 0;
+}
+
+.table2 td {
+	text-align: left;
+	vertical-align: top;
+	border: 1px solid #000;
+}
+
+.table2 td:first-child
+{
+	text-align: left;
+}
+
+.table2 td,th {
+	padding: 1px 10px 1px 10px;
+}
+
+
+.table2 table {
+	margin-top: 0;
+	padding-top: 0;
+	width: 100%;
+}
+
+.table2 table th {
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+	border: none;
+}
+
+.table2 table, .table2 table td {
+	padding: 0px 5px 2px 0px;
+	text-align: left;
+	vertical-align: top;
+	font-size: inherit;
+	border: none;
+}
+
+.table2 table td:first-child {
+	text-align: left;
+	vertical-align: top;
+	font-size: 14px;
+	font-family: monospace;
+	font-weight: bold;
+}
+
+.table2 td p {
+	margin: 0;
+	padding: 0 0 5px 0;
+}
+.table2 td p table {
+	margin-top: 2px;
+	margin-left: 10px;
+}
+
+.controls  {
+	margin: 10px auto 10px auto;
+	padding: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 600px;
+	font-size: inherit;
+}
+
+.controls td, th {
+	border: 1px solid #000;
+	padding: 5px 10px 5px 10px;
+}
+
+.controls th {
+	background-color: #666;
+	text-align: left;
+	color: #b0b0b8;
+}
+
+.controls td {
+	border: 1px solid #000;
+	vertical-align: top;
+}
+
+.controls .leftColumn {
+	font-style: italic;
+	width: 260px;
+}
+
+.controls .rightColumn {
+	font-style: normal;
+}
+
+
+.controls table {
+	margin-top: 0;
+	padding-top: 0;
+	width: 100%;
+}
+
+.controls table th {
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+	border: none;
+}
+
+.controls table, .controls table td {
+	padding: 0px 5px 2px 0px;
+	text-align: left;
+	vertical-align: top;
+	font-size: inherit;
+	border: none;
+}
+
+.controls table td:first-child {
+	text-align: left;
+	vertical-align: top;
+	font-size: 14px;
+	font-family: monospace;
+	font-weight: bold;
+}
+
+.controls td p {
+	margin: 0;
+	padding: 0 0 5px 0;
+}
+.controls td p table {
+	margin-top: 2px;
+	margin-left: 10px;
+}
+
+hr {
+	padding: 0;
+	margin: 10px 0px 10px 0px;
+	border: 0;
+	height: 1px;
+	background-color: #000;
+}
+
+table hr {
+	border: 0;
+	border-top: 1px dashed #000;
+	height: 1px;
+	background-color: transparent;
+}
+
+table tr td img {
+	border: 1px solid #000;
+}
+
+code {
+	font-size: 14px;
+	text-shadow: none;
+}
+
+.hex {
+	text-shadow: none;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 110%;
+	//background-color: #111;
+	//color: #CCC;
+	padding: 0 1px 0 1px;
+}
+
+a {
+	font-weight: bold;
+	color: inherit;
+	text-decoration: underline;
+}
+
+.footer {
+	padding: 20px 0 0 0;
+	margin: 0;
+	width: 100%;
+	height: 150px;
+	background-color: #333;
+}
+
+.footer p {
+	float: left;
+	text-shadow: none;
+	padding: 10px 30px 10px 30px;
+	font-size: 85%;
+	color: #ccc;
+}
+
+.footer a {
+	color: #FFF;
+}
+
+.roman {
+	font-weight: normal;
+	text-transform: lowercase;
+}
+

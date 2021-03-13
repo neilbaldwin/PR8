@@ -1,0 +1,467 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+		<ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="synthesis.html">Synthesis</a></li>
+<li><a href="drums.html">Drum Editor</a></li>
+<li><a href="patterns.html">Pattern Editor</a></li>
+<li><a href="songs.html">Song Editor</a></li>
+<li>Drum Parameters</li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content">	
+	<h2>Drum Parameters</h2>
+	<p>Let's have a look at the Drum Editor again:</p>
+	<div class="imageCenter">
+		<img src="images/drum.png" />
+	</div>
+	<p>As mentioned in the <em>Drum Editor</em> page, the Drum Editor is divided into 5 sub-groups and each one of these sub-groups contains the sound generating parameters for each of the NES's 5 voices for each Drum Patch.</p>
+	<p>Within those sub-groups, the parameters are further divided into sections which are mostly organised into vertical columns. Those columns are given 3-letter headings and the single parameters are given a single-letter ID. For example, the <b>LFO Speed</b> is under the <b>LFO</b> column, indicated by the letter <b>'S'</b></p>
+	<p>Many of the parameters are common between all Voices but there are some that are unique to particular Voices and some that perform slightly different functions depending on which Voice they are used on. We'll start off with Voice A as (along with Voice B which is identical) this is the most complicated one with the most parameters. I'll just give an overview of what the parameters do here, the <a href='synthesis.html'>Synthesis</a> page explains what's going on in a bit more depth.</p>
+	<h2>Voice A / Voice B Parameters (Square-wave)</h2>
+	<p>Table Headings: <b>Parameter</b> is the three-letter sub-section name and the single-letter ID of each parameter of a Drum Voice. <b>Function</b> is a simple translation of the parameter name. <b>Usage</b> describes the functions of the parameters and values required to access those functions. <b>T<em>x</em></b> shows you the 3-letter ID that is used for the Trigger Parameters in the Auxiliary section of Drum Patches (see <em>Drum Editor</em> page for more detail).</p> 
+	<div class="tableDiv">
+		<table class="table2">
+			<thead>
+					<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em> A/B</th>
+			</thead>
+			
+			<tr>
+				<td>OSC-C</td><td>Oscillator Coarse Offset</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>Pitch is equal to <em>Trigger Note</em></td>
+						</tr>
+						<tr><td>01-4F</td><td>Positive semi-tone offset</td>
+						</tr>
+						<tr><td>50-AF</td><td>Absolute note, 50 being the lowest pitch and AF being the highest</td></tr>
+						<tr><td>FF-B0</td><td>Negative semi-tone offset (FF = -1)</td>
+						</tr>
+					</table>
+				</td>
+				<td><code>AOC<br/>BOC</code></td>
+			</tr>
+			
+			<tr>
+				<td>OSC-F</td><td>Oscillator Fine Tuning</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>No detune</td>
+						</tr>
+						<tr><td>01-7F</td><td>Positive detuning</td>
+						</tr>
+						<tr><td>FF-80</td><td>Negative detuning</td>
+						</tr>
+					</table>
+				</td>
+				<td><code>AOF<br />BOF</code></td>
+			</tr>
+			
+			<tr>
+				<td>OSC-D</td><td>Oscillator Distortion</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>Off</td>
+						</tr>
+						<tr><td>01-7F</td><td>Number of ticks that effect is audible from start of new note</td>
+						</tr>
+					</table>
+				</td>
+				<td><code>AOD<br />BOD</code></td>
+			</tr>
+
+		</table>
+	</div>
+	
+	<div class="tableDiv">
+		<table class="table2">
+			<thead>
+					<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em> A/B</th>
+			</thead>
+			
+			<tr>
+				<td>LFO-D</td><td>LFO Mode/Delay</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00-7F</td><td><b>Pitch Sweep</b> mode. Delay in ticks from beginning of new note before effect starts</td>
+						</tr>
+						<tr><td>80</td><td><b>One-shot Arpeggio</b></td>
+						</tr>
+						<tr><td>81-FF</td><td><b>Cycling Arpeggio</b>, number of cycles is <code>'value minus 80'</code></td>
+						</tr>
+					</table>
+				</td>
+				<td><code>ALD<br />BLD</code></td>
+			</tr>
+			
+			<tr>
+				<td>LFO-S</td><td>LFO Speed</td>
+				<td>
+					<p>If mode is <b>One-shot Arpeggio</b>:
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>Off</td></tr>
+						<tr><td>01-FF</td><td>Number of ticks to hold first note</td></tr>
+					</table>
+					<hr />
+					</p>
+					<p>or if mode is <b>Cycling Arpeggio</b>:
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>Off</td></tr>
+						<tr><td>01-FF</td><td>Ticks between each arpeggio note</td></tr>
+					</table>
+					<hr />
+					</p>
+					<p>or if mode is <b>Pitch Sweep</b>:
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>sweep is in one direction</b></td></tr>
+						<tr><td>01-FF</td><td>number of ticks before sweep changes direction (vibrato)</td></tr>
+					</table>
+					</p>
+				</td>
+				<td><code>ALS<br />BLS</code></td>
+			</tr>
+			
+			<tr>
+				<td>LFO-W</td><td>LFO Width (Depth)</td>
+				<td>
+					<p>If mode is <b>One-Shot Arpeggio</b>:
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00-7F</td><td>positive semi-tone offset</td></tr>
+							<tr><td>FF-80</td><td>negative semi-tone offset</td></tr>
+					</table>
+					<hr />
+					</p>
+					<p>Or if mode is <b>Cycling Arpeggio</b>:
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00-FF</td><td>Left-hand digit is 2nd semi-tone offset, right-hand digit is 2nd semi-tone offset. <em>Trigger Note</em> is the 'root' of the arpeggio chord</td></tr>
+					</table>
+					<hr />
+					</p>
+					<p>Or if mode is <b>Pitch Sweep</b>:
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>Off</td></tr>
+						<tr><td>01-7F</td><td>Pitch Sweep up</td></tr>
+						<tr><td>FF-80</td><td>Pitch Sweep down</td></tr>
+					</table>
+					</p>
+				</td>
+				<td><code>ALW<br />BLW</code></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="tableDiv">
+		<table class="table2">
+			<thead>
+					<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em> A/B</th>
+			</thead>
+			
+			<tr>
+				<td>AMP-V</td><td>Amplitude Volume/Curve</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>0x-Fx</td><td>Left-digit specifies the curve for Envelope Attack and Release. <code>8x</code> is roughly linear, <code>0x</code> is the steepest exponential curve while <code>Fx</code> is the steepest logarithmic curve</td>
+						</tr>
+						<tr><td>x0-xF</td><td>Right-digit is the volume scaling, <code>x0</code> being silent and <code>xF</code> being full volume</td>
+						</tr>
+					</table>
+				</td>
+				<td><code>AAV<br />BAV</code></td>
+			</tr>
+			
+			<tr>
+				<td>AMP-E</td><td>Amplitude Envelope</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>0x-Fx</td><td>Left-digit specifies the Attack speed, <code>1x</code> is the slowest, while <code>Fx</code> is the fastest and <code>0x</code> specifies no Attack phase</td>
+						</tr>
+						<tr><td>x0-xF</td><td>Right-digit specifies the Release speed, <code>1x</code> is the slowest, while <code>Fx</code> is the fastest and <code>0x</code> specifies no Release phase</td>
+						</tr>
+						</tr>
+					</table>
+				</td>
+				<td><code>AAE<br />BAE</code></td>
+			</tr>
+			
+			<tr>
+				<td>AMP-H</td><td>Amplitude Hold Time</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>Off</td>
+						</tr>
+						<tr><td>01-FF</td><td>Number of ticks that a note is held before being released.</td>
+						</tr>
+					</table>
+				</td>
+				<td><code>AAH<br />BAH</code></td>
+			</tr>
+
+		</table>
+	</div>
+	
+	<div class="tableDiv">
+		<table class="table2">
+			<thead>
+					<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em> A/B</th>
+			</thead>
+			
+			<tr>
+				<td>DTY-P0</td><td>Duty Setting 0</td>
+				<td>
+					<table>
+						<thead><th width="20%"></th><th></th></thead>
+						<tr><td>00</td><td>set fixed pulse-width 00</td></tr>
+						<tr><td>40</td><td>set fixed pulse-width 40</td></tr>
+						<tr><td>80</td><td>set fixed pulse-width 80</td></tr>
+						<tr><td>C0</td><td>set fixed pulse-width C0</td></tr>
+					</table>
+						<br />
+						<p>Or if you want <b>Duty Modulation</b>:</p>
+						<br />
+					<table>
+						<tr><td>01-3F</td><td>set pulse-width <code>00</code> for <code>01-3F</code> ticks</td></tr>
+						<tr><td>41-7F</td><td>set pulse-width <code>40</code> for <code>01-3F</code> ticks</td></tr>
+						<tr><td>81-BF</td><td>set pulse-width <code>80</code> for <code>01-3F</code> ticks</td></tr>
+						<tr><td>C1-FF</td><td>set pulse-width <code>C0</code> for <code>01-3F</code> ticks</td></tr>
+					</table>
+						<br />
+						<p>and the selected pulse-width will play for the specified number of ticks before moving to the value in <b>DTY-P1</b> (below)</p>
+				</td>
+				<td><code>AP0<br />BP0</code></td>
+			</tr>
+			
+			<tr>
+				<td>DTY-P1</td><td>Duty Setting 1</td>
+				<td>Exactly same as <b>DTY-P0</b> above except that if you're using Duty Modulation, the pulse-width setting goes back to <b>DTY-P0</b> once the specified number of ticks has passed.</td>
+				<td><code>AP1<br />BP1</code></td>
+			</tr>
+		</table>
+	</div>
+
+	<h2>Voice C Parameters (Triangle)</h2>
+	<p>Voice C shares many of the same parameter types as Voice A and Voice B. <b>OSC-C</b> and <b>OSC-F</b> are exactly the same (though of course in the NES sound chip, Voice C plays back one octave lower than A and B!). <b>LFO-D</b>, <b>LFO-S</b> and <b>LFO-W</b> also operate exactly the same as A and B. Voice C (triangle) doesn't have either a Duty setting or variable amplitude so there are no parameters relating to these aspects. The only parameter from the <b>AMP</b> section is <b>AMP-T</b> which, like it does for Voice A and B, sets the number of ticks that the note is held for.</p>
+	<p>Voice C has one extra parameter that Voices A and B don't have:</p>
+<div class="tableDiv">
+	<table class="table2">
+		<thead>
+				<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em></th>
+		</thead>
+		
+		<tr>
+			<td>AMP-P</td><td>Triangle Pulse</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-FF</td><td>the left-digit sets the time that the voice is on while the right-hand digit sets the time that voice is turned off. The effect cycles between these two states for the duration of a note and produces an odd 'warbling' sound. The higher the digit value, the faster the phase (on or off) will be</td></tr>
+				</table>			
+			</td>
+			<td><code>CAP</code></td>
+		</tr>
+	</table>
+</div>
+<p>Of course, even though Voice C does have many parameters in common with Voices A and B, it has it's own set of <b>T<em>x</em></b> IDs. The difference is that the three-letter codes start with <b>'C'</b> instead of 'A' or 'B'.</p>
+<h2>Voice D Parameters (Noise)</h2>
+<p>Voice D (Noise) also shares some parameters with Voice A, B and C. <b>AMP-V</b>, <b>AMP-E</b> and <b>AMP-H</b> all behave the same way as they do for Voice A and B. Because Voice D doesn't have 'pitch' as such, <b>OSC-C</b> for this voice is a little different from the first three voices.</p>
+<div class="tableDiv">
+	<table class="table2">
+		<thead>
+				<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em></th>
+		</thead>
+		
+		<tr>
+			<td>OSC-C</td><td>Noise 'Pitch' Offset</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-4F</td><td>sets a relative offset from the <em>Trigger Note</em></td></tr>
+					<tr><td>50-5F</td><td>sets absolute pitch, noise mode</td></tr>
+					<tr><td>60-6F</td><td>sets absolute pitch, 'tone' mode (metallic noise)</td></tr>
+				</table>			
+			</td>
+			<td><code>DOC</code></td>
+		</tr>
+	</table>
+</div>
+<p>I think the 50-5F and 60-6F ranges are fairly straightforward but the relative mode might need a little explaining. Basically you've only got 32 'pitches' for the noise (16 in the 'noise' mode and another 16 in the 'tone' mode) and these are represented by the values 00-0F and 10-1F in PR8 respectively. When using the relative offset to set the pitch, the value is added to the Trigger Note so really only the first 32 notes are valid i.e. the lowest pitch note is 'A-1' which equates to 00 as noise pitch. 'A#1' is 01, 'B1' is 02 etc. If the Trigger Note plus the relative offset you set in <b>OSC-C</b> exceeds the valid range, the actual value written to the frequency will wrap around back to 00.</p>
+
+<p>While Voice D has a full complement of LFO parameters, they behave a bit differently from their Voice A, B and C counterparts:</p>
+
+<div class="tableDiv">
+	<table class="table2">
+		<thead>
+				<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em></th>
+		</thead>
+		
+		<tr>
+			<td>LFO-D</td><td>LFO Mode/Delay</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-7F</td><td><b>Noise Sweep</b> mode. Delay in ticks from beginning of new note before effect starts</td>
+					</tr>
+					<tr><td>80</td><td><b>One-shot Arpeggio</b></td>
+					</tr>
+					<tr><td>81-FF</td><td><b>Cycling Arpeggio</b>, number of cycles is <code>'value minus 80'</code></td>
+					</tr>
+				</table>
+			</td>
+			<td><code>DLD</code></td>
+		</tr>
+		
+		<tr>
+			<td>LFO-S</td><td>LFO Speed</td>
+			<td>
+				<p>If mode is <b>One-shot 'Arpeggio'</b>:
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00</td><td>Off</td></tr>
+					<tr><td>01-FF</td><td>Number of ticks to hold first note</td></tr>
+				</table>
+				<hr />
+				</p>
+				<p>or if mode is <b>Cycling 'Arpeggio'</b>:
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00</td><td>Off</td></tr>
+					<tr><td>01-FF</td><td>Ticks between each arpeggio note</td></tr>
+				</table>
+				<hr />
+				</p>
+				<p>or if mode is <b>Noise Sweep</b>:
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00</td><td>Off</td></tr>
+					<tr><td>01-FF</td><td>number of ticks between adding Width value to noise pitch</td></tr>
+				</table>
+				</p>
+			</td>
+			<td><code>DLS</code></td>
+		</tr>
+		
+		<tr>
+			<td>LFO-W</td><td>LFO Width (Depth)</td>
+			<td>
+				<p>If mode is <b>One-Shot 'Arpeggio'</b>:
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-7F</td><td>positive offset</td></tr>
+					<tr><td>FF-80</td><td>negative offset</td></tr>
+				</table>
+				<hr />
+				</p>
+				<p>Or if mode is <b>Cycling 'Arpeggio'</b>:
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-7F</td><td>positive offset</td></tr>
+					<tr><td>FF-80</td><td>negative offset</td></tr>
+				</table>
+				<hr />
+				</p>
+				<p>Or if mode is <b>Noise Sweep</b>:
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00</td><td>Off</td></tr>
+					<tr><td>01-7F</td><td>Pitch Sweep up</td></tr>
+					<tr><td>FF-80</td><td>Pitch Sweep down</td></tr>
+				</table>
+				</p>
+			</td>
+			<td><code>DLW</code></td>
+		</tr>
+	</table>
+</div>
+<p>There are two main differences between the LFO operations for Voice D and that of the 'melodic' voices (A, B and C). First of all, the reason 'Arpeggio' is in quotation marks is because instead of 3 notes, for Noise the effect just toggles between the original pitch and the pitch value resulting from adding the LFO-W value to the original pitch. Also, whereas for Voices A, B and C, the arpeggio values are only positive (e.g. 47 would add 4 then 7 to the original pitch), for Voice D the offset in LFO-W is signed.</p>
+<p>Secondly, because <em>sweeping</em> the pitch of the Noise is very low resolution (there are only 16 values compared to about 2048 values for the melodic Voices), the LFO-S parameter becomes a delay between modifying the noise pitch. Otherwise, you'd go between the limits of the noise pitch in 16 ticks.</p>
+<h2>Voice E Parameters (DCM)</h2>
+<p>OK, Voice E is <em>completely</em> different from the other voices. All the parameters are used to control the (DCM) sample playback and come under the heading <b>'DCM'</b>
+<div class="tableDiv">
+	<table class="table2">
+		<thead>
+				<th width="5%">Parameter</th><th width="30%">Function</th><th>Usage</th><th width="5%">T<em>x</em></th>
+		</thead>
+		
+		<tr>
+			<td>DCM-S</td><td>Sample Number</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-FF</td><td>Selects the sample number to play. <code>00</code> plays silence</td></tr>
+				</table>			
+			</td>
+			<td><code>ESM</code></td>
+		</tr>
+		<tr>
+			<td>DCM-<img src="images/dcmStart.png" /></td><td>Sample Start Offset</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-FF</td><td>offsets the playback starting point of the sample</td></tr>
+				</table>			
+			</td>
+			<td><code>EST</code></td>
+		</tr>
+		<tr>
+			<td>DCM-<img src="images/dcmEnd.png" /></td><td>Sample End Offset</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-FF</td><td>truncates the length of the sample by the specified value</td></tr>
+				</table>			
+			</td>
+			<td><code>EEN</code></td>
+		</tr>
+		<tr>
+			<td>DCM-P</td><td>Sample Playback Speed</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00-0F</td><td>sets the playback speed of the sample</td></tr>
+				</table>			
+			</td>
+			<td><code>ESP</code></td>
+		</tr>
+		<tr>
+			<td>DCM-L</td><td>Sample Loop</td>
+			<td>
+				<table>
+					<thead><th width="20%"></th><th></th></thead>
+					<tr><td>00</td><td>Sample does not loop</td></tr>
+					<tr><td>01-FF</td><td>Sample loops</td></tr>
+				</table>			
+			</td>
+			<td><code>ESP</code></td>
+</tr>
+	</table>
+</div>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

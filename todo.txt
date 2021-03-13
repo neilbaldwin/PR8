@@ -1,0 +1,121 @@
+;------------------------------------------------------------------------------
+; Outstanding
+;------------------------------------------------------------------------------
+
++ unroll the bigger decode loops (decodeDrum for example) to speed up
+
++ Proper transport controls
+
++ Update manual with changes to Song controls (hold and release for certain parameters)
+
+
+Bugs
+----
+
+- still possible to put note values outside of legal range - can't figure out how yet!!
+
+- not all parameters can be used with a tie note as they don't init properly
+    LFO stuff especially, maybe others
+
+
+Ideas
+-----
++ make delete/clear = hold B and tap A instead of just tapping A
+
++ add a delay parameter to each voice?
+
++ ability to move up/down in Drum Editor
+
++ Make green markers use cursor palette (so they pulse red)
+
++ If in Song Rec mode, changing editor Pattern should write that pattern number to current song Step
+
+;------------------------------------------------------------------------------
+; Complete
+;------------------------------------------------------------------------------
+[DONE]+ ROM Patcher
+[DONE]+ correct left/right Phrase movement (and UP/DOWN?) in manual
+[DONE]+ add slide stuff to manual
+[DONE]+ enable holding of U/D/L/R in trigger parameters
+[DONE]+ add confirmations to CLR menu selections?
+[DONE] BUG - notes go too high - get corrupt display at top end of note names
+[DONE] BUG - it's possible to modify trigger values in empty cells
+[DONE]+ set some sensible defaults for M-- parameters when tapping A to add a trigger
+[DONE]+ add some error messages (clone, pasting etc.)
+[DONE]+ redo all screen-shots for manual again! THIS TIME TURN DEBUG NUMBERS OFF!
+[DONE]+ Make sure all 'N's are in the lower case shape to avoid confusion with 'W'
+[DONE] BUG - changing from a Pattern that has echo to one where it's turned off results in 'hanging' audio
+[DONE]+ clone Pattern
+[DONE]+ Check for signature on boot up - wipe everything and write signature if not found etc.
+[DONE]+ Clear Data menu?
+	- wipe Songs x
+	- wipe Patterns x
+	- wipe Phrases x
+	- wipe Drums x
+
+[DONE]+ modify info display to show BAR:PATTERN in Song Mode
+[DONE]+ Clear echo settings when doing Pattern Cut
+[DONE]- BUG - wrong sample played first note after a note that has retrigger set
+[DONE]+ copy/paste/insert song loop
+[DONE]+ Stop tie note from clearing Retrigger value - check retriggering, noticed problem with DCM
+[DONE] + BUG if Vibrato Width is negative, make it positive then set phase to do down first
+[DONE] + change Song
+  (change Song number, read 1st Pattern and load into plyrNextPattern?)
+  clear editorLastSongLoop variable (00)
+[DONE] + Think about how to set the length of Patterns for playback
+[DONE] + Make KillNote kill note immediately
+[DONE] + Drum Edit function - Swap A/B
+[DONE] + Pattern select should only write to nextPattern when releasing A
+[DONE] + Finish off echo for remaining voices and handle switching on/off
+[DONE] + Some parameters in Drum Editor need limiting to single digits instead of byte
+[DONE] + Move Echo menu to Pattern Menu (or it's own key combo?)
+[DONE] + Add copy/paste of echo settings when copying/pasting Patterns
+[DONE]+ Tap B on Song Loop to toggle loop on/off
+[DONE]+ saving last value in Song and Track Drum/Phrase assign for tapping A (insert last value)
+[DONE]+ Auto-Echo? How to edit it?
+[DONE]+ Start Trigger Parameters from 00 again - >$7F = off
+  Tap B to toggle (EOR #$FF)
+  If editing (A+U/D), AND with $7F to turn back on again
+[DONE]+ Change one-shot arpeggio on ABC to work like D
+[DONE] BUG Noise LFO doesn't seem to be working properly and also check that noise pitch is relative to
+      00 and not 01 (01 is A-1)
+[DONE] BUG Attack seems to not be working?
+[DONE] + Figure out Song Mode
+[DONE] + Clone Phrase
+[DONE]+ tapping B in Song and Track Drum/Phrase assign
+[DONE] + Make blank drum have all voices turned off
+[DONE]+ mod parameters that affect more than one parameter in unison?
+  GEV = envelope for A, B & D
+  GET = gate time for A, B, C & D
+  GLW = LFO width for A, B & C
+  GLS = LFO speed for A, B, & C
+[DONE]+ ghost cursor when editing Trigger Parameters
+[DONE]+ copy and paste pattern from Edit Pattern Number mode
+[DONE]+ Kill Notes
+[DONE] Add clear command to drum parameters and also to trigger parameters
+- tap B to clear single drum value (clear in drum needs value map)
+- tap B to clear single trigger value (value copied from drum definition)
+- hold SELECT, tap A to remap current trigger parameter in each drum trigger of current track
+[DONE]+ Moving down (B + DOWN) from Drum Assign and Trigger Window should go to Drum Patch. Save editor mode before going to Drum Patch, then when doing B + UP, go back to previous mode.
+[DONE]+ Editing function to shift a track left/right
+[DONE]+ Solo Voice in drum (hold B, tap SELECT)
+[DONE]+ Mute and Solo tracks. Plus indicators?
+[DONE]+ Retriggering
+  - no need to copy drum definition when retriggering or reapply trigger parameters
+[DONE] + Control to reorder tracks
+[DONE] + A "remap trigger parameter" function that will copy the values from the drum definition to the triggers
+in the current track. Which parameters get remapped will depend on the trigger index.
+[DONE] + A setting where the mod parameters can be set to "OFF" (or "---") in the drum definition
+[DONE] + Volume scale!
+[DONE] + Tie Notes
+[DONE] Implement DCM playback.
+- Don't think 6 'virtual' samples are needed, just copy voice E settings to VAPU at time of new note (and
+apply sequence step modifiers)
+[DONE] Implement handling of voice select flags
+[DONE] Change Coarse/Fine pitch stuff
+- need to make coarse pitch handle +/- (00 to 4F, FF to B0) and absolute (50 - AF)
+- at time of new note, add coarse offset to trigger note
+- think about how to handle noise notes
+- think about how to handle sample notes
+[DONE] - Delay for noise LFO doesn't seem to work.
+

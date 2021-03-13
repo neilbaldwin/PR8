@@ -1,0 +1,1151 @@
+Modules list:
+-------------
+pr8_vars.o:
+    ZEROPAGE          Offs = 000000   Size = 00008E
+    RAM               Offs = 000000   Size = 0005F8
+    WRAM0             Offs = 000000   Size = 001E80
+    WRAM1             Offs = 000000   Size = 001E60
+    WRAM2             Offs = 000000   Size = 001FE0
+    WRAM3             Offs = 000000   Size = 001C01
+ROM_00.o:
+    HEADER            Offs = 000000   Size = 000010
+    CODE_00           Offs = 000000   Size = 0036CC
+    RESET_BANKED_0    Offs = 000000   Size = 00000E
+ROM_01.o:
+    CODE_01           Offs = 000000   Size = 0029C0
+    RESET_BANKED_1    Offs = 000000   Size = 00000E
+ROM_02.o:
+    CODE_02           Offs = 000000   Size = 002CC0
+    RESET_BANKED_2    Offs = 000000   Size = 00000E
+ROM_03.o:
+    RESET_BANKED_3    Offs = 000000   Size = 00000E
+ROM_04.o:
+    RESET_BANKED_4    Offs = 000000   Size = 00000E
+ROM_05.o:
+    CODE_05           Offs = 000000   Size = 003335
+    RESET_BANKED_5    Offs = 000000   Size = 00000E
+ROM_06.o:
+    RESET_BANKED_6    Offs = 000000   Size = 00000E
+ROM_07.o:
+    CODE_FIXED        Offs = 000000   Size = 0007CA
+    DPCM              Offs = 000000   Size = 000737
+    RESET_FIXED       Offs = 000000   Size = 00000E
+
+
+Segment list:
+-------------
+Name                  Start   End     Size
+--------------------------------------------
+HEADER                000000  00000F  000010
+ZEROPAGE              000010  00009D  00008E
+RAM                   000200  0007F7  0005F8
+WRAM0                 006000  007E7F  001E80
+WRAM1                 006000  007E5F  001E60
+WRAM2                 006000  007FDF  001FE0
+WRAM3                 006000  007C00  001C01
+CODE_00               008000  00B6CB  0036CC
+CODE_01               008000  00A9BF  0029C0
+CODE_02               008000  00ACBF  002CC0
+CODE_05               008000  00B334  003335
+RESET_BANKED_0        00BFF2  00BFFF  00000E
+RESET_BANKED_1        00BFF2  00BFFF  00000E
+RESET_BANKED_2        00BFF2  00BFFF  00000E
+RESET_BANKED_3        00BFF2  00BFFF  00000E
+RESET_BANKED_4        00BFF2  00BFFF  00000E
+RESET_BANKED_5        00BFF2  00BFFF  00000E
+RESET_BANKED_6        00BFF2  00BFFF  00000E
+CODE_FIXED            00C000  00C7C9  0007CA
+DPCM                  00C800  00CF36  000737
+RESET_FIXED           00FFF2  00FFFF  00000E
+
+
+Exports list:
+-------------
+IRQ                       00C16E RLA    NMI                       00C127 RLA    
+PAD1_dlr                  000043 RLZ    PAD1_dud                  000044 RLZ    
+PAD1_firea                00003C RLZ    PAD1_fireb                00003B RLZ    
+PAD1_jt                   000035 RLZ    PAD1_lr                   000037 RLZ    
+PAD1_oldlr                00003D RLZ    PAD1_sel                  00003A RLZ    
+PAD1_str                  000039 RLZ    PAD1_ud                   000038 RLZ    
+PAD2_dlr                  000057 RLZ    PAD2_jt                   000049 RLZ    
+PAD2_lr                   00004B RLZ    PAD2_oldlr                000051 RLZ    
+PAD2_ud                   00004C RLZ    PR8_HEADER                006000 RLA    
+RESET                     00C000 RLA    SET_BITS                  00C316 RLA    
+SPR00_ATTR                000202 RLA    SPR00_CHAR                000201 RLA    
+SPR00_X                   000203 RLA    SPR00_Y                   000200 RLA    
+SPR01_CHAR                000205 RLA    SPR01_X                   000207 RLA    
+SPR01_Y                   000204 RLA    SPR02_X                   00020B RLA    
+SPR02_Y                   000208 RLA    SPR03_X                   00020F RLA    
+SPR03_Y                   00020C RLA    SPR04_X                   000213 RLA    
+SPR04_Y                   000210 RLA    SPR05_CHAR                000215 RLA    
+SPR05_Y                   000214 RLA    SPR0A_CHAR                000229 RLA    
+SPR0A_X                   00022B RLA    SPR0A_Y                   000228 RLA    
+SPR0B_CHAR                00022D RLA    SPR0B_X                   00022F RLA    
+SPR0B_Y                   00022C RLA    SPR0C_CHAR                000231 RLA    
+SPR0C_X                   000233 RLA    SPR0C_Y                   000230 RLA    
+SPR0D_CHAR                000235 RLA    SPR0D_X                   000237 RLA    
+SPR0D_Y                   000234 RLA    SPR0E_X                   00023B RLA    
+SPR0E_Y                   000238 RLA    SPR0F_X                   00023F RLA    
+SPR0F_Y                   00023C RLA    SPR10_CHAR                000241 RLA    
+SPR16_CHAR                000259 RLA    SPR16_X                   00025B RLA    
+SPR16_Y                   000258 RLA    SPR17_CHAR                00025D RLA    
+SPR17_X                   00025F RLA    SPR17_Y                   00025C RLA    
+SPR18_CHAR                000261 RLA    SPR18_X                   000263 RLA    
+SPR18_Y                   000260 RLA    SPR19_CHAR                000265 RLA    
+SPR19_X                   000267 RLA    SPR19_Y                   000264 RLA    
+SPR1A_ATTR                00026A RLA    SPR1A_CHAR                000269 RLA    
+SPR1B_ATTR                00026E RLA    SPR1B_CHAR                00026D RLA    
+SPR1C_CHAR                000271 RLA    SPR1D_CHAR                000275 RLA    
+VAPU_00                   00001E REZ    VAPU_02                   000020 REZ    
+VAPU_03                   000021 REZ    VAPU_03_OLD               000033 RLZ    
+VAPU_04                   000022 REZ    VAPU_06                   000024 REZ    
+VAPU_07                   000025 REZ    VAPU_07_OLD               000034 RLZ    
+VAPU_08                   000026 REZ    VAPU_0A                   000028 REZ    
+VAPU_0B                   000029 REZ    VAPU_0C                   00002A REZ    
+VAPU_0E                   00002C REZ    VAPU_10                   00002E REZ    
+VAPU_11                   00002F REZ    VAPU_12                   000030 REZ    
+VAPU_13                   000031 REZ    addProcessToBuffer        00C17B RLA    
+arpNotesA0                000301 RLA    arpNotesB0                000313 RLA    
+arpNotesC0                000325 RLA    arpNotesD0                000337 RLA    
+clearGraphics             008A3A RLA    curPrgBank                000013 RLZ    
+curWramBank               000015 RLZ    cursorDrumMax             000726 RLA    
+cursorDrumMin             000725 RLA    cursorFlashColour         00075D RLA    
+cursorFlashIndex          00075C RLA    cursorX_grid              00071D RLA    
+cursorX_track             000724 RLA    cursorY_editMenu          000723 RLA    
+cursorY_grid              00071E RLA    debug1                    00001D RLZ    
+detuneA                   00047B RLA    detuneB                   000481 RLA    
+detuneC                   000487 RLA    dmaProcessBuffer          000063 RLZ    
+dmcAddressTable           00C800 RLA    doNotInterrupt            000012 RLZ    
+drumParameters0           0004E1 REA    drumParameters1           000511 REA    
+drumParameters2           000541 REA    drumParameters3           000571 REA    
+drumParameters4           0005A1 REA    drumParameters5           0005D1 REA    
+drums                     006000 RLA    dutyCounterA              000451 RLA    
+dutyCounterB              000463 RLA    dutyIndexA                00044B RLA    
+dutyIndexB                00045D RLA    dutyWidthA                000457 RLA    
+dutyWidthB                000469 RLA    echoBufferA_0             007800 RLA    
+echoBufferA_2             007880 RLA    echoBufferA_3             007900 RLA    
+echoBufferB_0             007980 RLA    echoBufferB_2             007A00 RLA    
+echoBufferB_3             007A80 RLA    echoBufferD_0             007B00 RLA    
+echoBufferD_2             007B80 RLA    editCopyBuffer            000787 RLA    
+editMenuActive            000785 RLA    editModeVector            00005F RLZ    
+editPatternInfoSubMode    00072C RLA    editSongIndex             000742 RLA    
+editSongMode              000743 RLA    editSongModeRecord        000744 RLA    
+editorChannelStatus       00077B RLA    editorCopyInfoTimer       000783 RLA    
+editorCurrentDrum         00075E RLA    editorCurrentPattern      00072F RLA    
+editorCurrentSong         000745 RLA    editorCursorMode          00071C RLA    
+editorCursorX             00071A RLA    editorCursorY             00071B RLA    
+editorDecoding            00009C RLZ    editorDrumAuxIndex        000719 RLA    
+editorDrumSubMode         000718 RLA    editorEditDrumName        00072E RLA    
+editorEditingBuffer       0007F0 RLA    editorEditingValue        0007EF RLA    
+editorForceTrackLoad      000784 RLA    editorFoundEmpty          0007DF RLA    
+editorInit                008000 RLA    editorLastDrumValue       0007E0 RLA    
+editorLastPhraseValue     0007E1 RLA    editorLastSongLoop        0007E2 RLA    
+editorMeterCounters       000775 RLA    editorMode                000716 RLA    
+editorModeBeforeMenu      000786 RLA    editorMultiHintIndex      00009D RLZ    
+editorMuteFlashIndex      000782 RLA    editorPatternForClone     0007DC REA    
+editorPatternGroove       00076C RLA    editorPatternSpeed        00076B RLA    
+editorPatternSteps        00076D RLA    editorPatternToCheck      0007DD RLA    
+editorPhraseForClone      0007DC RLA    editorRefresh             00818A RLA    
+editorSoloChannel         000781 RLA    editorSongBar             0004CC RLA    
+editorSongLastPattern     0007F5 RLA    editorSongLoopLengthTemp  0007F4 RLA    
+editorSongLoopStartTemp   0007F3 RLA    editorSongSpeedTemp       0007F1 RLA    
+editorSongSwingTemp       0007F2 RLA    editorSongToCheck         0007DD REA    
+editorSubModeIndexes      000727 RLA    editorTmp0                000085 RLZ    
+editorTmp1                000086 RLZ    editorTmp2                000087 RLZ    
+editorTmp3                000088 RLZ    editorTmp4                000089 RLZ    
+editorTmp5                00008A RLZ    editorTrackDrum           00075F RLA    
+editorTrackLastNote       000730 RLA    editorTrackLastTrigger    000736 RLA    
+editorTrackPhrase         000765 RLA    editorTrackWipeSpeed      000774 RLA    
+editorTriggerIndex        00073C RLA    editorWaitForAB           0007DA RLA    
+editorWaitForClone        0007DB RLA    envAmpIndexA              0003F7 RLA    
+envAmpIndexB              00040F RLA    envAmpIndexC              000427 RLA    
+envAmpIndexD              00043F RLA    envCounterA               0003F1 RLA    
+envCounterB               000409 RLA    envCounterC               000421 RLA    
+envCounterD               000439 RLA    envGateTimerA             0003FD RLA    
+envGateTimerB             000415 RLA    envGateTimerC             00042D RLA    
+envGateTimerD             000445 RLA    envPhaseA                 0003EB RLA    
+envPhaseB                 000403 RLA    envPhaseC                 00041B RLA    
+envPhaseD                 000433 RLA    errorCount                000083 RLZ    
+errorScreen               008A0E RLA    freqHiA                   000373 RLA    
+freqHiB                   000385 RLA    freqHiC                   000397 RLA    
+freqLoA                   00036D RLA    freqLoB                   00037F RLA    
+freqLoC                   000391 RLA    freqLoD                   00039D RLA    
+hardFreqA                 00046F RLA    hardFreqB                 000475 RLA    
+initGraphics              008A7E RLA    initSound                 008000 RLA    
+jumpVector                000061 RLZ    keyDelayA                 000755 RLA    
+keyDelayB                 000754 RLA    keyDelayLR                000757 RLA    
+keyDelayUD                000756 RLA    keyReleaseA               000753 RLA    
+keyReleaseB               000750 RLA    keyReleaseSelect          00075B RLA    
+keyReleaseStart           000759 RLA    keyRepeatA                000752 RLA    
+keyRepeatB                00074F RLA    keyRepeatCounterLR        00074E RLA    
+keyRepeatCounterUD        00074A RLA    keyRepeatLR               00074C RLA    
+keyRepeatOldLR            00074D RLA    keyRepeatOldUD            000749 RLA    
+keyRepeatRateLR           00074B RLA    keyRepeatRateUD           000747 RLA    
+keyRepeatSelect           00075A RLA    keyRepeatStart            000758 RLA    
+keyRepeatUD               000748 RLA    keyStopB                  000751 RLA    
+lastDrumParameterValue    00072D RLA    lastNoteTrack             0004B1 RLA    
+lfoCounterA               0003A3 RLA    lfoCounterB               0003B5 RLA    
+lfoCounterC               0003C7 RLA    lfoCounterD               0003D9 RLA    
+lfoDelCounterA            0003A9 RLA    lfoDelCounterB            0003BB RLA    
+lfoDelCounterC            0003CD RLA    lfoDelCounterD            0003DF RLA    
+lfoPhaseA                 0003AF RLA    lfoPhaseB                 0003C1 RLA    
+lfoPhaseC                 0003D3 RLA    lfoPhaseD                 0003E5 RLA    
+maxDma                    000084 RLZ    noteCounter               00034E RLA    
+noteNumberA0              000300 RLA    noteNumberA1              000303 RLA    
+noteNumberA2              000306 RLA    noteNumberA3              000309 RLA    
+noteNumberA4              00030C RLA    noteNumberA5              00030F RLA    
+noteNumberB0              000312 RLA    noteNumberB1              000315 RLA    
+noteNumberB2              000318 RLA    noteNumberB3              00031B RLA    
+noteNumberB4              00031E RLA    noteNumberB5              000321 RLA    
+noteNumberC0              000324 RLA    noteNumberC1              000327 RLA    
+noteNumberC2              00032A RLA    noteNumberC3              00032D RLA    
+noteNumberC4              000330 RLA    noteNumberC5              000333 RLA    
+noteNumberD0              000336 RLA    noteNumberD1              000339 RLA    
+noteNumberD2              00033C RLA    noteNumberD3              00033F RLA    
+noteNumberD4              000342 RLA    noteNumberD5              000345 RLA    
+noteNumberE0              000348 RLA    noteTrack                 0004AB RLA    
+oldPrgBank                000014 RLZ    oldWramBank               000016 RLZ    
+patternIndex              0004C8 RLA    patternTableHi            00C420 RLA    
+patternTableLo            00C320 RLA    patterns                  006000 RLA    
+patternsUsed              007EE0 RLA    phraseBanks               00C6A0 RLA    
+phraseTableHi             00C5E0 RLA    phraseTableLo             00C520 RLA    
+phrases0                  006020 RLA    phrases1                  006000 RLA    
+phrasesUsed               007000 RLA    playNotes                 008159 RLA    
+plyrCurrentPattern        0004C9 RLA    plyrCurrentSong           000746 RLA    
+plyrDpcmOn                00049F RLA    plyrEchoAttn              0007E5 RLA    
+plyrEchoCounter           0007EA RLA    plyrEchoIndex             0007E3 RLA    
+plyrEchoInitAttnA         0007E6 RLA    plyrEchoInitAttnB         0007E7 RLA    
+plyrEchoInitAttnD         0007E8 RLA    plyrEchoNoteCount         0007EB RLA    
+plyrEchoSelect            0007E9 RLA    plyrEchoSpeed             0007E4 RLA    
+plyrEchoWrite             0007EC RLA    plyrMode                  0007D8 RLA    
+plyrModeOld               0007D9 RLA    plyrNextPattern           0004CA RLA    
+plyrPatternGroove         0004DA RLA    plyrPatternSpeed          0004D9 RLA    
+plyrSetupSong             00808D RLA    plyrSongBar               0004CB RLA    
+plyrTmp0                  00008C RLZ    plyrTmp1                  00008D RLZ    
+plyrTmp2                  00008E RLZ    plyrTmp3                  00008F RLZ    
+plyrTrackDrum             0004CD RLA    plyrTrackPhrase           0004D3 RLA    
+plyrUpdateEchoIndex       00811A RLA    previousEditorMode        000717 RLA    
+processVector             00005D RLZ    process_DMA_queue         008000 RLA    
+retriggerCount            0004BD RLA    retriggerSpeed            0004B7 RLA    
+retriggerTemp             0004C3 RLA    scnCopyInfoBuffer         0006EC RLA    
+scnDrumAuxBuffer          0006BE RLA    scnGridBuffer             000601 RLA    
+scnGridPatternBuffer      0006E4 RLA    scnSongBuffer             000708 RLA    
+scnTrackDrumBuffer        0006CC RLA    scnTriggerBuffer          000661 RLA    
+scnVoiceABuffer           00066C RLA    scnVoiceBBuffer           000682 RLA    
+scnVoiceCBuffer           000698 RLA    scnVoiceDBuffer           0006A6 RLA    
+scnVoiceEBuffer           0006B4 RLA    setMMC1r1                 00C7A0 RLA    
+slideA                    00048D RLA    slideB                    000493 RLA    
+slideC                    000499 RLA    songEchoDecay             0074E0 RLA    
+songEchoLevelA            0071E0 RLA    songEchoLevelB            0072E0 RLA    
+songEchoLevelD            0073E0 RLA    songEchoSelect            0070E0 RLA    
+songEchoSpeed             0075E0 RLA    songLoopLengthTable       0070C8 RLA    
+songLoopStartTable        0070C0 RLA    songSpeedTable            0070D0 RLA    
+songSwingTable            0070D8 RLA    songTableHi               00C768 RLA    
+songTableLo               00C760 RLA    songs                     0076E0 RLA    
+sprBuf                    000200 RLA    synthRefresh              008000 RLA    
+tmp0                      000017 RLZ    tmp1                      000018 RLZ    
+triggerCopyBuffer         00076F RLA    triggerTmp                0004C4 RLA    
+vblankFlag                000010 RLZ    vblankLastFlag            000011 RLZ    
+voiceActive               0004A5 RLA    
+
+
+Imports list:
+-------------
+IRQ (ROM_07.o):
+    ROM_06.o                  pr8.h(673)
+    ROM_05.o                  pr8.h(673)
+    ROM_04.o                  pr8.h(673)
+    ROM_03.o                  pr8.h(673)
+    ROM_02.o                  pr8.h(673)
+    ROM_01.o                  pr8.h(673)
+    ROM_00.o                  pr8.h(673)
+NMI (ROM_07.o):
+    ROM_06.o                  pr8.h(673)
+    ROM_05.o                  pr8.h(673)
+    ROM_04.o                  pr8.h(673)
+    ROM_03.o                  pr8.h(673)
+    ROM_02.o                  pr8.h(673)
+    ROM_01.o                  pr8.h(673)
+    ROM_00.o                  pr8.h(673)
+PAD1_dlr (pr8_vars.o):
+    ROM_07.o                  pr8.h(347)
+    ROM_00.o                  pr8.h(347)
+PAD1_dud (pr8_vars.o):
+    ROM_00.o                  pr8.h(348)
+PAD1_firea (pr8_vars.o):
+    ROM_00.o                  pr8.h(343)
+PAD1_fireb (pr8_vars.o):
+    ROM_00.o                  pr8.h(342)
+PAD1_jt (pr8_vars.o):
+    ROM_07.o                  pr8.h(336)
+PAD1_lr (pr8_vars.o):
+    ROM_07.o                  pr8.h(338)
+    ROM_00.o                  pr8.h(338)
+PAD1_oldlr (pr8_vars.o):
+    ROM_07.o                  pr8.h(345)
+PAD1_sel (pr8_vars.o):
+    ROM_00.o                  pr8.h(341)
+PAD1_str (pr8_vars.o):
+    ROM_00.o                  pr8.h(340)
+PAD1_ud (pr8_vars.o):
+    ROM_07.o                  pr8.h(339)
+    ROM_00.o                  pr8.h(339)
+PAD2_dlr (pr8_vars.o):
+    ROM_07.o                  pr8.h(365)
+PAD2_jt (pr8_vars.o):
+    ROM_07.o                  pr8.h(354)
+PAD2_lr (pr8_vars.o):
+    ROM_07.o                  pr8.h(356)
+PAD2_oldlr (pr8_vars.o):
+    ROM_07.o                  pr8.h(363)
+PAD2_ud (pr8_vars.o):
+    ROM_07.o                  pr8.h(357)
+PR8_HEADER (pr8_vars.o):
+    ROM_00.o                  pr8.h(735)
+RESET (ROM_07.o):
+    ROM_06.o                  pr8.h(673)
+    ROM_05.o                  pr8.h(673)
+    ROM_04.o                  pr8.h(673)
+    ROM_03.o                  pr8.h(673)
+    ROM_02.o                  pr8.h(673)
+    ROM_01.o                  pr8.h(673)
+    ROM_00.o                  pr8.h(673)
+SET_BITS (ROM_07.o):
+    ROM_00.o                  pr8.h(692)
+SPR00_ATTR (pr8_vars.o):
+    ROM_05.o                  pr8.h(550)
+SPR00_CHAR (pr8_vars.o):
+    ROM_05.o                  pr8.h(550)
+    ROM_00.o                  pr8.h(550)
+SPR00_X (pr8_vars.o):
+    ROM_05.o                  pr8.h(550)
+    ROM_00.o                  pr8.h(550)
+SPR00_Y (pr8_vars.o):
+    ROM_05.o                  pr8.h(550)
+    ROM_00.o                  pr8.h(550)
+SPR01_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(551)
+SPR01_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(551)
+SPR01_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(551)
+SPR02_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(552)
+SPR02_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(552)
+SPR03_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(553)
+SPR03_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(553)
+SPR04_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(554)
+SPR04_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(554)
+SPR05_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(555)
+SPR05_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(555)
+SPR0A_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(560)
+SPR0A_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(560)
+SPR0A_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(560)
+SPR0B_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(561)
+SPR0B_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(561)
+SPR0B_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(561)
+SPR0C_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(562)
+SPR0C_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(562)
+SPR0C_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(562)
+SPR0D_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(563)
+SPR0D_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(563)
+SPR0D_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(563)
+SPR0E_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(564)
+SPR0E_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(564)
+SPR0F_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(565)
+SPR0F_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(565)
+SPR10_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(567)
+SPR16_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(574)
+SPR16_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(574)
+SPR16_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(574)
+SPR17_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(575)
+SPR17_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(575)
+SPR17_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(575)
+SPR18_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(576)
+SPR18_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(576)
+SPR18_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(576)
+SPR19_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(577)
+SPR19_X (pr8_vars.o):
+    ROM_00.o                  pr8.h(577)
+SPR19_Y (pr8_vars.o):
+    ROM_00.o                  pr8.h(577)
+SPR1A_ATTR (pr8_vars.o):
+    ROM_00.o                  pr8.h(579)
+SPR1A_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(579)
+SPR1B_ATTR (pr8_vars.o):
+    ROM_00.o                  pr8.h(580)
+SPR1B_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(580)
+SPR1C_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(582)
+SPR1D_CHAR (pr8_vars.o):
+    ROM_00.o                  pr8.h(583)
+VAPU_00 (pr8_vars.o):
+    ROM_02.o                  pr8.h(378)
+    ROM_01.o                  pr8.h(378)
+VAPU_02 (pr8_vars.o):
+    ROM_02.o                  pr8.h(378)
+VAPU_03 (pr8_vars.o):
+    ROM_02.o                  pr8.h(378)
+VAPU_03_OLD (pr8_vars.o):
+    ROM_02.o                  pr8.h(333)
+    ROM_01.o                  pr8.h(333)
+VAPU_04 (pr8_vars.o):
+    ROM_02.o                  pr8.h(379)
+    ROM_01.o                  pr8.h(379)
+VAPU_06 (pr8_vars.o):
+    ROM_02.o                  pr8.h(379)
+VAPU_07 (pr8_vars.o):
+    ROM_02.o                  pr8.h(379)
+VAPU_07_OLD (pr8_vars.o):
+    ROM_02.o                  pr8.h(334)
+    ROM_01.o                  pr8.h(334)
+VAPU_08 (pr8_vars.o):
+    ROM_02.o                  pr8.h(380)
+    ROM_01.o                  pr8.h(380)
+VAPU_0A (pr8_vars.o):
+    ROM_02.o                  pr8.h(380)
+VAPU_0B (pr8_vars.o):
+    ROM_02.o                  pr8.h(380)
+VAPU_0C (pr8_vars.o):
+    ROM_02.o                  pr8.h(381)
+    ROM_01.o                  pr8.h(381)
+VAPU_0E (pr8_vars.o):
+    ROM_02.o                  pr8.h(381)
+VAPU_10 (pr8_vars.o):
+    ROM_02.o                  pr8.h(382)
+    ROM_01.o                  pr8.h(382)
+VAPU_11 (pr8_vars.o):
+    ROM_02.o                  pr8.h(382)
+    ROM_01.o                  pr8.h(382)
+VAPU_12 (pr8_vars.o):
+    ROM_02.o                  pr8.h(382)
+    ROM_01.o                  pr8.h(382)
+VAPU_13 (pr8_vars.o):
+    ROM_02.o                  pr8.h(382)
+    ROM_01.o                  pr8.h(382)
+addProcessToBuffer (ROM_07.o):
+    ROM_00.o                  pr8.h(690)
+arpNotesA0 (pr8_vars.o):
+    ROM_01.o                  pr8.h(399)
+arpNotesB0 (pr8_vars.o):
+    ROM_01.o                  pr8.h(412)
+arpNotesC0 (pr8_vars.o):
+    ROM_01.o                  pr8.h(425)
+arpNotesD0 (pr8_vars.o):
+    ROM_01.o                  pr8.h(438)
+clearGraphics (ROM_05.o):
+    ROM_07.o                  pr8.h(676)
+curPrgBank (pr8_vars.o):
+    ROM_07.o                  pr8.h(323)
+curWramBank (pr8_vars.o):
+    ROM_07.o                  pr8.h(323)
+    ROM_01.o                  pr8.h(323)
+cursorDrumMax (pr8_vars.o):
+    ROM_00.o                  pr8.h(632)
+cursorDrumMin (pr8_vars.o):
+    ROM_00.o                  pr8.h(632)
+cursorFlashColour (pr8_vars.o):
+    ROM_07.o                  pr8.h(626)
+    ROM_00.o                  pr8.h(626)
+cursorFlashIndex (pr8_vars.o):
+    ROM_00.o                  pr8.h(626)
+cursorX_grid (pr8_vars.o):
+    ROM_00.o                  pr8.h(590)
+cursorX_track (pr8_vars.o):
+    ROM_00.o                  pr8.h(594)
+cursorY_editMenu (pr8_vars.o):
+    ROM_00.o                  pr8.h(593)
+cursorY_grid (pr8_vars.o):
+    ROM_00.o                  pr8.h(590)
+debug1 (pr8_vars.o):
+    ROM_07.o                  pr8.h(330)
+detuneA (pr8_vars.o):
+    ROM_02.o                  pr8.h(535)
+    ROM_01.o                  pr8.h(535)
+detuneB (pr8_vars.o):
+    ROM_02.o                  pr8.h(535)
+    ROM_01.o                  pr8.h(535)
+detuneC (pr8_vars.o):
+    ROM_02.o                  pr8.h(535)
+    ROM_01.o                  pr8.h(535)
+dmaProcessBuffer (pr8_vars.o):
+    ROM_07.o                  pr8.h(372)
+    ROM_05.o                  pr8.h(372)
+    ROM_00.o                  pr8.h(372)
+dmcAddressTable (ROM_07.o):
+    ROM_01.o                  pr8.h(698)
+doNotInterrupt (pr8_vars.o):
+    ROM_07.o                  pr8.h(322)
+    ROM_00.o                  pr8.h(322)
+drumParameters0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(537)
+    ROM_01.o                  pr8.h(537)
+drumParameters1 (pr8_vars.o):
+    ROM_02.o                  pr8.h(537)
+    ROM_01.o                  pr8.h(537)
+drumParameters2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(537)
+    ROM_01.o                  pr8.h(537)
+drumParameters3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(537)
+    ROM_01.o                  pr8.h(537)
+drumParameters4 (pr8_vars.o):
+    ROM_02.o                  pr8.h(538)
+    ROM_01.o                  pr8.h(538)
+drumParameters5 (pr8_vars.o):
+    ROM_02.o                  pr8.h(538)
+    ROM_01.o                  pr8.h(538)
+drums (pr8_vars.o):
+    ROM_01.o                  pr8.h(667)
+    ROM_00.o                  pr8.h(667)
+dutyCounterA (pr8_vars.o):
+    ROM_02.o                  pr8.h(513)
+    ROM_01.o                  pr8.h(513)
+dutyCounterB (pr8_vars.o):
+    ROM_02.o                  pr8.h(517)
+    ROM_01.o                  pr8.h(517)
+dutyIndexA (pr8_vars.o):
+    ROM_02.o                  pr8.h(512)
+    ROM_01.o                  pr8.h(512)
+dutyIndexB (pr8_vars.o):
+    ROM_02.o                  pr8.h(516)
+    ROM_01.o                  pr8.h(516)
+dutyWidthA (pr8_vars.o):
+    ROM_02.o                  pr8.h(514)
+dutyWidthB (pr8_vars.o):
+    ROM_02.o                  pr8.h(518)
+echoBufferA_0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(711)
+    ROM_01.o                  pr8.h(711)
+echoBufferA_2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(711)
+    ROM_01.o                  pr8.h(711)
+echoBufferA_3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(711)
+    ROM_01.o                  pr8.h(711)
+echoBufferB_0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(712)
+    ROM_01.o                  pr8.h(712)
+echoBufferB_2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(712)
+    ROM_01.o                  pr8.h(712)
+echoBufferB_3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(712)
+    ROM_01.o                  pr8.h(712)
+echoBufferD_0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(713)
+    ROM_01.o                  pr8.h(713)
+echoBufferD_2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(713)
+    ROM_01.o                  pr8.h(713)
+editCopyBuffer (pr8_vars.o):
+    ROM_00.o                  pr8.h(646)
+editMenuActive (pr8_vars.o):
+    ROM_00.o                  pr8.h(644)
+editModeVector (pr8_vars.o):
+    ROM_00.o                  pr8.h(384)
+editPatternInfoSubMode (pr8_vars.o):
+    ROM_00.o                  pr8.h(647)
+editSongIndex (pr8_vars.o):
+    ROM_00.o                  pr8.h(599)
+editSongMode (pr8_vars.o):
+    ROM_01.o                  pr8.h(599)
+    ROM_00.o                  pr8.h(599)
+editSongModeRecord (pr8_vars.o):
+    ROM_00.o                  pr8.h(599)
+editorChannelStatus (pr8_vars.o):
+    ROM_01.o                  pr8.h(602)
+    ROM_00.o                  pr8.h(602)
+editorCopyInfoTimer (pr8_vars.o):
+    ROM_00.o                  pr8.h(641)
+editorCurrentDrum (pr8_vars.o):
+    ROM_00.o                  pr8.h(628)
+editorCurrentPattern (pr8_vars.o):
+    ROM_00.o                  pr8.h(592)
+editorCurrentSong (pr8_vars.o):
+    ROM_00.o                  pr8.h(595)
+editorCursorMode (pr8_vars.o):
+    ROM_00.o                  pr8.h(591)
+editorCursorX (pr8_vars.o):
+    ROM_00.o                  pr8.h(591)
+editorCursorY (pr8_vars.o):
+    ROM_00.o                  pr8.h(591)
+editorDecoding (pr8_vars.o):
+    ROM_07.o                  pr8.h(390)
+    ROM_00.o                  pr8.h(390)
+editorDrumAuxIndex (pr8_vars.o):
+    ROM_00.o                  pr8.h(633)
+editorDrumSubMode (pr8_vars.o):
+    ROM_00.o                  pr8.h(633)
+editorEditDrumName (pr8_vars.o):
+    ROM_00.o                  pr8.h(637)
+editorEditingBuffer (pr8_vars.o):
+    ROM_00.o                  pr8.h(723)
+editorEditingValue (pr8_vars.o):
+    ROM_00.o                  pr8.h(723)
+editorForceTrackLoad (pr8_vars.o):
+    ROM_01.o                  pr8.h(643)
+    ROM_00.o                  pr8.h(643)
+editorFoundEmpty (pr8_vars.o):
+    ROM_00.o                  pr8.h(652)
+editorInit (ROM_00.o):
+    ROM_07.o                  pr8.h(688)
+editorLastDrumValue (pr8_vars.o):
+    ROM_00.o                  pr8.h(659)
+editorLastPhraseValue (pr8_vars.o):
+    ROM_00.o                  pr8.h(659)
+editorLastSongLoop (pr8_vars.o):
+    ROM_00.o                  pr8.h(659)
+editorMeterCounters (pr8_vars.o):
+    ROM_01.o                  pr8.h(601)
+    ROM_00.o                  pr8.h(601)
+editorMode (pr8_vars.o):
+    ROM_00.o                  pr8.h(589)
+editorModeBeforeMenu (pr8_vars.o):
+    ROM_00.o                  pr8.h(645)
+editorMultiHintIndex (pr8_vars.o):
+    ROM_00.o                  pr8.h(392)
+editorMuteFlashIndex (pr8_vars.o):
+    ROM_00.o                  pr8.h(602)
+editorPatternForClone (pr8_vars.o):
+    ROM_00.o                  pr8.h(654)
+editorPatternGroove (pr8_vars.o):
+    ROM_00.o                  pr8.h(629)
+editorPatternSpeed (pr8_vars.o):
+    ROM_00.o                  pr8.h(629)
+editorPatternSteps (pr8_vars.o):
+    ROM_00.o                  pr8.h(629)
+editorPatternToCheck (pr8_vars.o):
+    ROM_00.o                  pr8.h(651)
+editorPhraseForClone (pr8_vars.o):
+    ROM_00.o                  pr8.h(651)
+editorRefresh (ROM_00.o):
+    ROM_07.o                  pr8.h(702)
+editorSoloChannel (pr8_vars.o):
+    ROM_01.o                  pr8.h(602)
+    ROM_00.o                  pr8.h(602)
+editorSongBar (pr8_vars.o):
+    ROM_00.o                  pr8.h(532)
+editorSongLastPattern (pr8_vars.o):
+    ROM_00.o                  pr8.h(662)
+editorSongLoopLengthTemp (pr8_vars.o):
+    ROM_00.o                  pr8.h(661)
+editorSongLoopStartTemp (pr8_vars.o):
+    ROM_00.o                  pr8.h(661)
+editorSongSpeedTemp (pr8_vars.o):
+    ROM_00.o                  pr8.h(661)
+editorSongSwingTemp (pr8_vars.o):
+    ROM_00.o                  pr8.h(661)
+editorSongToCheck (pr8_vars.o):
+    ROM_00.o                  pr8.h(654)
+editorSubModeIndexes (pr8_vars.o):
+    ROM_00.o                  pr8.h(633)
+editorTmp0 (pr8_vars.o):
+    ROM_00.o                  pr8.h(386)
+editorTmp1 (pr8_vars.o):
+    ROM_00.o                  pr8.h(386)
+editorTmp2 (pr8_vars.o):
+    ROM_00.o                  pr8.h(386)
+editorTmp3 (pr8_vars.o):
+    ROM_00.o                  pr8.h(386)
+editorTmp4 (pr8_vars.o):
+    ROM_00.o                  pr8.h(386)
+editorTmp5 (pr8_vars.o):
+    ROM_00.o                  pr8.h(386)
+editorTrackDrum (pr8_vars.o):
+    ROM_00.o                  pr8.h(629)
+editorTrackLastNote (pr8_vars.o):
+    ROM_00.o                  pr8.h(597)
+editorTrackLastTrigger (pr8_vars.o):
+    ROM_00.o                  pr8.h(597)
+editorTrackPhrase (pr8_vars.o):
+    ROM_00.o                  pr8.h(629)
+editorTrackWipeSpeed (pr8_vars.o):
+    ROM_00.o                  pr8.h(639)
+editorTriggerIndex (pr8_vars.o):
+    ROM_00.o                  pr8.h(598)
+editorWaitForAB (pr8_vars.o):
+    ROM_00.o                  pr8.h(650)
+editorWaitForClone (pr8_vars.o):
+    ROM_00.o                  pr8.h(651)
+envAmpIndexA (pr8_vars.o):
+    ROM_02.o                  pr8.h(494)
+    ROM_01.o                  pr8.h(494)
+envAmpIndexB (pr8_vars.o):
+    ROM_02.o                  pr8.h(499)
+    ROM_01.o                  pr8.h(499)
+envAmpIndexC (pr8_vars.o):
+    ROM_02.o                  pr8.h(504)
+envAmpIndexD (pr8_vars.o):
+    ROM_02.o                  pr8.h(509)
+    ROM_01.o                  pr8.h(509)
+envCounterA (pr8_vars.o):
+    ROM_02.o                  pr8.h(493)
+    ROM_01.o                  pr8.h(493)
+envCounterB (pr8_vars.o):
+    ROM_02.o                  pr8.h(498)
+    ROM_01.o                  pr8.h(498)
+envCounterC (pr8_vars.o):
+    ROM_02.o                  pr8.h(503)
+    ROM_01.o                  pr8.h(503)
+envCounterD (pr8_vars.o):
+    ROM_02.o                  pr8.h(508)
+    ROM_01.o                  pr8.h(508)
+envGateTimerA (pr8_vars.o):
+    ROM_01.o                  pr8.h(495)
+envGateTimerB (pr8_vars.o):
+    ROM_01.o                  pr8.h(500)
+envGateTimerC (pr8_vars.o):
+    ROM_02.o                  pr8.h(505)
+    ROM_01.o                  pr8.h(505)
+envGateTimerD (pr8_vars.o):
+    ROM_01.o                  pr8.h(510)
+envPhaseA (pr8_vars.o):
+    ROM_02.o                  pr8.h(492)
+    ROM_01.o                  pr8.h(492)
+envPhaseB (pr8_vars.o):
+    ROM_02.o                  pr8.h(497)
+    ROM_01.o                  pr8.h(497)
+envPhaseC (pr8_vars.o):
+    ROM_02.o                  pr8.h(502)
+    ROM_01.o                  pr8.h(502)
+envPhaseD (pr8_vars.o):
+    ROM_02.o                  pr8.h(507)
+    ROM_01.o                  pr8.h(507)
+errorCount (pr8_vars.o):
+    ROM_07.o                  pr8.h(375)
+errorScreen (ROM_05.o):
+    ROM_07.o                  pr8.h(725)
+freqHiA (pr8_vars.o):
+    ROM_02.o                  pr8.h(464)
+    ROM_01.o                  pr8.h(464)
+freqHiB (pr8_vars.o):
+    ROM_02.o                  pr8.h(468)
+    ROM_01.o                  pr8.h(468)
+freqHiC (pr8_vars.o):
+    ROM_02.o                  pr8.h(472)
+    ROM_01.o                  pr8.h(472)
+freqLoA (pr8_vars.o):
+    ROM_02.o                  pr8.h(463)
+    ROM_01.o                  pr8.h(463)
+freqLoB (pr8_vars.o):
+    ROM_02.o                  pr8.h(467)
+    ROM_01.o                  pr8.h(467)
+freqLoC (pr8_vars.o):
+    ROM_02.o                  pr8.h(471)
+    ROM_01.o                  pr8.h(471)
+freqLoD (pr8_vars.o):
+    ROM_02.o                  pr8.h(474)
+    ROM_01.o                  pr8.h(474)
+hardFreqA (pr8_vars.o):
+    ROM_02.o                  pr8.h(534)
+    ROM_01.o                  pr8.h(534)
+hardFreqB (pr8_vars.o):
+    ROM_02.o                  pr8.h(534)
+    ROM_01.o                  pr8.h(534)
+initGraphics (ROM_05.o):
+    ROM_07.o                  pr8.h(676)
+initSound (ROM_01.o):
+    ROM_07.o                  pr8.h(684)
+jumpVector (pr8_vars.o):
+    ROM_00.o                  pr8.h(372)
+keyDelayA (pr8_vars.o):
+    ROM_00.o                  pr8.h(618)
+keyDelayB (pr8_vars.o):
+    ROM_00.o                  pr8.h(617)
+keyDelayLR (pr8_vars.o):
+    ROM_00.o                  pr8.h(620)
+keyDelayUD (pr8_vars.o):
+    ROM_00.o                  pr8.h(619)
+keyReleaseA (pr8_vars.o):
+    ROM_00.o                  pr8.h(616)
+keyReleaseB (pr8_vars.o):
+    ROM_00.o                  pr8.h(613)
+keyReleaseSelect (pr8_vars.o):
+    ROM_00.o                  pr8.h(624)
+keyReleaseStart (pr8_vars.o):
+    ROM_00.o                  pr8.h(622)
+keyRepeatA (pr8_vars.o):
+    ROM_00.o                  pr8.h(615)
+keyRepeatB (pr8_vars.o):
+    ROM_00.o                  pr8.h(612)
+keyRepeatCounterLR (pr8_vars.o):
+    ROM_00.o                  pr8.h(611)
+keyRepeatCounterUD (pr8_vars.o):
+    ROM_00.o                  pr8.h(607)
+keyRepeatLR (pr8_vars.o):
+    ROM_00.o                  pr8.h(609)
+keyRepeatOldLR (pr8_vars.o):
+    ROM_00.o                  pr8.h(610)
+keyRepeatOldUD (pr8_vars.o):
+    ROM_00.o                  pr8.h(606)
+keyRepeatRateLR (pr8_vars.o):
+    ROM_00.o                  pr8.h(608)
+keyRepeatRateUD (pr8_vars.o):
+    ROM_00.o                  pr8.h(604)
+keyRepeatSelect (pr8_vars.o):
+    ROM_00.o                  pr8.h(623)
+keyRepeatStart (pr8_vars.o):
+    ROM_00.o                  pr8.h(621)
+keyRepeatUD (pr8_vars.o):
+    ROM_00.o                  pr8.h(605)
+keyStopB (pr8_vars.o):
+    ROM_00.o                  pr8.h(614)
+lastDrumParameterValue (pr8_vars.o):
+    ROM_00.o                  pr8.h(600)
+lastNoteTrack (pr8_vars.o):
+    ROM_01.o                  pr8.h(523)
+lfoCounterA (pr8_vars.o):
+    ROM_02.o                  pr8.h(476)
+    ROM_01.o                  pr8.h(476)
+lfoCounterB (pr8_vars.o):
+    ROM_02.o                  pr8.h(480)
+    ROM_01.o                  pr8.h(480)
+lfoCounterC (pr8_vars.o):
+    ROM_02.o                  pr8.h(484)
+    ROM_01.o                  pr8.h(484)
+lfoCounterD (pr8_vars.o):
+    ROM_02.o                  pr8.h(488)
+    ROM_01.o                  pr8.h(488)
+lfoDelCounterA (pr8_vars.o):
+    ROM_02.o                  pr8.h(477)
+    ROM_01.o                  pr8.h(477)
+lfoDelCounterB (pr8_vars.o):
+    ROM_02.o                  pr8.h(481)
+    ROM_01.o                  pr8.h(481)
+lfoDelCounterC (pr8_vars.o):
+    ROM_02.o                  pr8.h(485)
+    ROM_01.o                  pr8.h(485)
+lfoDelCounterD (pr8_vars.o):
+    ROM_02.o                  pr8.h(489)
+    ROM_01.o                  pr8.h(489)
+lfoPhaseA (pr8_vars.o):
+    ROM_02.o                  pr8.h(478)
+    ROM_01.o                  pr8.h(478)
+lfoPhaseB (pr8_vars.o):
+    ROM_02.o                  pr8.h(482)
+    ROM_01.o                  pr8.h(482)
+lfoPhaseC (pr8_vars.o):
+    ROM_02.o                  pr8.h(486)
+    ROM_01.o                  pr8.h(486)
+lfoPhaseD (pr8_vars.o):
+    ROM_02.o                  pr8.h(490)
+    ROM_01.o                  pr8.h(490)
+maxDma (pr8_vars.o):
+    ROM_00.o                  pr8.h(376)
+noteCounter (pr8_vars.o):
+    ROM_07.o                  pr8.h(461)
+    ROM_01.o                  pr8.h(461)
+noteNumberA0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(398)
+    ROM_01.o                  pr8.h(398)
+noteNumberA1 (pr8_vars.o):
+    ROM_02.o                  pr8.h(400)
+noteNumberA2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(402)
+noteNumberA3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(404)
+noteNumberA4 (pr8_vars.o):
+    ROM_02.o                  pr8.h(406)
+noteNumberA5 (pr8_vars.o):
+    ROM_02.o                  pr8.h(408)
+noteNumberB0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(411)
+    ROM_01.o                  pr8.h(411)
+noteNumberB1 (pr8_vars.o):
+    ROM_02.o                  pr8.h(413)
+noteNumberB2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(415)
+noteNumberB3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(417)
+noteNumberB4 (pr8_vars.o):
+    ROM_02.o                  pr8.h(419)
+noteNumberB5 (pr8_vars.o):
+    ROM_02.o                  pr8.h(421)
+noteNumberC0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(424)
+    ROM_01.o                  pr8.h(424)
+noteNumberC1 (pr8_vars.o):
+    ROM_02.o                  pr8.h(426)
+noteNumberC2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(428)
+noteNumberC3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(430)
+noteNumberC4 (pr8_vars.o):
+    ROM_02.o                  pr8.h(432)
+noteNumberC5 (pr8_vars.o):
+    ROM_02.o                  pr8.h(434)
+noteNumberD0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(437)
+    ROM_01.o                  pr8.h(437)
+noteNumberD1 (pr8_vars.o):
+    ROM_02.o                  pr8.h(439)
+noteNumberD2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(441)
+noteNumberD3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(443)
+noteNumberD4 (pr8_vars.o):
+    ROM_02.o                  pr8.h(445)
+noteNumberD5 (pr8_vars.o):
+    ROM_02.o                  pr8.h(447)
+noteNumberE0 (pr8_vars.o):
+    ROM_01.o                  pr8.h(450)
+noteTrack (pr8_vars.o):
+    ROM_01.o                  pr8.h(523)
+oldPrgBank (pr8_vars.o):
+    ROM_07.o                  pr8.h(323)
+oldWramBank (pr8_vars.o):
+    ROM_07.o                  pr8.h(323)
+patternIndex (pr8_vars.o):
+    ROM_01.o                  pr8.h(529)
+    ROM_00.o                  pr8.h(529)
+patternTableHi (ROM_07.o):
+    ROM_01.o                  pr8.h(704)
+    ROM_00.o                  pr8.h(704)
+patternTableLo (ROM_07.o):
+    ROM_01.o                  pr8.h(704)
+    ROM_00.o                  pr8.h(704)
+patterns (pr8_vars.o):
+    ROM_07.o                  pr8.h(667)
+patternsUsed (pr8_vars.o):
+    ROM_00.o                  pr8.h(709)
+phraseBanks (ROM_07.o):
+    ROM_01.o                  pr8.h(704)
+    ROM_00.o                  pr8.h(704)
+phraseTableHi (ROM_07.o):
+    ROM_01.o                  pr8.h(704)
+    ROM_00.o                  pr8.h(704)
+phraseTableLo (ROM_07.o):
+    ROM_01.o                  pr8.h(704)
+    ROM_00.o                  pr8.h(704)
+phrases0 (pr8_vars.o):
+    ROM_07.o                  pr8.h(667)
+phrases1 (pr8_vars.o):
+    ROM_07.o                  pr8.h(667)
+phrasesUsed (pr8_vars.o):
+    ROM_00.o                  pr8.h(708)
+playNotes (ROM_01.o):
+    ROM_07.o                  pr8.h(700)
+plyrCurrentPattern (pr8_vars.o):
+    ROM_01.o                  pr8.h(531)
+    ROM_00.o                  pr8.h(531)
+plyrCurrentSong (pr8_vars.o):
+    ROM_01.o                  pr8.h(595)
+    ROM_00.o                  pr8.h(595)
+plyrDpcmOn (pr8_vars.o):
+    ROM_02.o                  pr8.h(520)
+    ROM_01.o                  pr8.h(520)
+plyrEchoAttn (pr8_vars.o):
+    ROM_02.o                  pr8.h(717)
+    ROM_01.o                  pr8.h(717)
+plyrEchoCounter (pr8_vars.o):
+    ROM_01.o                  pr8.h(718)
+plyrEchoIndex (pr8_vars.o):
+    ROM_02.o                  pr8.h(718)
+    ROM_01.o                  pr8.h(718)
+plyrEchoInitAttnA (pr8_vars.o):
+    ROM_02.o                  pr8.h(717)
+    ROM_01.o                  pr8.h(717)
+plyrEchoInitAttnB (pr8_vars.o):
+    ROM_02.o                  pr8.h(717)
+    ROM_01.o                  pr8.h(717)
+plyrEchoInitAttnD (pr8_vars.o):
+    ROM_02.o                  pr8.h(717)
+    ROM_01.o                  pr8.h(717)
+plyrEchoNoteCount (pr8_vars.o):
+    ROM_01.o                  pr8.h(719)
+plyrEchoSelect (pr8_vars.o):
+    ROM_02.o                  pr8.h(718)
+    ROM_01.o                  pr8.h(718)
+plyrEchoSpeed (pr8_vars.o):
+    ROM_01.o                  pr8.h(718)
+plyrEchoWrite (pr8_vars.o):
+    ROM_02.o                  pr8.h(721)
+plyrMode (pr8_vars.o):
+    ROM_01.o                  pr8.h(649)
+    ROM_00.o                  pr8.h(649)
+plyrModeOld (pr8_vars.o):
+    ROM_01.o                  pr8.h(649)
+    ROM_00.o                  pr8.h(649)
+plyrNextPattern (pr8_vars.o):
+    ROM_01.o                  pr8.h(531)
+    ROM_00.o                  pr8.h(531)
+plyrPatternGroove (pr8_vars.o):
+    ROM_01.o                  pr8.h(530)
+plyrPatternSpeed (pr8_vars.o):
+    ROM_01.o                  pr8.h(530)
+plyrSetupSong (ROM_01.o):
+    ROM_07.o                  pr8.h(729)
+plyrSongBar (pr8_vars.o):
+    ROM_01.o                  pr8.h(532)
+    ROM_00.o                  pr8.h(532)
+plyrTmp0 (pr8_vars.o):
+    ROM_02.o                  pr8.h(656)
+    ROM_01.o                  pr8.h(656)
+plyrTmp1 (pr8_vars.o):
+    ROM_02.o                  pr8.h(656)
+    ROM_01.o                  pr8.h(656)
+plyrTmp2 (pr8_vars.o):
+    ROM_02.o                  pr8.h(656)
+    ROM_01.o                  pr8.h(656)
+plyrTmp3 (pr8_vars.o):
+    ROM_02.o                  pr8.h(656)
+plyrTrackDrum (pr8_vars.o):
+    ROM_01.o                  pr8.h(530)
+plyrTrackPhrase (pr8_vars.o):
+    ROM_01.o                  pr8.h(530)
+plyrUpdateEchoIndex (ROM_01.o):
+    ROM_07.o                  pr8.h(731)
+previousEditorMode (pr8_vars.o):
+    ROM_00.o                  pr8.h(589)
+processVector (pr8_vars.o):
+    ROM_05.o                  pr8.h(372)
+process_DMA_queue (ROM_05.o):
+    ROM_07.o                  pr8.h(587)
+retriggerCount (pr8_vars.o):
+    ROM_01.o                  pr8.h(524)
+retriggerSpeed (pr8_vars.o):
+    ROM_01.o                  pr8.h(524)
+retriggerTemp (pr8_vars.o):
+    ROM_01.o                  pr8.h(524)
+scnCopyInfoBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(544)
+    ROM_00.o                  pr8.h(544)
+scnDrumAuxBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(542)
+    ROM_00.o                  pr8.h(542)
+scnGridBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(540)
+    ROM_00.o                  pr8.h(540)
+scnGridPatternBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(543)
+    ROM_00.o                  pr8.h(543)
+scnSongBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(545)
+    ROM_00.o                  pr8.h(545)
+scnTrackDrumBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(542)
+    ROM_00.o                  pr8.h(542)
+scnTriggerBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(540)
+    ROM_00.o                  pr8.h(540)
+scnVoiceABuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(541)
+    ROM_00.o                  pr8.h(541)
+scnVoiceBBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(541)
+scnVoiceCBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(541)
+scnVoiceDBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(541)
+scnVoiceEBuffer (pr8_vars.o):
+    ROM_05.o                  pr8.h(541)
+setMMC1r1 (ROM_07.o):
+    ROM_02.o                  pr8.h(694)
+    ROM_01.o                  pr8.h(694)
+    ROM_00.o                  pr8.h(694)
+slideA (pr8_vars.o):
+    ROM_02.o                  pr8.h(525)
+    ROM_01.o                  pr8.h(525)
+slideB (pr8_vars.o):
+    ROM_02.o                  pr8.h(525)
+    ROM_01.o                  pr8.h(525)
+slideC (pr8_vars.o):
+    ROM_02.o                  pr8.h(525)
+    ROM_01.o                  pr8.h(525)
+songEchoDecay (pr8_vars.o):
+    ROM_01.o                  pr8.h(727)
+    ROM_00.o                  pr8.h(727)
+songEchoLevelA (pr8_vars.o):
+    ROM_01.o                  pr8.h(727)
+    ROM_00.o                  pr8.h(727)
+songEchoLevelB (pr8_vars.o):
+    ROM_01.o                  pr8.h(727)
+    ROM_00.o                  pr8.h(727)
+songEchoLevelD (pr8_vars.o):
+    ROM_01.o                  pr8.h(727)
+    ROM_00.o                  pr8.h(727)
+songEchoSelect (pr8_vars.o):
+    ROM_01.o                  pr8.h(727)
+    ROM_00.o                  pr8.h(727)
+songEchoSpeed (pr8_vars.o):
+    ROM_01.o                  pr8.h(727)
+    ROM_00.o                  pr8.h(727)
+songLoopLengthTable (pr8_vars.o):
+    ROM_01.o                  pr8.h(668)
+    ROM_00.o                  pr8.h(668)
+songLoopStartTable (pr8_vars.o):
+    ROM_01.o                  pr8.h(668)
+    ROM_00.o                  pr8.h(668)
+songSpeedTable (pr8_vars.o):
+    ROM_01.o                  pr8.h(668)
+    ROM_00.o                  pr8.h(668)
+songSwingTable (pr8_vars.o):
+    ROM_01.o                  pr8.h(668)
+    ROM_00.o                  pr8.h(668)
+songTableHi (ROM_07.o):
+    ROM_01.o                  pr8.h(705)
+    ROM_00.o                  pr8.h(705)
+songTableLo (ROM_07.o):
+    ROM_01.o                  pr8.h(705)
+    ROM_00.o                  pr8.h(705)
+songs (pr8_vars.o):
+    ROM_07.o                  pr8.h(667)
+sprBuf (pr8_vars.o):
+    ROM_07.o                  pr8.h(549)
+synthRefresh (ROM_02.o):
+    ROM_07.o                  pr8.h(684)
+tmp0 (pr8_vars.o):
+    ROM_07.o                  pr8.h(327)
+    ROM_05.o                  pr8.h(327)
+tmp1 (pr8_vars.o):
+    ROM_05.o                  pr8.h(327)
+triggerCopyBuffer (pr8_vars.o):
+    ROM_00.o                  pr8.h(635)
+triggerTmp (pr8_vars.o):
+    ROM_01.o                  pr8.h(527)
+vblankFlag (pr8_vars.o):
+    ROM_07.o                  pr8.h(321)
+    ROM_00.o                  pr8.h(321)
+vblankLastFlag (pr8_vars.o):
+    ROM_07.o                  pr8.h(321)
+voiceActive (pr8_vars.o):
+    ROM_02.o                  pr8.h(522)
+    ROM_01.o                  pr8.h(522)
+

@@ -1,0 +1,101 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+
+		<ul>
+			<li>Overview</li>
+			<li><a href="synthesis.html">Synthesis</a></li>
+			<li><a href="drums.html">Drum Editor</a></li>
+			<li><a href="patterns.html">Pattern Editor</a></li>
+			<li><a href="songs.html">Song Editor</a></li>
+			<li><a href="drumParameters.html">Drum Parameters</a></li>
+			<li><a href="controls.html">Controls</a></li>
+			<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+	<div class="content">
+	<h2>Introduction</h2>
+	<p><b>PR8</b> is a 6-track, pattern-based drum machine that runs on a Nintendo Entertainment System, designed and created by Neil Baldwin.</p>
+	<div class="imageCenter">
+		<img src="images/pr8_screen_01.png" />
+		<p class='caption'>PR8 Screen</p>
+	</div>
+	<p>PR8 is unlike any other NES music application in that it uses 'virtual' tracks that are not explicitly linked to any hardware voice.</p>
+	<p>As a consequence, sounds in PR8 (and by association, each Track) are able to simultaneously use any combination of all five of the NES's sound-generating voices and a simple priority system is employed to dynamically determine which of the 6 tracks have control over them.</p>
+	
+		<p>Even though PR8 is referred to as a 'drum synth', it is also possible (and quite easy) to create melodic instruments and patterns, though the entry and editing of musical notes is a little more abstracted if you're used to traditional sequencers or trackers.</p>
+
+	<p>Because of this rather radical approach, the learning-curve for PR8 might be a little steep but patience will reward you with a pretty unique and fun way to create NES music.</p>
+	<h2>PR8 Features</h2>
+	<p>Note: All of the concepts and terms below are explained further into the manual</p>
+	<p>Contained in one 32KB .sav file:</p>
+	<ul>
+		<li>8 Songs</li>
+		<li>256 steps per-Song (with loop point)</li>
+		<li>256 Patterns (shared by all Songs)</li>
+		<li>192 Phrases (shared by all Patterns)</li>
+		<li>128 Drum Patches (shared by all Patterns)</li>
+	</ul>
+	<p>Also:</p>
+	<ul>
+		<li>6 Tracks per-Pattern</li>
+		<li>(Maximum) 16 Steps per-Pattern (per-Phrase)</li>
+		<li>Tempo and Swing settings per-Pattern and also per-Song</li>
+		<li>Auto-Echo settings per-Pattern</li>
+		<li>5 Voices-per-Drum Patch</li>
+		<li>42 Parameters per-Drum Patch</li>
+		<li>3 Parameters per-Drum Patch can be automated via Phrases</li>
+		<li>Multi-parameter Automation allows simultaneous control of some Parameter groups</li>
+		<li>12K of DCM samples in ROM, patchable with external tool</li>
+	</ul>
+	<p>Planned:</p>
+	<ul>
+		<li>External Sync</li>
+	</ul>
+	<h2>PR8 Interface</h2>
+	<p>PR8's interface is contained in one single screen (shown in the picture above). It is divided into 3 separate areas which are the <a href="songs.html">Song Editor</a>, the <a href="patterns.html">Pattern Editor</a> and at the bottom, the <a href="drums.html">Drum Editor</a>.</p>
+<div class="imageCenter">
+	<img src="images/song.png" />
+	<p class='caption'>PR8 Song Editor</p>
+</div>
+<div class="imageCenter">
+	<img src="images/pattern.png" />
+	<p class='caption'>PR8 Pattern Editor</p>
+</div>
+<div class="imageCenter">
+	<img src="images/drum.png" />
+	<p class='caption'>PR8 Drum Editor</p>
+</div>
+<p>There are also several 'hidden' menus, all of which appear in the Pattern Editor (or <em>Grid</em>) - for no other reason than it's the biggest bit of screen real-estate! For example, here's the Pattern Edit Menu:</p>
+<div class="imageCenter">
+	<img src="images/patternEditMenu.png" />
+	<p class='caption'>PR8 Pattern Edit Menu</p>
+</div>
+<h2>PR8 Object Relationships/Flow</h2>
+<div class="imageCenter">
+	<img src="images/objectRelationships.png" />
+	<p class='caption'>PR8 Object Relationships</p>
+</div>
+<p><b>Songs</b> contains <b>Patterns</b>. <b>Patterns</b> contain (six) <b>Tracks</b>. Each Track is assigned a <b>Drum Patch</b> and a <b>Phrase</b>. Phrases contains <b>Triggers</b>. Triggers use and control the parameters in the Drum Patch to create audio. Simple! The diagram above should help you understand the relationships more clearly. To save space only Track 1 is 'expanded'. In reality there would be a Phrase, Trigger and Drum Patch box for Tracks 2 to 6 also.</p>
+
+<h2>Requirements</h2>
+<p>You'll need a NES and a <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a> cartridge if you want to run PR8 on actual hardware. If you prefer to use a NES emulator, currently only <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia</a> 'officially' supports the NES2.0 ROM format and 32KB .sav files which are required by PR8.</p>
+<p>If using a PowerPak, a mapper update is supplied with PR8 that you'll need to put onto your CF card. This update was supplied by Retrousb but is not yet included in the release-version of the PowerPak software.</p>
+<p>The same .sav files can be used on both PowerPak or emulator and are interchangeable. However, if you're using Nestopia on OSX you need to be aware that the .sav files are actually compressed in a ZIP-style archive so if you want to use them on a PowerPak (or other emulator) you'll need to unzip them first.</p>
+<p><b>UPDATE: </b>As of 17/01/2011, the development build of <a href="http://www.qmtpro.com/~nes/nintendulator/" target="blank">Nintendulator</a> has been updated and will also run PR8, though these changes have not yet made it into the release-version of the emulator.</p>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

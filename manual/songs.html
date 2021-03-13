@@ -1,0 +1,48 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+		<ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="synthesis.html">Synthesis</a></li>
+<li><a href="drums.html">Drum Editor</a></li>
+<li><a href="patterns.html">Pattern Editor</a></li>
+<li>Song Editor</li>
+<li><a href="drumParameters.html">Drum Parameters</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content">	
+	<h2>Song Editor</h2>
+	<p>The <b>Song Editor</b> is where you can arrange Patterns into a 'Song' and change between the eight available Songs. It's also where you control what <em>mode</em> PR8 is in: <b>Pattern</b> or <b>Song</b></p>
+<div class="imageCenter">
+	<img src="images/song.png" />
+	<p class='caption'>PR8 Song Editor</p>
+</div>
+<h2>PR8 Modes</h2>
+<p>PR8 can operate in one of two modes: <b>Pattern Mode</b> or <b>Song Mode</b>. In Pattern Mode, PR8 plays the Pattern currently loaded into the Pattern Editor in a constant loop. In Song Mode you actually have two sub-modes: Play (PLY) and Record (REC). In Play Mode, the current Song will play but you cannot edit any of it's parameters (though you can change what Song is playing and also play/stop/ffw/rew the Song). In Record Mode you can play the current Song but you are also able to make changes to it (either while it's playing or stopped).</p>
+<h2>Song Editor Display</h2>
+<p>The left-hand section is an information display. As well as telling you what mode PR8 is currently in, there is also information relating to the current playback (PATTERN:STEP in the case of Pattern Mode, BAR:PATTERN in the case of Song Mode). Also certain confirmation (when copying data) and error messages appear here.</p>
+<p>On the top row, <b>SNG ...</b> tells you whether the Song is turned off (OFF), in Play Mode (PLY) or in Record Mode (REC). The <b>SNG</b> on the bottom row is the current Song Number.</p>
+<p>Moving to the right, <b>SPD</b> is the playback speed of the Song. If this display reads <b>'---'</b> this means that the Song is using the Speed settings from each Pattern to determine it's playback speed. <b>SWG</b> is the Swing setting for the Song playback. Like SPD, if you decide to turn Swing off in the Song, the display will read <b>'---'</b> and the Swing setting will be determined by the Patterns.</p>
+<p><b>BAR</b> is the <em>step</em> of the Song that you'll be editing (if the Song is in Record Mode). One Bar of a Song is one Pattern long. You can have a maximum of 255 (FF) Bars in a Song. As a visual aid, iff the current Bar is within the Loop, the Bar number will be displayed in inverted text.</p>
+<p><b>PTN</b> is the Pattern Number which will be played on the current Song Bar.</p>
+<p>The last two parameters are to do with Song looping. <b>LP&gt;</b> is the Song Bar that looping will start on. <b>LP[ ]</b> is the length of the looping section in Bars. If you don't want the Song to loop you can turn looping off and the <b>LP[ ]</b> parameter will read <b>'---'</b></p>
+<h2>Editing Song Parameters</h2>
+<p>When editing the Song Number (SNG), Speed (SPD), Swing (SWG), Loop Start (LP&gt;) or Loop Length (LP[ ]), the value isn't actually changed until you release the A button. See <a href='controls.html'>Controls</a> for more detail.</p>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

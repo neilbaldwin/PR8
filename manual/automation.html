@@ -1,0 +1,93 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+		<ul>
+			<li><a href="index.html">Overview</a></li>
+			<li><a href="synthesis.html">Synthesis</a></li>
+			<li><a href="drums.html">Drum Editor</a></li>
+			<li><a href="patterns.html">Pattern Editor</a></li>
+			<li><a href="songs.html">Song Editor</a></li>
+			<li><a href="drumParameters.html">Drum Parameters</a></li>
+			<li><a href="controls.html">Controls</a></li>
+			<li>Automation</li>
+			<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content">	
+	<h2>Automation Parameters</h2>
+	<p>This table lists all the Automation Triggers and their three-letter IDs.</p>
+	<table class="table2">
+	<thead><th>ID</th><th>Function</th></thead>
+	<tr><td>AOC</td><td>Voice A: Oscillator Coarse Offset</td></tr>
+	<tr><td>AOF</td><td>Voice A: Oscillator Fine Offset</td></tr>
+	<tr><td>AOD</td><td>Voice A: Oscillator Distortion Time</td></tr>
+	<tr><td>ALD</td><td>Voice A: LFO Delay/Mode</td></tr>
+	<tr><td>ALS</td><td>Voice A: LFO Speed</td></tr>
+	<tr><td>ALD</td><td>Voice A: LFO Depth</td></tr>
+	<tr><td>AAV</td><td>Voice A: Amplitude Volume/Curve</td></tr>
+	<tr><td>AAE</td><td>Voice A: Amplitude Envelope</td></tr>
+	<tr><td>AAH</td><td>Voice A: Amplitude Hold Time</td></tr>
+	<tr><td>AP0</td><td>Voice A: Duty Pulsewidth 0</td></tr>
+	<tr><td>AP1</td><td>Voice A: Duty Pulsewidth 1</td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>BOC</td><td>Voice B: Oscillator Coarse Offset</td></tr>
+	<tr><td>BOF</td><td>Voice B: Oscillator Fine Offset</td></tr>
+	<tr><td>BOD</td><td>Voice B: Oscillator Distortion Time</td></tr>
+	<tr><td>BLD</td><td>Voice B: LFO Delay/Mode</td></tr>
+	<tr><td>BLS</td><td>Voice B: LFO Speed</td></tr>
+	<tr><td>BLD</td><td>Voice B: LFO Depth</td></tr>
+	<tr><td>BAV</td><td>Voice B: Amplitude Volume/Curve</td></tr>
+	<tr><td>BAE</td><td>Voice B: Amplitude Envelope</td></tr>
+	<tr><td>BAH</td><td>Voice B: Amplitude Hold Time</td></tr>
+	<tr><td>BP0</td><td>Voice B: Duty Pulsewidth 0</td></tr>
+	<tr><td>BP1</td><td>Voice B: Duty Pulsewidth 1</td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>COC</td><td>Voice C: Oscillator Coarse Offset</td></tr>
+	<tr><td>COF</td><td>Voice C: Oscillator Fine Offset</td></tr>
+	<tr><td>CLD</td><td>Voice C: LFO Delay/Mode</td></tr>
+	<tr><td>CLS</td><td>Voice C: LFO Speed</td></tr>
+	<tr><td>CLD</td><td>Voice C: LFO Depth</td></tr>
+	<tr><td>CAP</td><td>Voice C: Voice Pulse</td></tr>
+	<tr><td>CAT</td><td>Voice C: Voice Hold Time</td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>DOC</td><td>Voice D: Oscillator Coarse Offset</td></tr>
+	<tr><td>DLD</td><td>Voice D: LFO Delay/Mode</td></tr>
+	<tr><td>DLS</td><td>Voice D: LFO Speed</td></tr>
+	<tr><td>DLD</td><td>Voice D: LFO Depth</td></tr>
+	<tr><td>DAV</td><td>Voice D: Amplitude Volume/Curve</td></tr>
+	<tr><td>DAE</td><td>Voice D: Amplitude Envelope</td></tr>
+	<tr><td>DAH</td><td>Voice D: Amplitude Hold Time</td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>ESM</td><td>Voice E: Sample Number</td></tr>
+	<tr><td>EST</td><td>Voice E: Sample Start Offset</td></tr>
+	<tr><td>EEN</td><td>Voice E: Sample End Offset</td></tr>
+	<tr><td>EPT</td><td>Voice E: Sample Pitch</td></tr>
+	<tr><td>ELP</td><td>Voice E: Sample Loop</td></tr>
+	</table>
+	<h2>Multi-Parameter Automation</h2>
+	<p>This table lists the special-function Multi-Parameter Automation IDs and their function. These parameters (that all begin with 'M', for 'multi'), can send a value from one Trigger (T<em>x</em>) in a Phrase to multiple Drum Parameters. For example, <b>MAV</b> is able to send a value to the Volume/Curve parameter for Voice A, B and D of a Drum simultaneously.</p>
+	<table class="table2">
+	<thead><th>ID</th><th>Function</th></thead>
+	<tr><td>MLD</td><td>Voice ABC : LFO Delay/Mode</td></tr>
+	<tr><td>MLS</td><td>Voice ABC : LFO Speed</td></tr>
+	<tr><td>MLW</td><td>Voice ABC : LFO Width</td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>MAV</td><td>Voice ABD : Amplitude Volume/Curve</td></tr>
+	<tr><td>MAE</td><td>Voice ABD : Amplitude Envelope</td></tr>
+	<tr><td>MAH</td><td>Voice ABCD: Amplitude Hold Time</td></tr>
+	</table>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

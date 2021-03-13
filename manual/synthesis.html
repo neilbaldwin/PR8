@@ -1,0 +1,131 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+		<ul>
+<li><a href="index.html">Overview</a></li>
+<li>Synthesis</li>
+<li><a href="drums.html">Drum Editor</a></li>
+<li><a href="patterns.html">Pattern Editor</a></li>
+<li><a href="songs.html">Song Editor</a></li>
+<li><a href="drumParameters.html">Drum Parameters</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content">	
+	<h2>PR8 Synthesis</h2>
+	<p>PR8's power lies in being able to treat every sound as a 5-voice multi-timbral instrument and then control that instrument's parameters via sequencer automation. The <b>Tracks</b> in PR8 are therefore 'virtual' in that they are not tied to any particuar NES sound-generating <em>voice</em>.</p>
+	<p>Because of this approach, the synthesis available to each individual Drum Voice is perhaps a bit simple compared to other NES audio engines. It has to be this way because 6 tracks multiplied by 5 voices equals 30 virtual voices to process. Combine this with the fact that PR8's synthesis runs twice per frame, that actually makes 60 virtual voices to process every refresh!</p>
+	<p>Despite this it's still possible to create complex and very rich sounds. On this page you'll find explanations of the individual synthesis types available to each Drum Patch.</p>
+	<p>This section of the manual is just intended as a discussion of the various types of synthesis available. For technical and usage details for all the Drum Parameters, see the <a href="drumParameters.html">Drum Parameters</a> page.</p>
+	<h2>Oscillator (Pitch) Settings</h2>
+	<p>For Voices A, B, C and D, the output pitch can either be calculated from a note in the sequencer (relative offsets) or can be fixed regardless of the note played by the sequencer (absolute).</p>
+	<p>The relative mode is most useful for sounds that are used for melodic phrases so you can have voices in unison or octaves apart or even chords from a single note etc. Absolute pitch is useful for drums, noises or glitch type sounds where the Drum Patches use pitch for effect rather than melody and also, for example, if you have a Noise (Voice D) component in your sound and you'd like to keep the pitch of the noise fixed while the pitch of other voices is controlled by the notes in the sequencer.</p>
+	<p>You can also 'detune' individual Voices via the <span class='hex'>OSC-F</span> parameter. This can add a bit more depth to sounds that have voices in unison.</p>
+	<p>The final aspect of the Oscillator settings is for Voices A and B only. A quirk of the NES's audio chip causes the phase of the output of the two square-wave Voices (A and B) to be reset when the upper-frequency register is written in your audio engine. It's commonly an unwanted side-effect because it causes an audible click/pop and therefore it's usual practice to only write to this register when required (i.e. if the value needs to change). However, if you constantly write to the register, especially at a higher-than-normal rate (PR8 refreshes at twice the 'normal' rate) it can produce some interesting distortion/modulation. Therefore, the <span class='hex'>OSC-D</span> parameter gives you the option to handle the upper-frequency register normally or to constantly force it to be written. The value written to the <span class='hex'>OSC-D</span> parameter defines the amount of time from the beginning of each note that the distortion effect is audible.</p>
+	<h2>Low Frequency Oscillator (LFO)</h2>
+	<p>The term 'Low Frequency Oscillator' in PR8 should be taken with a pinch of salt because there are several types of pitch modulation that are put under that label and controlled by the same set of parameters. These are: Vibrato, Pitch Sweep and Arpeggio. Because of this it's not possible to apply any of these types of pitch modulation simultaneously on the same Drum Voice. Of course though, you can use combinations of those effects in a Drum <em>Patch</em> by using multiple Voices.</p>
+	<h3>Vibrato</h3>
+	<p>Pitch can be modulated in a vibrato-like way by specifying a speed and a width (parameters <span class='hex'>LFO-S</span> and <span class='hex'>LFO-W</span>). The <span class='hex'>LFO-W</span> value is added/subtracted from the pitch in a cyclic pattern. The frequency at which the polarity changes is determined by the <span class='hex'>LFO-S</span> parameter. You can also specify a delay in the <span class='hex'>LFO-D</span> parameter which delays the Vibrato effect for the specified number of ticks from the beginning of each new note. Vibrato Width (<span class='hex'>LFO-W</span>) can be positive or negative, the polarity effects the starting direction of the LFO.</p>
+	<p>Vibrato works on Voices A, B and C only.</p>
+	<h3>Pitch Sweep (Voices A, B and C)</h3>
+	<p>Pitch Sweep adds a constant value to the current pitch of a playing note to sweep it up or down. You specify the constant via the <span class='hex'>LFO-W</span> parameter but you need to set <span class='hex'>LFO-S</span> to <span class='hex'>00</span>. Essentially, Pitch Sweep is Vibrato that never changes polarity, hence the <span class='hex'>00</span> in the LFO Speed parameter.</p>
+	<p>Like Vibrato you can delay the sweeping effect by specifying a value other than <span class='hex'>00</span> in the <span class='hex'>LFO-D</span> parameter. Note though that the maximum delay is <span class='hex'>7F</span> because values higher than 7F tell PR8 to use the LFO parameters in a different way (see 'Arpeggio' below).</p>
+	<h3>Pitch Sweep (Voice D)</h3>
+	<p>You can also sweep the pitch of the Noise voice but there is a slight difference in how the parameters are used. <span class='hex'>LFO-W</span> is used to specify the constant to add/subtract but bear in mind that the usable range is much more limited due to the fact that there are only 16 different pitches for this voice. Also, because of the limited range, the <span class='hex'>LFO-S</span> parameter has been appropriated to provide a delay (in ticks) between adding the <span class='hex'>LFO-W</span> value to the noise pitch. There is no 'Vibrato' mode for Voice D.</p>
+	<h3>Arpeggio</h3>
+	<p>Arpeggio in PR8 is just a general term for a few types of effects that involve toggling or cycling the playing note between two or more semitones. It can be used in a 'traditional' chipmusic way to simulate chords or to add accent notes to the start of notes, or on Voice D to add texture to single noise pitches, for example.</p>
+	<p>The effect is <em>complicated</em> further by having two different modes of operation: <em>one-shot</em> and <em>cyclic</em>.</p>
+	<p>For all Voices (excluding E of course), the one-shot mode is selected by specifying <span class='hex'>80</span> in the <span class='hex'>LFO-D</span> parameter and the cyclic mode is selected by specifying a <span class='hex'>LFO-D</span> value between <span class='hex'>81</span> and <span class='hex'>FF</span>.</p>
+	<p>In cycling mode, the <span class='hex'>LFO-D</span> value tells PR8 how many times you'd like the Arpeggio looped (<span class='hex'>81</span> = 1, <span class='hex'>82</span> = 2, <span class='hex'>90</span>=16 etc.). The <span class='hex'>LFO-W</span> parameter is used to specify the 2nd and 3rd notes of the 'chord' (the first note in the chord the original note from the Pattern). The left digit is the 2nd note and the right digit is the 3rd. The value is the number of semitones above the root note e.g. <span class='hex'>47</span> will play a major triad, <span class='hex'>37</span> a minor triad etc. PR8 will cycle between the 3 notes at a speed specified in the <span class='hex'>LFO-S</span> parameter.</p>
+	<p>In one-shot mode the operation is slightly different. This time <span class='hex'>LFO-W</span> becomes a single signed semi-tone offset. This is added to the pitch for a number of ticks specified by <span class='hex'>LFO-S</span></p>
+	<h2>Amplitude Modulation</h2>
+	<p>Voices A, B and D have variable amplitude (16 levels) and in PR8 you are able to shape the amplitude over time using simple Envelopes.</p>
+	<h3>Volume and Curve</h3>
+	<p>The first parameter, <span class='hex'>AMP-V</span>, controls two aspects. The right-hand digit scales the overall output volume of the Envelope, <span class='hex'>0</span> being off and <span class='hex'>F</span> being maximum. The left-hand parameter controls the curve applied to the Attack and Release stages of the Envelope. A setting of <span class='hex'>8</span> is approximately linear, values towards <span class='hex'>0</span> give you an increasingly steep exponential curve (blue line on graph below) while values towards <span class='hex'>F</span> give you an increasingly steep logarithmic curve (red line on graph below). The numbers on the graph bear no relevance to PR8, it's merely to illustrate the curve shapes.</p>
+	<div class="imageCenter">
+		<img src="images/log2.gif" />
+		<p class='caption'>Exponential (blue) and logarithmic (red) curves</p>
+	</div>
+	<br />
+	<h3>Envelope</h3>
+	<p>The second parameter, <span class='hex'>AMP-E</span>, sets the <em>Attack</em> and <em>Release</em> speed for the amplitude envelope. The Envelopes in PR8 only have 3 phases Attack, Sustain and Release. Attack is the time taken for the Envelope to go from 0 amplitude to maximum (F). Sustain is the time that the Envelope is held at maximum level (actually controlled by the <span class='hex'>LFO-T</span> parameter, see next section). Release is the time taken for the Envelope to go from maximum (F) to 0.</p>
+	<p>The left-hand digit specifies the Attack (<span class='hex'>1</span> is slowest, <span class='hex'>F</span> is fastest) while the right-hand digit specifies the Release (again, <span class='hex'>1</span> is slowest, <span class='hex'>F</span> is fastest). For both Attack and Release, a value of <span class='hex'>0</span> effectively means to bypass this phase of the Envelope immediately. So, for example, a value of <span class='hex'>0</span> for Attack causes the Envelope to start at maximum volume.
+	<h3>Hold Time</h3>
+	<p>The parameter <span class='hex'>AMP-H</span> sets the Hold Time. For Voices A, B and D this controls the number of ticks that the Sustain phase of the Envelope lasts for before going into the Release phase. For Voice C, this defines the number of ticks that the Voice is audible from the beginning of a new note.
+	</p>
+	<h3>Voice C 'Pulse'</h3>
+	<p>Voice C has a parameter that is unique to itself. The parameter is named '<span class='hex'>AMP-P</span>' and stands for Amplitude Pulse. The left and right digits control the amount of time the Voice is turned on and off, respectively, for the duration of a note. It can produce an odd warbling effect when using higher values (<span class='hex'>0</span> is slowest, <span class='hex'>F</span> is fastest for both digits).</p>
+	<h2>Duty Modulation</h2>
+	<p>Voices A and B have <em>Duty Modulation</em>. 'Duty' is the term used for one of the 4 pulse widths that can be set for each of these two voices. In PR8 you can either specify a fixed Duty or you can modulate the Duty by using both the <span class='hex'>DTY-P0</span> and <span class='hex'>DTY-P1</span> (Pulsewidth 0 and Pulsewidth 1) parameters.</p>
+	<h3>Fixed Duty</h3>
+	<p>To use a fixed Duty simply specify either <span class='hex'>00</span>, <span class='hex'>40</span>, <span class='hex'>80</span> or <span class='hex'>C0</span> in the P0 parameter. In this case P1 is not used.</p>
+	<h3>Modulated Duty</h3>
+	<p>Modulation is achieved by specifying both the Duty value and a time to hold that Duty for before moving onto the other Duty setting. For example, a value of <span class='hex'>08</span> in <span class='hex'>DTY-P0</span> will hold a Duty value of 00 for 8 ticks before moving to the <span class='hex'>DTY-P1</span> setting. A value of <span class='hex'>14</span> will hold a value of 00 for 20 ticks (14 is hexadecimal for 20 decimal). The range of delay for each Duty value is: <span class='hex'>00-3F</span>, <span class='hex'>40-7F</span>, <span class='hex'>80-BF</span> and <span class='hex'>C0-FF</span>.</p>
+	<p>You can therefore have the Duty value start at P0 and then hold at P1 (by specifying <span class='hex'>00</span>, <span class='hex'>40</span>, <span class='hex'>80</span> or <span class='hex'>C0</span> in P1) or have the modulation cycle between the P0 and P1 values. For example, if P0 = <span class='hex'>04</span> and P1 = <span class='hex'>86</span>, the Duty will be set to 00 for 4 ticks, then 80 for 6 ticks and then loop back to P0, continuing to do so until the end of the note.</p>
+	
+	<h2>DMC Synthesis</h2>
+	<p>DMC (Voice E) doesn't really have synthesis but there are parameters to manipulate the playback of the samples.</p>
+	<h3>Sample Number</h3>
+	<p>The <span class='hex'>DCM-S</span> parameter sets the sample number to use. <span class='hex'>00</span> is silent. The range of this parameter depends on how many samples you have in the PR8 ROM (you can patch the ROM with your own samples with the PR8 ROM Patcher tool).</p>
+	<h3>Start Offset</h3>
+	<p>Using the <span class='hex'>DCM</span> <img src='images/dcmStart.png' /> parameter you can offset the start of the playback of the current sample. The value is not checked for error/range and will depend on the length of the sample. It is possible to specify 'invalid' values which most often results in garbage playback.</p>
+	<h3>End Offset</h3>
+	<p>Using the <span class='hex'>DCM</span> <img src='images/dcmEnd.png' /> parameter you can offset the end of the current sample. Like the <span class='hex'>DCM</span> <img src='images/dcmStart.png' /> parameter, it is possible to set 'invalid' values which will result in garbage playback.</p>
+	<h3>DCM 'Pitch'</h3>
+	<p>The <span class='hex'>DCM-P</span> parameter controls the playback speed of the sample. The range is 0 to F with F being the fastest (and most used) setting.</p>
+	<h3>DCM Looping</h3>
+	<p>The <span class='hex'>DCM-L</span> parameter turns looping of the sample on or off. A value of <span class='hex'>00</span> means that looping is off while any other value causes the sample to be looped. The looping occurs between the start and end of the sample and is also affected by the Start Offset and End Offset parameters.</p>
+<h2>Patching The PR8 ROM With Your Own Samples - 'DCM2PR8'</h2>
+<p>Included with PR8 is a ROM-patching tool that enables you to replace the preset DCM samples. I've included a folder full of pretty usable samples (the 'DPCM' folder that is created when you unzip the PR8 zip file) or there are plenty of 'ripped' DCM samples floating around the internet. Alternatively, you can create your own.</p>
+<p>If you want to create your own DCM samples (i.e. convert WAV files) then you'll need a tool to do so. There are a couple of good ones knocking about the internet, personally I use Damien Yerrick's '81ex' which is a command-line tool. You can get the source and Windows executable from <a href='http://www.pineight.com/nes/'>his website</a>. I've included a Mac binary of this program with PR8 because that's what I use and it's not included in the 81ex release package.</p>
+<p>If you're a Windows user and prefer a graphical interface, I can recommend RushJet's RJDMC. There's information and a download link on the <a href='http://chipmusic.org/forums/topic/2483/rjdmc-10x-release/'>Chipmusic.org website</a></p>
+<h3>Patching</h3>
+<p>Once you have a bunch of samples you'd like to patch into the PR8 ROM - and please note that ALL the samples will be replaced, you can't <em>add</em> samples to the ROM - you need to prepare a text file which will tell the ROM patcher the file/folder name of each sample and will also determine the numerical order that you'll access them in PR8.</p>
+<p>For example, from the PR8 folder you might create a text file like this, named something like <code>PATCH.TXT</code>;</p>
+<p><code>DPCM/kick01.dcm</code><br /><code>DPCM/snare01.dcm</code></p>
+<p><b>Important: the text file needs to be plain text and contain no lines (including blank lines) other than sample file names.</b></p>
+<p>Then with the text file and the PR8 ROM in the same folder, run the patcher. I've included a Windows and a Mac executable with PR8, as well as the source code in case you need to build it yourself. To run the patcher (on Mac):</p>
+<p><code>DCM2PR8 PATCH.TXT PR8_PATCHED.NES</code></p>
+<p>This will patch the ROM with the samples in your text file and create a new ROM called 'PR8_PATCHED.NES'. If you create a ROM with a new name, as in my example, don't forget that NES emulators create/load .sav files with the same name as the ROM. This is also true when using PowerPak but with PowerPak you can load any .sav file you like on boot-up. You can of course specify 'PR8.NES' as the output name for the patcher and the original ROM will be overwritten. I've included a text file with PR8 (<b>'pr8_dcm.txt'</b>) which contains a sample list for restoring the preset samples.</p>
+<p>So, in the patched ROM, using my example sample list, 'kick01' will be sample 01 and 'snare01' will be sample 02 - the numerical order is determined by the order in text file used with the patcher. Note: there is no sample 00 as that's used to play silence on the DCM voice.</p>
+<p>There's a limit to how much sample data you can include. The maximum number of samples is 64 and you have about 13k of space in the ROM. DCM2PR8 will give you an error message if you go over these limits and your ROM won't be patched.</p>
+<h3>Samples</h3>
+<p>Source file formats for converters tend to be 16bit mono WAV files (no looping is supported in the samples themselves - looping control is done in the Drum Patches). RushJet's RJDMC will resample the source file to a rate supported by the NES but if you're using '81ex' you're better off resampling the source samples yourself. Here's a list of (approximate) supported rates and the DCM playback speed value for each rate.</p>
+<table class="table1">
+	<thead>
+		<th>Sample Rate</th><th>DCM Speed Value</th>
+	</thead>
+		<tr><td>33140Hz</td><td><code>0F</code></td></tr>
+		<tr><td>24860Hz</td><td><code>0E</code></td></tr>
+		<tr><td>21300Hz</td><td><code>0D</code></td></tr>
+		<tr><td>16880Hz</td><td><code>0C</code></td></tr>
+		<tr><td>13980Hz</td><td><code>0B</code></td></tr>
+		<tr><td>12600Hz</td><td><code>0A</code></td></tr>
+		<tr><td>11180Hz</td><td><code>09</code></td></tr>
+		<tr><td>9420Hz</td><td><code>08</code></td></tr>
+		<tr><td>8360Hz</td><td><code>07</code></td></tr>
+		<tr><td>7920Hz</td><td><code>06</code></td></tr>
+		<tr><td>7050Hz</td><td><code>05</code></td></tr>
+		<tr><td>6260Hz</td><td><code>04</code></td></tr>
+		<tr><td>5590Hz</td><td><code>03</code></td></tr>
+		<tr><td>5260Hz</td><td><code>02</code></td></tr>
+		<tr><td>4710Hz</td><td><code>01</code></td></tr>
+		<tr><td>4180Hz</td><td><code>00</code></td></tr>
+</table>
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>

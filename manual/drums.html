@@ -1,0 +1,94 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/manual.css" type="text/css">
+</head>
+<body>
+<div class="header">
+		<img class="logoImage" src="images/logo.png" />
+	<div class="clearFix"></div>
+	<div class="navigation">
+		<ul>
+<li><a href="index.html">Overview</a></li>
+<li><a href="synthesis.html">Synthesis</a></li>
+<li>Drum Editor</li>
+<li><a href="patterns.html">Pattern Editor</a></li>
+<li><a href="songs.html">Song Editor</a></li>
+<li><a href="drumParameters.html">Drum Parameters</a></li>
+<li><a href="controls.html">Controls</a></li>
+<li><a href="automation.html">Automation</a></li>
+				<li><a href="menus.html">Menus</a></li>
+			<li><a href="quickstart.html">Quick Start</a></li>
+		</ul>
+	</div>
+</div>
+<div class="content">	
+	<h2>Drums</h2>
+	<p>Within this manual, or indeed within PR8 itself, <em>Drum</em> or <em>Drum Patch</em> refers to the collection of voices (and their associated parameters) that are used to create sound when assigned to a Pattern Track. You assign one Drum per Track and it's not possible to change the assigned Drum number within the Track (within the Phrase to be more precise) but instead you can modify parameters of the Drums via automation.</p>
+<p>Each <em>Drum Patch</em> in PR8 can be made up of any combination of the NES's 5 sound generating voices. In PR8, those voices are referred to as such:</p>
+<table class="table1">
+	<thead>
+		<th>NES Voice</th><th>PR8 Name</th><th>PR8 Symbol</th>
+	</thead>
+	<tr>
+		<td>Square 1</td><td>A</td><td><img src="images/voiceA.png" /></td>
+	</tr>
+	<tr>
+		<td>Square 2</td><td>B</td><td><img src="images/voiceB.png" /></td>
+	</tr>
+	<tr>
+		<td>Triangle</td><td>C</td><td><img src="images/voiceC.png" /></td>
+	</tr>
+	<tr>
+		<td>Noise</td><td>D</td><td><img src="images/voiceD.png" /></td>
+	</tr>
+	<tr>
+		<td>DCM</td><td>E</td><td><img src="images/voiceE.png" /></td>
+	</tr>
+</table>
+<p>The importance of the 'PR8 Name' and the graphic in the 'PR8 Symbol' column will make more sense when you read about Drum Editing</p>
+<h2>Drum Editor</h2>
+	<p>The lower section of PR8's screen is dedicated to the editing of Drum Patches.</p>
+	<div class="imageCenter">
+		<img src="images/drum.png" />
+		<p class='caption'>PR8 Drum Editor</p>
+	</div>
+	<p>You can see that the Drum Editor is further split into 5 sub-sections (surrounded by a light-grey outline). Each of these sections relates to one of the 5 sound generating voices of the NES. At any time, all of the parameters shown in the Drum Editor belong to the single Drum that is assigned to the current Track (the one your cursor is on).</p>
+	<p>For example here is the top-left section which controls the sound generation for the Square 1 (or voice 'A') of a Drum Patch.</p>
+	<div class="imageCenter">
+		<img src="images/drumVoice.png" />
+		<p class='caption'>Voice A Section of Drum Editor</p>
+	</div>
+	<p>All the parameters for controlling Voice A (of this Drum Patch) are contained in that one box. The parameters are further divided into related groups and given their own headings. From the image you can see that the headings are: OSC, LFO, AMP, DTY. These groups control, respectively, the Oscillator (coarse and fine pitch offsets), Low Frequency Oscillator (pitch modulation, vibrato, arpeggio etc), Amplitude (envelope, volume, curve) and Duty (in this instance a specific setting for Voice A and B to control the duty/pulse width).</p>
+	<p>At the bottom-right corner of the box is the enable/disable button for this Voice for this Drum Patch. You'll also see that at the side of the button is the label and symbol from the previous table. In this image, Voice A is actually turned on but if you look back to the main Drum Editor image (above) you'll see that the Drum Patch only uses Voices A and B - indicated by the fact that all Voices apart from Voice A and B have their enable/disable switch unlit (not red).</p>
+	<p>You might also notice that the enable/disable button for Voice D is in a different place than all the other Voices. This is just because I wanted to keep the sub-groups in (roughly) the same order and as such the layout of the parameters left space under the OSC column.</p>
+	<h2>Drum Auxiliary Parameters</h2>
+	<p>The very bottom row of parameters in the Drum Editor are called <em>Drum Aux Parameters</em>.</p>
+	<div class="imageCenter">
+		<img src="images/drumAux.png" />
+		<p class='caption'>Drum Aux Parameters</p>
+	</div>
+	<p>From left-to-right, <b>DRM</b> is the numerical ID for this Drum Patch which you cannot modify. <b>NAME</b> is a three-letter <em>name</em> that you can edit to help identify and manage your Drum Patches.</p>
+	<h3>Trigger Automation</h3>
+	<p>The last three parameters, <b>T1</b>, <b>T2</b> and <b>T3</b> are quite special. These three parameters are <b>Trigger Automation Parameters</b> and here is where you specify which parameters of the Drum Patch can be controlled in real-time by the <em>Triggers</em> in the <em>Pattern Editor</em>.</p>
+	<p>For the <b>T<em>x</em></b> parameters, unique three-letter codes are used to identify each Drum Patch parameter. In the image above, the codes for <b>T1</b> is <b>DAV</b> which stands for 'Voice <b>D</b>, <b>A</b>mplitude, <b>V</b>olume'. You can read about all the codes in detail on the <a href='drumParameters.html'>Drum Parameters</a> page. A table of all the codes can be found on the <a href='automation.html'>Automation</a> page.</p>
+	<p>There's also a helpful graphical indicator under the Drum Patch parameters themselves.</p>
+	<div class="imageCenter">
+		<img src="images/triggerAssignment.png" />
+		<p class='caption'>Trigger Parameter Assignment Indicators</p>
+	</div>
+	<p>The image above shows the parameter sub-group for Voice D and also the T<em>x</em> parameters. You'll see that under 3 of the parameters is a little coloured marker (like an underline) and that the placement of these markers matches the T<em>x</em> parameters (DAV = voice D, amplitude, volume: DAE = voice D, Amplitude, Envelope: DOC = voice D, Oscillator, Coarse pitch).</p>
+	<p>Note: The markers actually <em>flash</em> but this is not shown in the picture.</p>
+	<p>Also, you can see that one of the three markers is actually coloured green as opposed to the other two which are blue. This is the marker that corresponds to the Trigger Parameter your cursor is currently on (in this case, DOC).</p>
+	<p><b>NOTE: I added these little visual reminders because it's important to be aware of which of the Drum Patches parameters are being controlled by the sequencer (Grid). You'll find that when you try editing them in the Drum Patch, your edits will have no effect on the audio (the values in the Drum Editor will change though). This is because the sequencer is writing values to the T<em>x</em> parameters during playback. This is one of the most important aspects of PR8 to understand.</b></p>
+	<h2>Multi-Parameter Automation</h2>
+	<p>There are a few special-case Automation Parameters that can send values from the Pattern Triggers to more than one Drum Parameter simultaneously. 
+	When you use these Multi-Parameters, as you'd expect, the markers flash underneath each the Drum Parameters that they control.</p>
+	<p>A list of these Multi-Parameters can be found at the end of the table on the <a href="automation.html">Automation</a> page.</p>
+
+</div>
+<div class='footer'>
+<p><b>PR8 NES Drum Synth&copy; Neil Baldwin 2010</b></p>
+<p>PR8 was created on a Mac using <a href='http://macromates.com/' target='blank'>Textmate</a>, <a href='http://www.cc65.org/doc/ca65.html' target='blank'>CA65</a>, <a href='http://www.bannister.org/software/nestopia.htm' target='blank'>Nestopia (OSX)</a> and <a href='http://www.retrousb.com/product_info.php?cPath=24&products_id=34' target='blank'>PowerPak</a>. The manual was written in HTML/CSS using <a href='http://macrabbit.com/espresso/' target='blank'>Espresso</a>. Graphics were made with <a href='http://nesdev.parodius.com/bbs/viewtopic.php?t=7237&start=0' target='blank'>NESST</a>.</p>
+</div>
+</body>
+</html>
