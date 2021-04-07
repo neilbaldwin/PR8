@@ -1,3 +1,6 @@
+	.FEATURE force_range
+
+
 initSound:	jsr init_APU
 	jsr plyrClearEchoBuffers
 	

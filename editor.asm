@@ -1,55 +1,45 @@
+	.FEATURE force_range
 
 editorInit:
 	jsr setupSpriteCursor
 	jsr initKeyRepeats
-	
-	.IF 0=1
-	ldx #$00
-	lda #$FF
-:	sta dmaSafe,x
-	inx
-	cpx #32
-	bcc :-
-	.ENDIF
-	
+		
 	lda #$00
 	sta maxDma
-	;sta nmiCounter
+	sta editorDecoding			;clear blocking flags
+	sta editorEditingValue		;
+	sta editorEditingBuffer		;
 	
-	sta editorDecoding
-	sta editorEditingValue
-	sta editorEditingBuffer
-	
-	lda #PLAY_MODE_STOPPED
+	lda #PLAY_MODE_STOPPED		;set player mode and previous mode to STOPPED
 	sta plyrMode
 	sta plyrModeOld
 	
-	lda #EDIT_MODE_GRID
+	lda #EDIT_MODE_GRID			;set editing mode to GRID
 	sta editorMode
-	lda #$00
+	lda #$00					;reset edit cursor position to top-left (0,0)
 	sta cursorX_grid
 	sta cursorY_grid
-	sta cursorY_editMenu	
+	sta cursorY_editMenu
 	
-	lda #$00
-	sta keyStopB
+	lda #$00					;clear key repeats and repeat counters
+	sta keyStopB				
 	sta keyDelayA
 	sta keyDelayB
 	sta keyDelayUD
 	sta keyDelayLR
 	
-	sta editorWaitForAB
+	sta editorWaitForAB			;clear various editig flags
 	sta editorWaitForClone
 	sta editorPhraseForClone
 
-	lda #$00
+	lda #$00					;clear copy buffer
 	sta triggerCopyBuffer+0
 	sta triggerCopyBuffer+1
 	sta triggerCopyBuffer+2
 	sta triggerCopyBuffer+3
 	sta triggerCopyBuffer+4
-	
-	ldx #$00
+
+	ldx #$00					;clear Editor trigger indexes
 	stx editorTriggerIndex+0
 	stx editorTriggerIndex+1
 	stx editorTriggerIndex+2
@@ -57,7 +47,7 @@ editorInit:
 	stx editorTriggerIndex+4
 	stx editorTriggerIndex+5
 
-	lda #4+(2*12)
+	lda #4+(2*12)				;set last note value to C3
 	sta editorTrackLastNote+0
 	sta editorTrackLastNote+1
 	sta editorTrackLastNote+2
@@ -65,7 +55,7 @@ editorInit:
 	sta editorTrackLastNote+4
 	sta editorTrackLastNote+5
 
-	lda #$00
+	lda #$00						;clear Last Triger for all tracks
 	sta editorTrackLastTrigger+0
 	sta editorTrackLastTrigger+1
 	sta editorTrackLastTrigger+2
@@ -73,17 +63,17 @@ editorInit:
 	sta editorTrackLastTrigger+4
 	sta editorTrackLastTrigger+5
 	
-	lda #$01
-	sta editorChannelStatus+0
+	lda #$01						;set Channel Status to 1 for each track
+	sta editorChannelStatus+0		;Channel Status is for Mute and Solo
 	sta editorChannelStatus+1
 	sta editorChannelStatus+2
 	sta editorChannelStatus+3
 	sta editorChannelStatus+4
 	sta editorChannelStatus+5
 	lda #$FF
-	sta editorSoloChannel
+	sta editorSoloChannel			;Clear Solo channel
 		
-	lda #$00
+	lda #$00						;Clear sub mode indexes for each track
 	sta editorSubModeIndexes+0
 	sta editorSubModeIndexes+1
 	sta editorSubModeIndexes+2
@@ -91,7 +81,7 @@ editorInit:
 	sta editorSubModeIndexes+4
 	sta editorSubModeIndexes+5
 	
-	sta editorDrumAuxIndex
+	sta editorDrumAuxIndex			;Clear various flags
 	sta editorEditDrumName
 	sta lastDrumParameterValue
 	sta editorTrackWipeSpeed
@@ -109,72 +99,72 @@ editorInit:
 	sta editSongIndex
 	sta editorSongLastPattern
 	
-	lda #STARTING_SONG
+	lda #STARTING_SONG				;read Starting Song and load song data
 	jsr editorSelectSong
 	
-	lda #SONG_MODE_OFF
+	lda #SONG_MODE_OFF				;turn off Song Mode
 	sta editSongMode
-	lda #$00
+	lda #$00						;turn of Song Mode Recording
 	sta editSongModeRecord
 	
-	jsr editorInitVoiceSwitchSprites
+	jsr editorInitVoiceSwitchSprites	
 
-	jsr editorCheckSignature
-	bcc :+
+	jsr editorCheckSignature		;check to see if Save File has been 'formatted'
+	bcc :+							;as a PR8 file, if not wipe all data
 	jsr editorWipeAll
 :	
-	lda #STARTING_PATTERN
+	lda #STARTING_PATTERN			;set starting pattern
 	sta editorCurrentPattern	
-	jmp editorInit2
+	jmp editorInit2					;
 	
 editorInit2:
 	
-	lda editorCurrentPattern
-	jsr editorSelectPattern
+	lda editorCurrentPattern		;
+	jsr editorSelectPattern			;fetch current pattern to display
 	
-	jsr editorInitCopyInfo
+	jsr editorInitCopyInfo			;clear copy message buffer
 	ldx #$07
 	jsr editorSetPlayBackMessage
 		
-	jsr editorDecodePattern
-	jsr editorDecodeTriggerParameters
+	jsr editorDecodePattern			;decode current pattern for printing
+	jsr editorDecodeTriggerParameters	;decode current pattern triggers for printing
 
-	ldy cursorY_grid
+	ldy cursorY_grid				;get drum under cursor and decode for printing
 	lda (editorTmp0),y
 	lda editorTrackDrum,y
 	sta editorCurrentDrum
 	jsr editorDecodeDrum
 	
-	jsr editorDecodeSong
-	lda #procSongAll
+	jsr editorDecodeSong			;decode song for printing
+	lda #procSongAll				;add song printing to async dma buffer (non-blocking print)
 	jsr addProcessToBuffer
 	
-	lda #procGridRowAll
+	lda #procGridRowAll				;print grid row (non blocking)
 	jsr addProcessToBuffer
-	lda #procTrackDrumAll
+	lda #procTrackDrumAll			;print track drum assignments (non blocking)
 	jsr addProcessToBuffer	
-	jsr editorPrintTriggers
-	jsr editorPrintDrum
-	lda #procCopyInfoAll
+	jsr editorPrintTriggers			;print triggers for each track
+	jsr editorPrintDrum				;print current drum
+	lda #procCopyInfoAll			;print copy message (non blocking)
 	jsr addProcessToBuffer
-	lda #procGridPattern
+	lda #procGridPattern			;print current pattern to display grid (non blocking)
 	jsr addProcessToBuffer	
 	rts
 	
-editorCheckSignature:
+editorCheckSignature:			;check if SAV file has been 'formatted' for PR8
 	lda #WRAM_BANK_00
 	jsr setMMC1r1
 	ldx #$00
-:	lda PR8_HEADER,x
+:	lda PR8_HEADER,x			;simple header check against PR8 header string
 	cmp @header,x
 	bne :+
 	inx
 	cpx #@headerEnd-@header
 	bcc :-
-	clc
+	clc							;clear carry if SAV file is correctly formatted
 	rts
 	
-:	ldx #$00
+:	ldx #$00					;if header dosn't match PR8 header, write PR8 header to save area		
 :	lda @header,x
 	sta PR8_HEADER,x
 	inx
@@ -184,52 +174,70 @@ editorCheckSignature:
 	rts
 	
 
-@header:	.BYTE "P","R","8",0
+@header:	.BYTE "P","R","8",0		;PR8 header for PR8 formatted save file
 @headerEnd:
 
-editorMainLoop:
+; ****
+; Main Loop
+; ****
+editorMainLoop:						;main background loop, refreshed once per vertical blank
 	lda vblankFlag
 :	cmp vblankFlag
 	beq :-
 
-	jsr editorRefresh
-	jmp editorMainLoop
+	jsr editorRefresh				;call to refresh editor (many functions below)
+	jmp editorMainLoop				;back to main loop
+;
+;
+;
 
 editorRefresh:	
-	jsr editorGlobalKeys
-	jsr editorFlashCursor
-	jsr editorUpdateTrackIndexCursor	
-	jsr editorTrackWipeSprites
-	jsr editorStepIndicator
-	jsr editorMeters
-	jsr editorShowParameterHint
-	jsr editorGhostCursor
-	jsr editorShowSongMode
-	jsr editorShowTimer
-	jsr editorCheckCopyInfoMessage	
+	jsr editorGlobalKeys				;check non modal key input
+	jsr editorFlashCursor				;animate (flash) sprite cursor
+	jsr editorUpdateTrackIndexCursor	;update track index cursor
+	jsr editorTrackWipeSprites			;clear track sprite for later refresh
+	jsr editorStepIndicator				;update step indicator
+	jsr editorMeters					;update track meters
+	jsr editorShowParameterHint			;update Trigger Parameter indicator sprites
+	jsr editorGhostCursor				; *** not sure ***
+	jsr editorShowSongMode				;display current song mode
+	jsr editorShowTimer					;display timer
+	jsr editorCheckCopyInfoMessage		;update copy info message (on timer)
 		
-	ldx editorMode
-	lda editModeJumpLo,x
+	ldx editorMode						;editor mode is integer value
+	lda editModeJumpLo,x				;fetch vector for edit mode from table
 	sta editModeVector
 	lda editModeJumpHi,x
 	sta editModeVector+1
-	jmp (editModeVector)
+	jmp (editModeVector)				;jump to current edit mode vector
 	
-editModeJumpLo:	.LOBYTES editorDisabled
-	.LOBYTES editTrack,editGrid,editTriggerParameters
-	.LOBYTES editDrum,editDrumAux
-	.LOBYTES editorEditGridMenu,editorEditDrumMenu
+editModeJumpLo:	
+	.LOBYTES editorDisabled
+	.LOBYTES editTrack
+	.LOBYTES editGrid
+	.LOBYTES editTriggerParameters
+	.LOBYTES editDrum
+	.LOBYTES editDrumAux
+	.LOBYTES editorEditGridMenu
+	.LOBYTES editorEditDrumMenu
 	.LOBYTES editorEditPatternNumber
-	.LOBYTES editorSong,editorEditSongMenu
+	.LOBYTES editorSong
+	.LOBYTES editorEditSongMenu
 	.LOBYTES editorEditEchoMenu
 	.LOBYTES editorClearMenu
 	
-editModeJumpHi:	.HIBYTES editorDisabled
-	.HIBYTES editTrack,editGrid,editTriggerParameters
-	.HIBYTES editDrum,editDrumAux
-	.HIBYTES editorEditGridMenu,editorEditDrumMenu
+editModeJumpHi:
+	.HIBYTES editorDisabled
+	.HIBYTES editTrack
+	.HIBYTES editGrid
+	.HIBYTES editTriggerParameters
+	.HIBYTES editDrum
+	.HIBYTES editDrumAux
+	.HIBYTES editorEditGridMenu
+	.HIBYTES editorEditDrumMenu
 	.HIBYTES editorEditPatternNumber
-	.HIBYTES editorSong,editorEditSongMenu
+	.HIBYTES editorSong
+	.HIBYTES editorEditSongMenu
 	.HIBYTES editorEditEchoMenu
 	.HIBYTES editorClearMenu
 	
@@ -1230,296 +1238,7 @@ editorPrintTrack:
 	.BYTE procGridRow00,procGridRow01,procGridRow02
 	.BYTE procGridRow03,procGridRow04,procGridRow05
 	
-;------------------------------------------------------------------------------
-; EDIT TRACK - drum assignments and also order of tracks
-;------------------------------------------------------------------------------
-editTrack:	
-	jsr checkRepeatKeyA
-	jsr checkRepeatKeyB
-	jsr checkRepeatKeyUD
-	jsr checkRepeatKeyLR
-
-	lda #WRAM_PATTERNS
-	jsr setMMC1r1
-	ldx editorCurrentPattern
-	lda patternTableLo,x
-	sta editorTmp0
-	lda patternTableHi,x
-	sta editorTmp1
-	
-	lda editorWaitForAB
-	beq :+
-	jmp @keyWaitAB
-
-:	lda editorWaitForClone
-	beq :+++++
-	lda editorPhraseForClone
-	bne :++
-	jsr editorFindClonePhrase
-	bcc :+
-	lda #$00		;print error
-	sta editorWaitForClone
-	ldx #MSG_CLONE_ERROR
-	lda #$60
-	jsr editorSetErrorMessage
-:	jmp @x
-
-:	lda editorFoundEmpty
-	bne :+
-	jsr editorFindEmptyPhrase
-	bcc :++
-	lda #$00
-	sta editorWaitForClone	;error
-	ldx #MSG_CLONE_ERROR
-	lda #$60
-	jsr editorSetErrorMessage
-	jmp @x
-:	jsr editorClonePhrase
-	lda #$00
-	sta editorWaitForClone
-:	jmp @x
-	
-
-:
-	jsr _holdSelect_tapDown
-	bcc :+
-
-	ldx #EDIT_GRID_MENU
-	jsr editorShowEditMenu
-	lda editorMode
-	sta editorModeBeforeMenu
-	lda #EDIT_MODE_GRID_MENU
-	sta editorMode
-	jmp @x	
-	
-	
-:	jsr _holdSelect_tapUp
-	bcc :+
-	ldx #MSG_PASTE
-	jsr editorSetConfirmMessage
-	lda #$01
-	sta editorWaitForAB
-	jmp @x
-	
-:	lda cursorY_grid
-	clc
-	adc #PATTERN_DRUM_0
-	adc cursorX_track
-	tay
-
-	lda #numberOfDrums
-	ldx cursorX_track
-	beq :+
-	lda #numberOfPhrases
-:	sta editorTmp2
-	
-
-	lda keyReleaseA		;tap A to repeat last value
-	beq :++
-	lda PAD1_fireb
-	bne :++
-	lda editorLastDrumValue
-	ldx cursorX_track
- 	beq :+
-	lda editorLastPhraseValue
-:	sta (editorTmp0),y
-	sta editorTrackDrum,y
-	jmp :+++++++++
-
-
-:	lda keyRepeatB
-	beq :++++
-	lda PAD1_dud
-	beq :++
-	bmi :+
-	lda editorMode
-	sta previousEditorMode
-	jsr editAdjustDrumSubMode
-	lda #EDIT_MODE_DRUM
-	sta editorMode
-	jmp @x
-
-:	lda editorMode
-	sta previousEditorMode
-	lda #EDIT_MODE_PATTERN_NUMBER
-	sta editorMode
-	jmp @x
-	
-:	lda PAD1_dlr
-	beq :+
-	bmi :+
-	lda #EDIT_MODE_GRID
-	sta editorMode
-	jmp @x
-	
-:	lda keyReleaseA		;hold B, tap A
-	beq :+
-	lda #$00
-	sta editorPhraseForClone
-	sta editorPatternToCheck
-	sta editorPatternToCheck+1
-	sta editorFoundEmpty
-	lda #$01
-	sta editorWaitForClone
-	jsr editClearPhraseUsedTable
-	jmp @x
-	
-:	lda keyReleaseB
-	beq :+
-	lda cursorY_grid
-	clc
-	adc cursorX_track
-	tay
-	lda #$00
-	sta (editorTmp0),y
-	sta editorTrackDrum,y
-	jmp :++++
-
-:	lda keyRepeatA
-	bne :+
-	jmp :+++++++
-:	lda PAD1_sel
-	beq :+
-	jsr editorReorderTracks
-	jmp @x
-
-:	lda PAD1_dud
-	ora keyRepeatUD
-	ora PAD1_dlr
-	ora keyRepeatLR
-	beq :+++
-	
-	swapSign PAD1_dud
-	swapSign keyRepeatUD
-
-	lda PAD1_dud
-	ora keyRepeatUD
-	asl a
-	asl a
-	asl a
-	asl a
-	sta editorTmp3
-	
-	lda PAD1_dlr
-	ora keyRepeatLR
-	clc
-	adc editorTmp3
-	clc
-	adc (editorTmp0),y
-	;bmi :+++
-	cmp #$FF
-	beq :++++
-	cmp editorTmp2
-	bcs :++++
-	sta (editorTmp0),y
-	sta editorTrackDrum,y
-:	ldx cursorX_track	;editing drum or phrase number?
-	bne :+++
-	cmp editorCurrentDrum	;drum, has it changed?
-	beq :+
-	sta editorCurrentDrum
-	sta editorLastDrumValue
-	jsr editorDecodeDrum
-	jsr editorPrintDrum
-:
-	lda cursorY_grid
-	jsr editorDecodeTrackDrum	
-	ldy cursorY_grid
-	lda @trackProcs,y
-	jsr addProcessToBuffer
-:	jmp @x
-
-:	sta editorLastPhraseValue
-	lda cursorY_grid	;phrase
-	jsr editorDecodePhrase
-	lda cursorY_grid
-	jsr editorDecodeTrackDrum
-	ldy cursorY_grid
-	lda @phraseProcs,y
-	jsr addProcessToBuffer
-	ldy cursorY_grid
-	lda @trackProcs,y
-	jsr addProcessToBuffer
-	jmp @x
-	
-:	lda PAD1_dud
-	ora keyRepeatUD
-	beq :++
-	clc
-	adc cursorY_grid
-	bmi :++
-	cmp #rowsPerGrid
-	bcs :++
-	sta cursorY_grid
-	
-	ldy cursorY_grid
-	lda editorTrackDrum,y
-	cmp editorCurrentDrum
-	beq :+
-	sta editorCurrentDrum
-	jsr editorDecodeDrum
-	jsr editorPrintDrum
-	
-	jsr editorDecodeTriggerParameters
-	jsr editorPrintTriggers
-:	jmp @x
-
-:	lda PAD1_dlr
-	beq :+
-	lda cursorX_track
-	eor #$06
-	sta cursorX_track
-:
-	lda cursorY_grid
-	clc
-	adc #PATTERN_DRUM_0
-	adc cursorX_track
-	tax	
-	lda @cursorX,x
-	sta editorCursorX
-	lda @cursorY,x
-	sta editorCursorY
-	
-
-@x:	lda #$02
-	sta editorCursorMode
-	jsr editorUpdateCursor
-	rts ;jmp editorMainLoop
-
-
-@keyWaitAB:
-	lda editorWaitForAB
-	beq :++
-	lda keyReleaseB
-	bne :+
-	lda keyReleaseA
-	beq :++
-	jsr editorPasteGrid
-:	lda #$01
-	sta editorCopyInfoTimer
-	lda #$00
-	sta editorWaitForAB
-:	rts
-
-	
-@cursorY:	.REPEAT rowsPerGrid,i
-	.BYTE TRACK_CURSOR_Y_BASE + (i * 8)
-	.ENDREPEAT
-	.REPEAT rowsPerGrid,i
-	.BYTE TRACK_CURSOR_Y_BASE + (i * 8)
-	.ENDREPEAT
-@cursorX:	.REPEAT rowsPerGrid,i
-	.BYTE TRACK_CURSOR_X_BASE + (1 * 8)
-	.ENDREPEAT
-	.REPEAT rowsPerGrid,i
-	.BYTE TRACK_CURSOR_X_BASE + (4 *8)
-	.ENDREPEAT
-
-@trackProcs:	.BYTE procTrackDrum00,procTrackDrum01,procTrackDrum02
-	.BYTE procTrackDrum03,procTrackDrum04,procTrackDrum05
-	
-@phraseProcs:	.BYTE procGridRow00,procGridRow01,procGridRow02
-	.BYTE procGridRow03,procGridRow04,procGridRow05
+	.include "editTrack.asm"
 
 editAdjustDrumSubMode:
 	ldx editorCurrentDrum
@@ -1843,441 +1562,8 @@ editorCheckUpdatePhrases:
 ;------------------------------------------------------------------------------
 ; EDIT GRID - set triggers etc.
 ;------------------------------------------------------------------------------
-editGrid:
-	lda #$01
-	sta editorCursorMode
-	
-	ldx cursorY_grid
-	lda editorTrackPhrase,x
-	tax
-	lda phraseBanks,x
-	jsr setMMC1r1
-	lda phraseTableLo,x
-	sta editorTmp0
-	lda phraseTableHi,x
-	sta editorTmp1
-	
-	jsr checkRepeatKeyA
-	jsr checkRepeatKeyB
-	jsr checkRepeatKeyUD
-	jsr checkRepeatKeyLR
-	
-	lda editorWaitForAB
-	beq :+
-	jmp @keyWaitAB
-	
-:	lda keyRepeatSelect
-	beq :+++++++++
-	
-	lda keyRepeatA
-	beq :++++
-	
-	;HOLDING SELECT+A
-	lda PAD1_dud
-	beq :+
-	jsr editorReorderTracks
-	jmp @x
-	
-:	lda PAD1_dlr
-	beq :++
-	bmi :+
-	jsr editorShiftTrackRight
-	jmp @x
-:	jsr editorShiftTrackLeft
-:	jmp @x	
-	
-:	lda PAD1_dud
-	beq :+++++
-	bmi :++
-	;edit menu
-	lda PAD1_fireb
-	beq :+
-	jmp @goEchoMenu
-	
-:	ldx #EDIT_GRID_MENU
-	jsr editorShowEditMenu
-	lda editorMode
-	sta editorModeBeforeMenu
-	lda #EDIT_MODE_GRID_MENU
-	sta editorMode
-	jmp @x
-	
-:	lda editCopyBuffer
-	beq :++
-	cmp #COPY_ID_PHRASE
-	beq :+
-	cmp #COPY_ID_PATTERN
-	bne :++
-:	ldx #MSG_PASTE
-	jsr editorSetConfirmMessage
-	lda #$01
-	sta editorWaitForAB
-	jmp @x	
 
-:	ldx #MSG_PASTE_ERROR
-	lda #$60
-	jsr editorSetErrorMessage
-	jmp @x
-
-:	lda keyRepeatA
-	bne :++
-	lda keyReleaseA
-	bne :+
-	lda keyReleaseB
-	beq :++++
-	
-:	ldx cursorX_grid		;tap A
-	lda editorGridXOffsets,x
-	tay
-	lda (editorTmp0),y
-	jsr editorCycleTrigger
-	ldx cursorY_grid
-	jsr editorDecodeTriggerParameters
-	jsr editorPrintTriggers
-	jsr editorCheckUpdatePhrases
-	jmp @x
-	
-:	
-	ldx cursorX_grid
-	lda editorGridXOffsets,x
-	tay
-	lda (editorTmp0),y
-	beq :+
-	tya
-	ldx cursorY_grid
-	clc
-	adc editorTriggerIndex,x
-	tay
-	
-	;ldx cursorX_grid		;
-	;lda editorGridXOffsets,x
-	;ldx cursorY_grid
-	;clc
-	;adc editorTriggerIndex,x
-	tay
-	jsr editorModifyTriggerParameter
-	jsr editorDecodeTriggerParameters
-	jsr editorPrintTriggers
-:	jmp @x
-
-:	lda keyRepeatB
-	beq :+++++
-	ldx #$00
-:	lda SPR00_X,x
-	sta SPR16_X,x
-	lda SPR00_Y,x
-	sta SPR16_Y,x
-	inx
-	inx
-	inx
-	inx
-	cpx #4*4
-	bcc :-
-	
-	lda PAD1_dlr		;HOLD B, TAP U/D/L/R
-	beq :++
-	bpl :+
-	lda #EDIT_MODE_TRACK
-	sta editorMode
-	jmp @x
-:	lda #EDIT_MODE_TRIGGER_PARAMETER
-	sta editorMode
-	jmp @x
-	
-:	lda PAD1_dud
-	beq :++
-	bmi :+
-	lda editorMode
-	sta previousEditorMode
-	jsr editAdjustDrumSubMode
-	lda #EDIT_MODE_DRUM
-	sta editorMode
-	jmp @x
-:	lda editorMode
-	sta previousEditorMode
-	lda #EDIT_MODE_PATTERN_NUMBER
-	sta editorMode
-	jmp @x
-
-:	lda PAD1_firea
-	ora PAD1_fireb
-	bne @noMovement
-	jsr editorMoveAroundGrid
-	jmp @x
-	
-@noMovement:	
-
-@x:	ldx cursorX_grid
-	lda @cursorX,x
-	sta editorCursorX
-	ldx cursorY_grid
-	lda @cursorY,x
-	sta editorCursorY
-
-	jsr editorUpdateTriggerIndexCursor
-	jsr editorUpdateCursor
-	rts;jmp editorMainLoop
-
-	
-@cursorX:	.REPEAT colsPerGrid,i
-	.BYTE GRID_CURSOR_X_BASE + (i * 8)
-	.ENDREPEAT
-
-@cursorY:	.REPEAT rowsPerGrid,i
-	.BYTE GRID_CURSOR_Y_BASE + (i * 8)
-	.ENDREPEAT
-
-@keyWaitAB:
-	lda editorWaitForAB
-	beq :++
-	lda keyReleaseB
-	bne :+
-	lda keyReleaseA
-	beq :++
-	jsr editorPasteGrid
-:	lda #$01
-	sta editorCopyInfoTimer
-	lda #$00
-	sta editorWaitForAB
-:	rts
-
-
-@goEchoMenu:	lda #$00
-	sta editMenuActive
-	sta cursorY_editMenu
-	lda editorMode
-	sta editorModeBeforeMenu
-	ldx #EDIT_ECHO_MENU
-	jsr editorShowEditMenu
-	jsr editorDecodeEchoMenu
-	lda #procGridRow00
-	jsr addProcessToBuffer
-	lda #procGridRow01
-	jsr addProcessToBuffer
-	lda #procGridRow02
-	jsr addProcessToBuffer
-	lda #procGridRow03
-	jsr addProcessToBuffer
-	lda #procGridRow04
-	jsr addProcessToBuffer
-	lda #procGridRow05
-	jsr addProcessToBuffer
-	lda #EDIT_MODE_ECHO
-	sta editorMode
-	jmp @x
-
-editorMoveAroundGrid:
-	lda PAD1_dud
-	ora keyRepeatUD
-	beq :++
-	clc
-	adc cursorY_grid
-	bmi :+
-	cmp #rowsPerGrid
-	bcs :+
-	sta cursorY_grid
-	
-	jsr editorDecodeTriggerParameters
-	jsr editorPrintTriggers
-	
-	ldy cursorY_grid
-	lda editorTrackDrum,y
-	cmp editorCurrentDrum
-	beq :+
-	sta editorCurrentDrum
-	jsr editorDecodeDrum
-	jsr editorPrintDrum
-:	rts
-
-:	lda PAD1_dlr
-	ora keyRepeatLR
-	beq :+++
-	clc
-	adc cursorX_grid
-	bpl :+
-	lda #colsPerGrid-1
-	bpl :++
-:	cmp #colsPerGrid
-	bcc :+
-	lda #$00
-:	sta cursorX_grid
-	jsr editorDecodeTriggerParameters
-	jsr editorPrintTriggers
-
-:	rts
-
-editorGridXOffsets:
-	.REPEAT stepsPerPhrase,i
-	.BYTE (bytesPerPhraseStep * i)
-	.ENDREPEAT
-		
-editorCycleTrigger:
-	;if 0 then set note from last note for this track
-	;if <$7F then ora $80
-	;if <$FF then set $FF
-	;or set 0
-	
-	;lda keyRepeatA
-	;beq :++++
-	lda keyReleaseB
-	beq :+
-	jmp :+++++++++++++++
-	
-:	ldx cursorY_grid
-	lda (editorTmp0),y
-	beq :+
-	jmp :+++++++++++
-	
-:	lda editorTrackLastNote,x
-	sta (editorTmp0),y
-	iny
-	lda #$00
-	sta (editorTmp0),y
-	iny
-	sty editorTmp4
-	ldx editorCurrentDrum
-	lda drumAddressLo,x
-	sta editorTmp2
-	lda drumAddressHi,x
-	sta editorTmp3
-	
-	lda #WRAM_DRUMS
-	jsr setMMC1r1
-	
-	ldy #mod_Parameter2	;set values for T1, T2 and T3
-	lda (editorTmp2),y
-	bpl :+
-	lda #$00
-	beq :+++
-:	cmp #gbl_DrumName
-	bcc :+
-	sbc #gbl_DrumName
-	tax
-	lda editorMultiTriggerDefaults,x
-	jmp :++
-:	tay
-	lda (editorTmp2),y
-:	pha
-
-	ldy #mod_Parameter1
-	lda (editorTmp2),y
-	bpl :+
-	lda #$00
-	beq :+++
-:	cmp #gbl_DrumName
-	bcc :+
-	sbc #gbl_DrumName
-	tax
-	lda editorMultiTriggerDefaults,x
-	jmp :++
-:	tay
-	lda (editorTmp2),y
-:	pha
-
-	ldy #mod_Parameter0
-	lda (editorTmp2),y
-	bpl :+
-	lda #$00
-	beq :+++
-:	cmp #gbl_DrumName
-	bcc :+
-	sbc #gbl_DrumName
-	tax
-	lda editorMultiTriggerDefaults,x
-	jmp :++
-:	tay
-	lda (editorTmp2),y
-:	pha
-	ldy editorTmp4
-	
-	ldx cursorY_grid
-	lda editorTrackPhrase,x
-	tax
-	lda phraseBanks,x
-	jsr setMMC1r1
-	pla
-	sta (editorTmp0),y
-	pla
-	iny
-	sta (editorTmp0),y
-	pla
-	iny
-	sta (editorTmp0),y
-	rts
-	
-:	bmi :+
-	lda (editorTmp0),y
-	sta editorTrackLastNote,x
-	ora #$80
-	sta (editorTmp0),y
-	rts
-:	cmp #$FF
-	beq :+
-	lda #$FF
-	sta (editorTmp0),y
-	rts
-:	lda #$00
-	sta (editorTmp0),y
-	rts
-	
-:	lda (editorTmp0),y
-	beq :+		;if cell empty, try paste
-	sty editorTmp2		;otherwise, copy to buffer and clear
-	lda (editorTmp0),y
-	sta triggerCopyBuffer+0
-	lda #$00
-	sta (editorTmp0),y
-	iny
-	lda (editorTmp0),y
-	sta triggerCopyBuffer+1
-	lda #$00
-	sta (editorTmp0),y
-	iny
-	lda (editorTmp0),y
-	sta triggerCopyBuffer+2
-	lda #$00
-	sta (editorTmp0),y
-	iny
-	lda (editorTmp0),y
-	sta triggerCopyBuffer+3
-	lda #$00
-	sta (editorTmp0),y
-	iny
-	lda (editorTmp0),y
-	sta triggerCopyBuffer+4
-	lda #$00
-	sta (editorTmp0),y
-	ldy editorTmp2
-	rts
-
-:	lda triggerCopyBuffer+0
-	beq :+
-	sty editorTmp2
-	sta (editorTmp0),y
-	iny
-	lda triggerCopyBuffer+1
-	sta (editorTmp0),y
-	iny
-	lda triggerCopyBuffer+2
-	sta (editorTmp0),y
-	iny
-	lda triggerCopyBuffer+3
-	sta (editorTmp0),y
-	iny
-	lda triggerCopyBuffer+4
-	sta (editorTmp0),y
-:	rts
-
-editorMultiTriggerDefaults:
-	.BYTE $00	;MLD
-	.BYTE $00	;MLS
-	.BYTE $00	;MLW
-	
-	.BYTE $8F	;MAV
-	.BYTE $08	;MAE
-	.BYTE $10	;MAH
-	
-	
+	.include "editGrid.asm"
 	
 ;------------------------------------------------------------------------------
 ; EDIT TRIGGER PARAMETERS
@@ -2548,7 +1834,6 @@ editorModifyTriggerParameter:
 	;adc editorTriggerIndex,x
 	;tay
 
-
 	ldx cursorY_grid
 	lda editorTriggerIndex,x
 	cmp #TRIGGER_INDEX_NOTE
@@ -2572,16 +1857,18 @@ editorModifyTriggerParameter:
 :	stx editorTmp3
 :	lda keyRepeatB
 	bne :++
-	jsr @modNote
+	;jsr @modNote
+	jsr editorModNote
 	ldx cursorY_grid
 	and #$7F
-	sta editorTrackLastNote,x
+	;sta editorTrackLastNote,x		;BUG FIX - modifying note can go lower than lowest (A#1)
 :	rts
 
 :	ldy #$00
 :	lda (editorTmp0),y
 	beq :+
-	jsr @modNote
+	;jsr @modNote
+	jsr editorModNote
 :	iny
 	iny
 	iny
@@ -2621,8 +1908,21 @@ editorModifyTriggerParameter:
 	cpy #stepsPerPhrase * bytesPerPhraseStep
 	bcc :-
 	rts
+
+@modParameter:
+	lda PAD1_dlr
+	ora keyRepeatLR
+	clc
+	adc (editorTmp0),y
+	clc
+	adc editorTmp2
+	sta (editorTmp0),y
+	sta editorTrackLastTrigger,x
+	rts
 	
-@modNote:	lda (editorTmp0),y
+
+editorModNote:
+	lda (editorTmp0),y
 	pha
 	and #$80
 	sta editorTmp2
@@ -2640,17 +1940,6 @@ editorModifyTriggerParameter:
 	sta (editorTmp0),y
 :	rts
 
-@modParameter:
-	lda PAD1_dlr
-	ora keyRepeatLR
-	clc
-	adc (editorTmp0),y
-	clc
-	adc editorTmp2
-	sta (editorTmp0),y
-	sta editorTrackLastTrigger,x
-	rts
-	
 editorDecodeTriggerParameters:
 	ldx cursorY_grid
 	lda editorTrackPhrase,x
@@ -2706,7 +1995,8 @@ editorDecodeTriggerParameters:
 	bcc :-
 	rts
 
-@printHex:	pha
+@printHex:	
+	pha
 	lsr a
 	lsr a
 	lsr a
@@ -4984,20 +4274,21 @@ editorCutPattern:
 	lda #INIT_ECHO_SPEED
 	sta songEchoSpeed,x
 	
-	lda #$01
-	sta doNotInterrupt
-	jsr editorReprintPattern
+	lda #$01					;01 = NMI runs in 'pass through'
+	sta doNotInterrupt			;used to maximise CPU bandwidth when
+								;performing heavy background tasks
 
-	ldx cursorY_grid
+	jsr editorReprintPattern	;refresh pattern on screen
+	ldx cursorY_grid			
 	lda editorTrackDrum,x
 	sta editorCurrentDrum
 	
-	jsr editorDecodeDrum
-	jsr editorDecodeTrackDrums
+	jsr editorDecodeDrum		;decode current drum parameters and print to screen
+	jsr editorDecodeTrackDrums	;decode track drum assignments and print
 	jsr editorPrintDrum
-	lda #procTrackDrumAll
+	lda #procTrackDrumAll		;add 'print all drums' task to async DMA system
 	jsr addProcessToBuffer
-	lda #$00
+	lda #$00					;resume regular NMI routines
 	sta doNotInterrupt
 	rts
 
@@ -5617,7 +4908,7 @@ editorWipeAll:
 	jsr editorWipeDrums
 
 	lda #$FF
-	sta dmaProcessBuffer
+	sta dmaProcessBuffer			;clear asynchronous screen DMA queue
 
 	jsr editorInit2
 	

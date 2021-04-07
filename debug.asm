@@ -1,11 +1,11 @@
 	.include "macros.asm"
 debugNumbers:
 	setdmapos 20,2
-	lda noteCounter
+	lda debug0
 	jsr phex
 	lda #$FF
 	sta $2007
-	lda debug1
+	lda cursorX_track
 	jsr phex
 	rts
 	

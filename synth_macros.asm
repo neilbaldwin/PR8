@@ -1,3 +1,5 @@
+	.FEATURE force_range
+
 ;------------------------------------------------------------------------------
 ; Noise LFO
 ;------------------------------------------------------------------------------
@@ -10,8 +12,8 @@
 	
 	lda _note		;get original pitch
 	ldx _phase		;which phase?
-	beq :+		;0, so use original pitch
-	clc		;otherwise add _depth to original
+	beq :+			;0, so use original pitch
+	clc				;otherwise add _depth to original
 	adc _depth
 :	sta _freqLo
 	rts

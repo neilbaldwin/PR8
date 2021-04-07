@@ -6,6 +6,18 @@ I was going to attempt to document the code a little better but given there's ab
 
 If you have any questions you could try emailing me at info@marmotaudio.co.uk but I will only give limited support. I won't help you to program the NES and so you should be expert-level already before taking on this project.
 
+# Updates - 7th April 2021
+
+- Initial commit of code wasn't actually buildable with the most up-to-date version of CC65/CA65 due to a known issue with negative 8-bit numbers and range checking. I've changed the code to get around this so it is buildable again now
+
+Bug Fixes:
+
+Thanks to @infu_av for bringing these to my attention
+
+- Bug: NTSC/PAL versioning was not actually working so the note pitches were off. Fixed.
+- Bug: It was possible to modify a note value outside of valid range. Fixed.
+- Bug: It was possible to change a Phrase number a make it go outside of valid range which in turn corrupted your save file. Fixed.
+
 ## Requirements
 
 The code is written for CA65/CC65 so you'll need that on your platform of choice. You'll need a good emulator to run it but it will also run on a physical donor cartridge (I've seen it for real but don't ask me how!) or something like a Powerpak developement cartrdige.

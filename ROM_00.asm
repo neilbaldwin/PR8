@@ -1,3 +1,4 @@
+	
 	.include "pr8.h"
 
 .segment "HEADER"
@@ -7,10 +8,11 @@
 	.BYTE %00010010, %00001000
 	
 	.IF PAL_VERSION=1
-	.BYTE %00000000
-	.BYTE %00000000
+	.BYTE %00000001				;iNES #9
+	.BYTE %00000000				;iNES #10
 	.ELSE
-	.BYTE 0,0
+	.BYTE %00000000				;iNES #9
+	.BYTE %00000000				;iNES #10
 	.ENDIF
 	.BYTE $90,$07,$00,$00,$00,$00
 

@@ -68,7 +68,6 @@ jumpVector:	.RES 2
 
 dmaProcessBuffer:
 	.RES 32
-;dmaSafe:	.RES 32
 	
 	
 errorCount:	.RES 1

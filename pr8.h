@@ -265,12 +265,6 @@ EDIT_MODE_SONG_MENU = $0A
 EDIT_MODE_ECHO = $0B
 EDIT_MODE_CLEAR_MENU = $0C
 
-EDIT_SUBMODE_A	= $00
-EDIT_SUBMODE_B	= $01
-EDIT_SUBMODE_C	= $02
-EDIT_SUBMODE_D	= $04
-EDIT_SUBMODE_E	= $05
-
 INIT_ECHO_SELECT = $00
 INIT_ECHO_LEVEL	= $00
 INIT_ECHO_DECAY = $00
@@ -370,7 +364,6 @@ PLAY_MODE_SONG_LOOP = $03
 .globalzp PAD2_dfirea
 
 .globalzp processVector, dmaProcessBuffer, jumpVector
-;.globalzp dmaSafe
 
 .globalzp errorCount
 .globalzp maxDma
@@ -660,6 +653,8 @@ PLAY_MODE_SONG_LOOP = $03
 
 .global editorSongSpeedTemp,editorSongSwingTemp,editorSongLoopStartTemp,editorSongLoopLengthTemp
 .global editorSongLastPattern
+
+.global editModNote
 
 ;------------------------------------------------------------------------------
 ; WRAM
